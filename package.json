@@ -1,0 +1,25 @@
+{
+  "name": "zero-gluten-rutin",
+  "version": "1.0.0",
+  "description": "A gluten-free family meal-planning web app (Hungarian UI). The family eats one shared gluten-free menu on a 2-week rotation, and the app shows what to eat and cook today, the recipes, and a shopping list scaled to the family size.",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "typecheck": "tsc -b"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}
