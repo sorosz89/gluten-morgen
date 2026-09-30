@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { RecipeImportError, parseIngredientLine } from './recipeMarkdown.ts'
+import {
+  RecipeImportError,
+  parseIngredientLine,
+  parseStepGroups,
+  splitSections,
+} from './recipeMarkdown.ts'
 
 describe('parseIngredientLine', () => {
   it('AC4: parses amount, unit, name and note, splitting on the first comma', () => {
@@ -72,5 +77,66 @@ describe('parseIngredientLine', () => {
       RecipeImportError,
     )
     expect(() => parseIngredientLine('3 csipet só', 'test.md')).toThrow(/test\.md/)
+  })
+})
+
+describe('parseStepGroups', () => {
+  it('a single "Elkészítés" numbered list becomes one step group', () => {
+    const sections = splitSections(`# Title
+## Hozzávalók (1 adagra)
+- 100 g valami
+## Elkészítés
+1. Első lépés.
+2. Második lépés.
+`)
+
+    expect(parseStepGroups(sections, 'test.md')).toEqual([
+      { heading: 'Elkészítés', steps: ['Első lépés.', 'Második lépés.'] },
+    ])
+  })
+
+  it('two "Elkészítés – ..." variant headings become two step groups', () => {
+    const sections = splitSections(`# Title
+## Hozzávalók (1 adagra)
+- 100 g valami
+## Elkészítés – hidegen (áztatva)
+1. Áztasd be egy éjszakára.
+## Elkészítés – melegen
+1. Forrald fel.
+2. Kavard meg.
+`)
+
+    expect(parseStepGroups(sections, 'test.md')).toEqual([
+      { heading: 'Elkészítés – hidegen (áztatva)', steps: ['Áztasd be egy éjszakára.'] },
+      { heading: 'Elkészítés – melegen', steps: ['Forrald fel.', 'Kavard meg.'] },
+    ])
+  })
+
+  it('a prose, non-numbered heading becomes one group with one step', () => {
+    const sections = splitSections(`# Title
+## Hozzávalók (4 főre)
+- 1 kg hús
+## Pácolás (előző este)
+Keverd össze a hozzávalókat és pácold be egy éjszakára.
+`)
+
+    expect(parseStepGroups(sections, 'test.md')).toEqual([
+      {
+        heading: 'Pácolás (előző este)',
+        steps: ['Keverd össze a hozzávalókat és pácold be egy éjszakára.'],
+      },
+    ])
+  })
+
+  it('throws RecipeImportError naming the file when there is no step-ish heading at all', () => {
+    const sections = splitSections(`# Title
+## Hozzávalók (1 adagra)
+- 100 g valami
+## Tipp
+Csak egy tipp, semmi más.
+`)
+
+    expect(() => parseStepGroups(sections, 'test.md')).toThrow(RecipeImportError)
+    expect(() => parseStepGroups(sections, 'test.md')).toThrow(/test\.md/)
   })
 })

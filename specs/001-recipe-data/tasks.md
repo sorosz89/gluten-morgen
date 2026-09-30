@@ -25,7 +25,7 @@ and names the ACs it serves.
   - Done when: `parseIngredientLine` implemented in
     `src/domain/recipeMarkdown.ts`, all cases pass, `npm run check` green.
 
-- [ ] T3 – Section splitting & step-group parsing
+- [x] T3 – Section splitting & step-group parsing
   - Test first: inline fixtures for `splitSections`/`parseStepGroups`
     covering: (a) a single `## Elkészítés` numbered list → 1 group; (b) two
     `## Elkészítés – X` headings (zabkása shape) → 2 groups, each with its
