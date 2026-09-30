@@ -75,8 +75,12 @@ and names the ACs it serves.
     (case-insensitive), across all 18 recipes.
   - Done when: passes against real files, `npm run check` green.
 
-- [ ] T7 – Generate & commit `src/data/recipes.json`, final AC7 sweep
+- [x] T7 – Generate & commit `src/data/recipes.json`, final AC7 sweep
   - Test first: n/a — verification task.
   - Done when: `npm run import` run once and its output committed;
     `npm run check` passes end to end; confirm T1–T4's tests use only
     inline fixtures (AC7) while T6 is the sole real-data consumer.
+  - Note: grepped all `src/domain/*.test.ts` and `scripts/*.test.ts` for
+    `data/source`/`sourceDir` references — only
+    `scripts/import-recipes.integration.test.ts` matched, confirming AC7's
+    split. All 7 tasks of spec 001 are now done.

@@ -1,0 +1,1364 @@
+[
+  {
+    "id": "gf-alternativ-csirkes-rizses-egytal",
+    "title": "[Alternatíva] Csirkés rizses egytálétel zöldségekkel",
+    "mealType": "alternative",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 600,
+        "unit": "g",
+        "name": "csirkemell",
+        "note": "bőr és csont nélkül, 2 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 320,
+        "unit": "g",
+        "name": "rizs",
+        "note": "nyersen",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "sárgarépa",
+        "note": "apró (kb. 0,5 cm-es) kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "fagyasztott zöldborsó",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 120,
+        "unit": "g",
+        "name": "piros paprika",
+        "note": "kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 120,
+        "unit": "g",
+        "name": "vöröshagyma",
+        "note": "apróra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 60,
+        "unit": "g",
+        "name": "zsiradék",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 2,
+        "unit": "gerezd",
+        "name": "fokhagyma",
+        "note": "apróra vágva, kb. 800 ml csirkealaplé (vagy víz + alaplékocka), fűszerpaprika, só, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Egy nagy, mély serpenyőben vagy lábasban hevítsd fel a zsiradékot közepes lángon.",
+          "Add hozzá a hagymát, és dinszteld 2–3 percig, amíg üveges lesz.",
+          "Add hozzá a csirkemellet, és süsd 5–6 percig, amíg minden oldala megfehéredik.",
+          "Add hozzá a fokhagymát, a sárgarépát és a paprikát, pirítsd további 2–3 percig.",
+          "Szórd bele a rizst, és keverd át, hogy minden szem bevonódjon a zsiradékkal – ez segít, hogy ne ragadjon össze főzés közben.",
+          "Öntsd fel az alaplével, forrald fel, majd fedd le, és kis lángon főzd 15–18 percig, amíg a rizs megpuhul és felszívja a folyadékot.",
+          "Az utolsó 5 percben keverd bele a fagyasztott zöldborsót, hogy éppen csak átforrósodjon.",
+          "Vedd le a tűzről, hagyd 2–3 percig állni fedő alatt, majd villával lazítsd fel, mielőtt tálalod."
+        ]
+      }
+    ],
+    "tip": "Ne keverd túl sokszor főzés közben – minél többet kevered a rizst, annál több keményítő szabadul fel belőle, és annál ragadósabb, pépesebb lesz az egytálétel.",
+    "macros": {
+      "kcal": 753,
+      "proteinG": 55,
+      "carbsG": 80,
+      "saltMg": 650,
+      "fatG": 21,
+      "fiberG": 5
+    },
+    "glutenFreeNote": "Alapból gluténmentes. Csak az alaplékockát/levesport érdemes egyszer átnézni – néhány márka búzakeményítőt tartalmaz sűrítőként."
+  },
+  {
+    "id": "gf-alternativ-sertesszelet",
+    "title": "[Alternatíva] Fokhagymás-citromos sertésszelet burgonyapürével és sárgarépával",
+    "mealType": "alternative",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 800,
+        "unit": "g",
+        "name": "sertésszelet",
+        "note": "karaj vagy comb, kb. 1,5 cm vastagra szeletelve/klopfolva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 900,
+        "unit": "g",
+        "name": "burgonya",
+        "note": "meghámozva, kb. 3 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "sárgarépa",
+        "note": "karikákra vagy hasábokra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 70,
+        "unit": "g",
+        "name": "vaj (a püréhez)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "zsiradék (olívaolaj",
+        "note": "a szeletek sütéséhez)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 150,
+        "unit": "g",
+        "name": "tej (a püréhez)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 3,
+        "amountText": "3–4",
+        "unit": "gerezd",
+        "name": "fokhagyma",
+        "note": "apróra vágva, 1 db citrom (leve), petrezselyemzöld, só, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Tedd fel a burgonyát egy nagy lábasban hideg, sós vízbe, forrald fel, majd fedő alatt főzd 15–18 percig, amíg villával könnyen átszúrható.",
+          "Közben egy másik lábasban főzd meg a sárgarépát 10–12 percig, amíg megpuhul, de még enyhén roppanós marad.",
+          "Fűszerezd sóval, borssal a sertésszeleteket mindkét oldalukon.",
+          "Egy serpenyőben hevítsd fel a zsiradékot közepes-erős lángon, és süsd a szeleteket 3–4 percig oldalanként, amíg mindkét oldaluk aranybarnára pirul és a húsuk belseje már nem rózsaszín.",
+          "Vedd ki a húst a serpenyőből, és tartsd melegen, fedő alatt vagy alufóliával letakarva.",
+          "Ugyanabba a serpenyőbe add a fokhagymát, süsd 30–60 másodpercig, amíg illatos lesz (vigyázz, ne égjen meg), majd öntsd fel a citromlével, és kapard fel a serpenyő alján lévő pörzsanyagokat – ez a gyors szaft a húshoz.",
+          "A megfőtt burgonyát szűrd le, add hozzá a vajat és a tejet, és törd össze burgonyanyomóval vagy villával sima, krémes péppé, ízesítsd sóval, borssal.",
+          "Tálald a sertésszeleteket a citromos-fokhagymás szafttal meglocsolva, a burgonyapürével és a sárgarépával, tetejükre szórt petrezselyemzölddel."
+        ]
+      }
+    ],
+    "tip": "A húst ne mozgasd túl sokat sütés közben – hagyd, hogy kialakuljon az aranybarna kéreg, mielőtt megfordítanád, különben csak párolódik, nem pirul meg.",
+    "macros": {
+      "kcal": 765,
+      "proteinG": 49,
+      "carbsG": 50,
+      "saltMg": 480,
+      "fatG": 40,
+      "fiberG": 8
+    },
+    "glutenFreeNote": "Ez a fogás alapból gluténmentes – nincs benne panír, liszt vagy szósz sűrítő."
+  },
+  {
+    "id": "gf-alternativ-sult-csirke-rizs",
+    "title": "[Alternatíva] Sült csirkemell rizzsel és sült zöldségekkel",
+    "mealType": "alternative",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 600,
+        "unit": "g",
+        "name": "csirkemell",
+        "note": "bőr és csont nélkül, 2–3 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 320,
+        "unit": "g",
+        "name": "rizs",
+        "note": "nyersen",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "sárgarépa",
+        "note": "kb. 1,5 cm-es darabokra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "cukkini",
+        "note": "1,5 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 80,
+        "unit": "g",
+        "name": "zsiradék (olívaolaj vagy más sütésre alkalmas olaj – a csirkéhez és a zöldségekhez elosztva)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 2,
+        "unit": "gerezd",
+        "name": "fokhagyma",
+        "note": "apróra vágva, fűszerpaprika, oregánó, kakukkfű, só, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "A zöldségeket forgasd össze a zsiradék felével (kb. 40 g) és a fűszerekkel egy sütőpapíros tepsin, egy rétegben elterítve.",
+          "Süsd a zöldségeket 200 °C-on 20–25 percig, félidőben megforgatva, amíg megpuhulnak és a szélük enyhén megpirul.",
+          "Közben forralj fel egy fedeles lábasban kb. duplányi sós vizet a rizs mennyiségéhez, add hozzá a rizst, fedd le, és kis lángon főzd a csomagolás utasítása szerint (kb. 12–15 perc), amíg a víz felszívódik és a rizs megpuhul.",
+          "Egy serpenyőben hevítsd fel a maradék zsiradékot közepes-erős lángon, add hozzá a fokhagymát és a csirkemellkockákat, fűszerezd fűszerpaprikával, sózd, borsozd.",
+          "Süsd a csirkét 6–8 percig, időnként megforgatva, amíg minden oldala megpirul és a belseje már nem rózsaszín – vágj ketté egy nagyobb darabot ellenőrzésként.",
+          "Tálald a rizst a sült csirkével és a sült zöldségekkel egy tányéron."
+        ]
+      }
+    ],
+    "tip": "A zöldségeket ne zsúfold össze a tepsin – ha egymáson fekszenek, inkább párolódnak, mint sülnek, és nem pirulnak meg. Ha kell, oszd meg két tepsire.",
+    "macros": {
+      "kcal": 786,
+      "proteinG": 55,
+      "carbsG": 76,
+      "saltMg": 480,
+      "fatG": 26,
+      "fiberG": 6
+    },
+    "glutenFreeNote": "Ez a fogás alapból gluténmentes – nincs benne kenyér, panír vagy szósz sűrítő. Csak a kész fűszerkeverékeket érdemes egyszer átnézni, mert némelyik lisztet tartalmazhat sűrítőként."
+  },
+  {
+    "id": "gf-alternativ-sult-lazac",
+    "title": "[Alternatíva] Sült lazacfilé citromos burgonyapürével és gőzölt brokkolival",
+    "mealType": "alternative",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 640,
+        "unit": "g",
+        "name": "lazacfilé",
+        "note": "bőrrel vagy anélkül",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 800,
+        "unit": "g",
+        "name": "burgonya",
+        "note": "meghámozva, kb. 3 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "brokkoli",
+        "note": "rózsákra szedve",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 60,
+        "unit": "g",
+        "name": "vaj (a püréhez)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 20,
+        "unit": "g",
+        "name": "zsiradék (olívaolaj",
+        "note": "a lazac sütéséhez)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 150,
+        "unit": "g",
+        "name": "tej (a püréhez)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 1,
+        "unit": "db",
+        "name": "citrom (leve + esetleg karikák a tálaláshoz)",
+        "note": "só, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Tedd fel a burgonyát egy nagy lábasban hideg, sós vízbe, forrald fel, majd fedő alatt főzd 15–18 percig, amíg villával könnyen átszúrható.",
+          "Közben helyezd a lazacfiléket egy sütőpapíros tepsire, csorgasd meg a zsiradékkal és a citromlé felével, sózd, borsozd.",
+          "Süsd a lazacot 200 °C-on 12–15 percig, amíg a húsa átsül és villával könnyen pelyhekre válik.",
+          "Az utolsó 5–6 percben gőzöld meg a brokkolit egy szűrős betétben vagy kevés vízben, fedő alatt, amíg roppanósan puha lesz – élénkzöld színű marad.",
+          "A megfőtt burgonyát szűrd le, add hozzá a vajat és a tejet, és törd össze burgonyanyomóval vagy villával sima, krémes péppé.",
+          "Ízesítsd a pürét sóval, borssal és a maradék citromlével.",
+          "Tálald a lazacot a burgonyapürével és a gőzölt brokkolival."
+        ]
+      }
+    ],
+    "tip": "A lazacot ne süsd túl – akkor a legjobb, ha a hús közepén még enyhén áttetsző, mert utóhővel tovább sül a tányéron. Ha vastagabb filét használsz, számíts 2–3 perccel hosszabb sütési időre.",
+    "macros": {
+      "kcal": 700,
+      "proteinG": 40,
+      "carbsG": 43,
+      "saltMg": 450,
+      "fatG": 39,
+      "fiberG": 7
+    },
+    "glutenFreeNote": "Ez a fogás alapból gluténmentes – nincs benne panír, liszt vagy szósz sűrítő."
+  },
+  {
+    "id": "gf-alternativ-tonhalas-tesztasalata",
+    "title": "[Alternatíva] Tonhalas gluténmentes tésztasaláta zöldségekkel",
+    "mealType": "alternative",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 280,
+        "unit": "g",
+        "name": "gluténmentes tészta (rizs-",
+        "note": "kukorica- vagy hüvelyesalapú, rövid forma, pl. penne, fusilli)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 480,
+        "unit": "g",
+        "name": "tonhalkonzerv",
+        "note": "sós vízben, lecsepegtetve",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "paradicsom",
+        "note": "kockára vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "uborka",
+        "note": "kockára vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "piros vagy zöld paprika",
+        "note": "csíkokra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 80,
+        "unit": "g",
+        "name": "lilahagyma vagy vöröshagyma",
+        "note": "finomra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 70,
+        "unit": "g",
+        "name": "olívaolaj",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 40,
+        "unit": "g",
+        "name": "citromlé",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "oregánó, só, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Főzd meg a tésztát a csomagolás utasítása szerint (általában 8–10 perc), amíg al dente lesz.",
+          "Szűrd le, és öblítsd át hideg vízzel, hogy ne ragadjon össze és gyorsan kihűljön.",
+          "Egy nagy salátástálban keverd össze a kihűlt tésztát a lecsepegtetett tonhallal, a paradicsommal, az uborkával, a paprikával és a hagymával.",
+          "Egy kis tálban keverd össze az olívaolajat, a citromlevet, az oregánót, a sót és a borsot.",
+          "Öntsd a dresszinget a salátára, és óvatosan forgasd össze, amíg minden hozzávaló egyenletesen bevonódik.",
+          "Kóstold meg, szükség esetén sózd/borsozd, majd tálald azonnal, vagy hűtsd le tálalásig."
+        ]
+      }
+    ],
+    "tip": "A tésztát mindig öblítsd át hideg vízzel főzés után – ez állítja meg a főzést és megakadályozza, hogy összeragadjon, a saláta pedig gyorsabban kihűl. Ha előre készíted, a dresszinget csak tálalás előtt add hozzá, hogy a tészta ne száradjon ki.",
+    "macros": {
+      "kcal": 570,
+      "proteinG": 33,
+      "carbsG": 65,
+      "saltMg": 720,
+      "fatG": 20,
+      "fiberG": 3
+    },
+    "glutenFreeNote": "Kizárólag gluténmentes jelölésű tésztát használj (rizs-, kukorica- vagy hüvelyesalapú). A tonhalkonzerv általában eleve gluténmentes, de első vásárláskor érdemes ellenőrizni a címkét."
+  },
+  {
+    "id": "gf-ebed-gulyasleves",
+    "title": "Gulyásleves",
+    "mealType": "lunch",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 1000,
+        "unit": "g",
+        "name": "pörköltnek való sovány hús",
+        "note": "2 cm-es kockákra vágva (marhalábszár/lapocka, sertéscomb, csirkecomb bőr nélkül, vadhús, harcsa, máj)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "burgonya",
+        "note": "1,5 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "leveszöldség",
+        "note": "apró (kb. 0,5 cm-es) kockákra vágva (sárgarépa, fehérrépa, karalábé, karfiol, brokkoli, zellergumó, hagyma)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "vöröshagyma",
+        "note": "apróra (kb. 0,5 cm-es kockákra) vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "paradicsom",
+        "note": "kockára vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 40,
+        "unit": "g",
+        "name": "zsír (kókuszzsír",
+        "note": "sertészsír vagy sütésre alkalmas olaj)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "gluténmentes kenyér (a levesbetéthez)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 2,
+        "amountText": "2–3",
+        "unit": "evőkanál",
+        "name": "fűszerpaprika",
+        "note": "petrezselyemzöld, só, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Egy nagy fazékban hevítsd fel a zsírt közepes lángon kb. 1–2 percig, amíg csillog és folyós.",
+          "Add hozzá az apróra vágott hagymát, és pirítsd 2–3 percig, amíg üveges lesz, de nem barnul meg.",
+          "Add hozzá a felkockázott húst, és pirítsd körbe minden oldalán kb. 5–8 percig, amíg a felülete szürkésbarnára pirul.",
+          "Vedd le a fazekat a tűzről (vagy húzd félre), és csak ekkor keverd bele a fűszerpaprikát – így nem ég meg és nem lesz keserű.",
+          "Öntsd fel annyi vízzel, ami kb. 2–3 cm-rel ellepi a húst, tedd vissza a tűzre, és forrald fel.",
+          "Fedő alatt, kis lángon főzd 60–90 percig, amíg a hús megpuhul (villával könnyen szétnyomható) – óránként ellenőrizd, és pótold a vizet, ha sok elfőtt.",
+          "Add hozzá a felaprított leveszöldséget, a burgonyát és a paradicsomot, sózd, borsozd.",
+          "Főzd további 20–25 percig fedő nélkül, amíg a zöldségek és a burgonya is megpuhulnak (villával könnyen átszúrhatók).",
+          "Tálaláskor szórd meg petrezselyemzölddel, és gluténmentes kenyérrel kínáld."
+        ]
+      }
+    ],
+    "tip": "A fűszerpaprikát mindig lángról levéve keverd a levesbe – forró zsiradékban pillanatok alatt megég és keserű lesz. Ha autentikusabb ízt szeretnél, egy csipet őrölt köménnyel és 1–2 teáskanál mustárral is bővítheted a levest (mindkettő gluténmentes, és remekül illik a fűszerpaprikához).",
+    "source": "Street Kitchen – Klasszikus gulyásleves recept marhahúsból",
+    "macros": {
+      "kcal": 822,
+      "proteinG": 65,
+      "carbsG": 77,
+      "saltMg": 670,
+      "fatG": 28,
+      "fiberG": 12
+    },
+    "glutenFreeNote": "Csak a levesbetét kenyerét kell cserélni – maga a gulyás alapból gluténmentes. Ne ugyanazon a vágódeszkán/kenyérpirítóban készítsd, mint amit esetleg máshol a családban \"sima\" kenyérhez használtok."
+  },
+  {
+    "id": "gf-ebed-husos-zoldseges-passata",
+    "title": "Húsos zöldséges passata",
+    "mealType": "lunch",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "darált hús (10% zsírtartalom alatt – sertés",
+        "note": "marha vagy pulyka)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 1000,
+        "unit": "g",
+        "name": "paradicsom passata / passzírozott paradicsom",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "sárgarépa",
+        "note": "apró (kb. 0,5 cm-es) kockákra vágva vagy lereszelve",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "cukkini",
+        "note": "1,5 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 960,
+        "unit": "g",
+        "name": "csicseriborsó (konzerv",
+        "note": "leszűrve és leöblítve – ez a sótartalmat is csökkenti)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "zsír",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 2,
+        "unit": "gerezd",
+        "name": "fokhagyma",
+        "note": "apróra vágva, bazsalikom, oregánó, chili, füstölt paprika ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Egy nagy lábasban hevítsd fel a zsiradékot közepes lángon.",
+          "Add hozzá a darált húst, és pirítsd 5–7 percig, kanállal törve, amíg elveszti rózsaszín színét és omlós lesz; közben sózd, borsozd.",
+          "Add hozzá a sárgarépát és a fokhagymát, pirítsd további 2–3 percig, amíg a répa illatozni kezd.",
+          "Öntsd fel a passatával, és közepes-kis lángon, fedő nélkül főzd 15–20 percig, amíg enyhén besűrűsödik.",
+          "Add hozzá a felkockázott cukkinit és a lecsepegtetett, leöblített csicseriborsót.",
+          "Főzd további 10–15 percig, amíg a cukkini megpuhul, de még tartja a formáját – nem esik szét pépesre.",
+          "Ízesítsd bazsalikommal, oregánóval, chilivel vagy füstölt paprikával, kóstold meg, és csak ezután sózz, ha szükséges (a csicseriborsó konzerv gyakran már eleve sós)."
+        ]
+      }
+    ],
+    "tip": "A cukkinit csak az utolsó 10–15 percben add hozzá – ha korábban teszed bele, teljesen szétfő, és a szósz löttyedt lesz, ahelyett hogy haraphatóan puha maradna.",
+    "source": "RUTIN étrendterv",
+    "macros": {
+      "kcal": 749,
+      "proteinG": 50,
+      "carbsG": 63,
+      "saltMg": 2193,
+      "fatG": 33,
+      "fiberG": 15
+    },
+    "glutenFreeNote": "Ez a fogás eleve gluténmentes, nincs benne kenyér vagy gabona – csak a konzerv csicseriborsó és a passata címkéjét érdemes egyszer átnézni (elvétve tartalmazhatnak adalékanyagot), utána nyugodtan vásárolhatod ugyanazt a márkát."
+  },
+  {
+    "id": "gf-ebed-paradicsomos-husgomboc",
+    "title": "Paradicsomos húsgombóc",
+    "mealType": "lunch",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 800,
+        "unit": "g",
+        "name": "darált hús (10% zsírtartalom alatt)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "M-es tojás",
+        "note": "felütve",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "gluténmentes (GM) zabpehely (kötőanyagként)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "vöröshagyma",
+        "note": "nagyon apróra (kb. 0,3 cm-es kockákra) vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "paradicsom passata",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 350,
+        "unit": "g",
+        "name": "rizs (csak ez",
+        "note": "vagy köles / quinoa / hajdina / vörös lencse – SOHA ne bulgur, kuszkusz vagy durum tészta, mert azok búzaalapúak)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 30,
+        "unit": "g",
+        "name": "zsír",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "bazsalikom, oregánó, bors ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Egy tálban keverd össze a darált húst, a tojást, a zabpelyhet, az apróra vágott hagymát és a fűszereket (bazsalikom, oregánó, bors).",
+          "Gyúrd formázható, de nem túl lágy masszává – kb. 1 perc.",
+          "Hagyd pihenni a masszát 5–10 percig a hűtőben vagy a pulton – így a zabpehely megszívja a nedvességet, és jobban összeáll.",
+          "Nedves kézzel formázz belőle golflabda méretű (kb. 40 g-os) gombócokat – a nedves kéz megakadályozza, hogy a massza rátapadjon.",
+          "Egy serpenyőben hevítsd fel a zsiradékot közepes-erős lángon.",
+          "Süsd a gombócokat körbe minden oldalukon kb. 5–6 percig, amíg minden oldaluk barnára pirul – időnként forgasd meg őket.",
+          "Öntsd fel a paradicsom passatával, fedd le, és gyöngyöző forrás mellett (ne erős lobogással) főzd 15–20 percig, amíg a gombócok belseje is átsül – vágj ketté egyet ellenőrzésként, ne legyen rózsaszín belül.",
+          "Közben egy külön kis lábasban főzd meg a rizst a csomagolás utasítása szerint (kb. 15–18 perc, amíg megpuhul és felszívja a vizet).",
+          "Tálald a gombócokat a szósszal a rizs mellé."
+        ]
+      }
+    ],
+    "tip": "Az apróra vágott hagyma egyenletesebben adja át az ízét a masszának, a pár perces pihentetés pedig segít, hogy a gombócok ne essenek szét főzés közben. A szószt inkább gyöngyözve forrald, mint erős lobogással – így a gombócok formája is megmarad.",
+    "source": "Street Kitchen – Paradicsomos húsgombóc",
+    "macros": {
+      "kcal": 820,
+      "proteinG": 53,
+      "carbsG": 85,
+      "saltMg": 996,
+      "fatG": 30,
+      "fiberG": 4
+    },
+    "glutenFreeNote": "Két kritikus pont: a gombócba kötőanyagként kerülő zabpehely legyen tanúsítottan gluténmentes, a köret pedig soha ne legyen bulgur, kuszkusz vagy durum tészta – ezek a RUTIN eredeti \"rizs helyett\" listáján szerepeltek, de búzát tartalmaznak."
+  },
+  {
+    "id": "gf-ebed-savanyu-lencseleves",
+    "title": "Savanyú lencseleves",
+    "mealType": "lunch",
+    "servingsLabel": "4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "pörköltnek való sovány hús",
+        "note": "2 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 250,
+        "unit": "g",
+        "name": "száraz lencse",
+        "note": "leöblítve",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "leveszöldség",
+        "note": "apró (kb. 0,5 cm-es) kockákra vágva (sárgarépa, fehérrépa, karalábé, hagyma, zeller – válogasd össze ízlés szerint; a hagymás/fokhagymás rész a leveszöldség tömegén belül értendő)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "burgonya",
+        "note": "1,5 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 175,
+        "unit": "g",
+        "name": "tejföl (12%) (csere: vegán tejföl)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 40,
+        "unit": "g",
+        "name": "zsír",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 200,
+        "unit": "g",
+        "name": "gluténmentes kenyér (a tálaláshoz)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 2,
+        "unit": "gerezd",
+        "name": "fokhagyma",
+        "note": "1–2 babérlevél, citrom/ecet ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Egy nagy fazékban hevítsd fel a zsírt közepes lángon.",
+          "Dinszteld rajta a hagymás/fokhagymás részt 2–3 percig, amíg üveges lesz.",
+          "Add hozzá a maradék leveszöldséget, pirítsd további 2 percig.",
+          "Add hozzá a lencsét és a húst, öntsd fel annyi vízzel, ami 3–4 cm-rel ellepi, és dobj bele 1–2 babérlevelet.",
+          "Forrald fel, majd fedő alatt, kis lángon főzd 45–60 percig, amíg a hús és a lencse is megpuhul (a lencse villával könnyen szétnyomható) – közben szükség szerint pótold a vizet.",
+          "Add hozzá a burgonyát, és főzd további 15–20 percig, amíg az is megpuhul (villával könnyen átszúrható).",
+          "Vedd le a tűzről, és keverd bele a tejfölt.",
+          "Ízesítsd ecettel vagy citromlével ízlés szerint, kóstold meg, és szükség esetén sózd.",
+          "Gluténmentes kenyérrel tálald."
+        ]
+      }
+    ],
+    "tip": "A tejfölös habarást és a savanyítást (ecet/citrom) mindig a főzés legvégén add a leveshez – ha korábban savanyítod, a lencse tovább tart, amíg megpuhul.",
+    "source": "RUTIN étrendterv",
+    "macros": {
+      "kcal": 826,
+      "proteinG": 53,
+      "carbsG": 92,
+      "saltMg": 447,
+      "fatG": 27,
+      "fiberG": 15
+    },
+    "glutenFreeNote": "Csak a mellé adott kenyeret kell gluténmentesre cserélni, maga a leves gluténmentes. A tejföl szinte mindig biztonságos, de első vásárláskor nézd meg a címkéjét."
+  },
+  {
+    "id": "gf-reggeli-gorogjoghurtos-banan-muffin",
+    "title": "Görög joghurtos-banános muffin dupla tojással",
+    "mealType": "breakfast",
+    "servingsLabel": "teljes tepsi, 4 napi adagra",
+    "ingredients": [
+      {
+        "amount": 8,
+        "unit": "db",
+        "name": "M-es tojás (kb. 400 g) – ez a \"dupla tojás\"",
+        "note": "ez adja a fehérjepor helyett a szerkezetet és a fehérje nagy részét",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 300,
+        "unit": "g",
+        "name": "banán",
+        "note": "villával pürésítve (csere: egy kicsit több, finomra reszelt alma)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "gluténmentes lisztkeverék (bolti GM lisztmix",
+        "note": "xantángumival – NE sima búzaliszt, teljes kiőrlésű vagy tönköly)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 650,
+        "unit": "g",
+        "name": "görög joghurt",
+        "note": "sovány (0–2% zsír), magas fehérjetartalmú (csere: natúr skyr, hasonló fehérjetartalommal)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 30,
+        "unit": "g",
+        "name": "dió vagy mogyoró",
+        "note": "apróra (kb. 0,3–0,5 cm-es darabokra) vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 60,
+        "unit": "g",
+        "name": "étcsoki (70%)",
+        "note": "kb. 0,5 cm-es darabokra vágva (csere: tejcsoki vagy aszalt gyümölcs – gluténmentes jelöléssel)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 1,
+        "unit": "tk",
+        "name": "sütőpor (gluténmentes márka",
+        "note": "pl. a legtöbb hazai sütőpor az)",
+        "mustBeGlutenFree": true
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Egy nagy tálban verd fel a 8 tojást habverővel kb. 1 percig, amíg habos, világosabb színű nem lesz.",
+          "Keverd bele a görög joghurtot és a pürésített banánt, amíg homogén, sűrű masszát nem kapsz.",
+          "Szórd rá a lisztkeveréket és a sütőport, és kanállal forgasd össze kb. 1 percig, amíg nem marad benne csomó.",
+          "Óvatosan forgasd bele az apróra vágott diót/mogyorót és a felaprított csokidarabokat, hogy egyenletesen oszoljanak el.",
+          "Kanállal oszd el a masszát a muffinkapszlikban, kb. 2/3-ig töltve mindegyiket – a görög joghurt miatt ez folyósabb lesz, mint egy hagyományos muffintészta, ez rendben van.",
+          "Süsd 180 °C-on 20–24 percig, amíg a tetejük aranybarna, és egy fogpiszkálóval a közepükbe szúrva szárazon (a csokidaraboktól eltekintve) jön ki.",
+          "Vedd ki a sütőből, és hagyd a formában pihenni 5 percig, mielőtt kiszeded – így nem esnek szét."
+        ]
+      }
+    ],
+    "tip": "Ne ijedj meg, ha a tészta folyósabbnak tűnik, mint egy szokásos muffinnál – a sok görög joghurt teszi ezt, és sütés közben szépen megemelkedik és megköt. Ne adj hozzá extra lisztet \"besűrítésnek\", mert attól száraz lesz a végeredmény. Minél sűrűbb, minél soványabb (alacsonyabb zsírtartalmú, magasabb fehérjetartalmú) görög joghurtot használsz, annál jobban tartja a formáját sütés közben.",
+    "macros": {
+      "kcal": 547,
+      "proteinG": 34,
+      "carbsG": 51,
+      "saltMg": 310,
+      "fatG": 23,
+      "fiberG": 4
+    },
+    "glutenFreeNote": "A lisztkeverés a kritikus pont: kizárólag kifejezetten \"gluténmentes\" jelölésű lisztmixet használj. A görög joghurt és az étcsoki címkéjét is érdemes egyszer átnézni. A diót/mogyorót tiszta, natúr kiszerelésben vedd, ne müzli-keverékben, és ellenőrizd, nincs-e rajta \"gabonát is csomagoló üzemben készült\" figyelmeztetés."
+  },
+  {
+    "id": "gf-reggeli-joghurtos-magmix",
+    "title": "Gyümölcsös joghurtos magmix",
+    "mealType": "breakfast",
+    "servingsLabel": "1 adagra",
+    "ingredients": [
+      {
+        "amount": 250,
+        "unit": "g",
+        "name": "natúr skyr (csere: ízesített protein joghurt – ez laktózmentes is –",
+        "note": "ízesített skyr, vagy 1% zsíros túró)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 40,
+        "unit": "g",
+        "name": "sótlan",
+        "note": "pörköletlen olajos mag (mandula, kesudió, dió, földimogyoró, törökmogyoró, tökmag, napraforgómag, paradió)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "friss gyümölcs",
+        "note": "1 cm-es kockákra vágva (bármilyen)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 20,
+        "unit": "g",
+        "name": "méz",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Öntsd a skyrt (vagy a választott csere-joghurtot/túrót) egy tálba vagy pohárba.",
+          "Keverd bele a felkockázott gyümölcsöt.",
+          "Szórd meg a tetejét az olajos magvakkal.",
+          "Csorgasd rá a mézet, és azonnal tálald — ha állni hagyod, a gyümölcs leve felhígítja a joghurtot."
+        ]
+      }
+    ],
+    "macros": {
+      "kcal": 547,
+      "proteinG": 35,
+      "carbsG": 49,
+      "saltMg": 376,
+      "fatG": 23,
+      "fiberG": 5
+    },
+    "glutenFreeNote": "Ellenőrizd, hogy az olajos mag zacskóján nincs-e \"gabonát is csomagoló üzemben készült\" figyelmeztetés – tiszta, natúr magkeveréket válassz, ne müzli-jellegű, ízesített változatot."
+  },
+  {
+    "id": "gf-reggeli-proteines-zabkasa",
+    "title": "Laza proteines zabkása",
+    "mealType": "breakfast",
+    "servingsLabel": "1 adagra",
+    "ingredients": [
+      {
+        "amount": 70,
+        "unit": "g",
+        "name": "gluténmentes (GM) zabpehely (csere: köles-",
+        "note": "rizs- vagy hajdinapehely – ezek is mind gluténmentesek)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 330,
+        "unit": "g",
+        "name": "protein tej (0",
+        "note": "2%)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 15,
+        "unit": "g",
+        "name": "fehérjekoncentrátum (75%-os",
+        "note": "gluténmentes jelölésű márka)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 20,
+        "unit": "g",
+        "name": "sótlan",
+        "note": "pörköletlen olajos mag",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "ízlés szerint kakaó, fahéj vagy reszelt citromhéj",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés – hidegen (áztatva)",
+        "steps": [
+          "Öntsd a protein tejet a zabpehelyre egy tálban vagy pohárban.",
+          "Keverd bele a fehérjekoncentrátumot, amíg el nem tűnik a csomó.",
+          "Szórd rá az olajos magvakat.",
+          "Hagyd állni 3–5 percig szobahőn (vagy tedd hűtőbe egy éjszakára), amíg a zabpehely megszívja magát és krémes állagú lesz.",
+          "Tálalás előtt ízesítsd kakaóval, fahéjjal vagy reszelt citromhéjjal."
+        ]
+      },
+      {
+        "heading": "Elkészítés – melegen",
+        "steps": [
+          "Tedd a zabpelyhet és a protein tejet egy kis lábasba.",
+          "Melegítsd közepes lángon, folyamatosan kevergetve, 3–4 percig, amíg besűrűsödik és krémes lesz – ne forrald fel hirtelen, mert kicsaphat.",
+          "Vedd le a tűzről, és keverd bele a fehérjekoncentrátumot.",
+          "Szórd meg olajos maggal, ízesítsd kakaóval, fahéjjal vagy citromhéjjal, és azonnal tálald."
+        ]
+      }
+    ],
+    "macros": {
+      "kcal": 589,
+      "proteinG": 43,
+      "carbsG": 65,
+      "saltMg": 569,
+      "fatG": 17,
+      "fiberG": 9
+    },
+    "glutenFreeNote": "A \"sima\" zabpehely – bár a zab önmagában nem tartalmaz glutént – a termesztés és feldolgozás során szinte mindig keveredik búzával/árpával. Zéró toleranciánál **kizárólag** \"gluténmentes\" jelölésű zabpehely (vagy köles/rizs/hajdinapehely) jöhet szóba."
+  },
+  {
+    "id": "gf-reggeli-turos-epres-suti",
+    "title": "Túrós epres kevert süti",
+    "mealType": "breakfast",
+    "servingsLabel": "4 napi adagra / teljes tepsire",
+    "ingredients": [
+      {
+        "amount": 500,
+        "unit": "g",
+        "name": "túró (1% zsír)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 250,
+        "unit": "g",
+        "name": "gluténmentes lisztkeverék (NE sima",
+        "note": "teljes kiőrlésű vagy tönköly búzaliszt)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 400,
+        "unit": "g",
+        "name": "földieper",
+        "note": "megmosva, kocsányozva, félbe/negyedbe vágva (friss vagy fagyasztott – fagyasztottnál félig fagyottan szeletelj)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 3,
+        "unit": "db",
+        "name": "M-es tojás (kb. 150 g)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "teavaj",
+        "note": "olvasztva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 175,
+        "unit": "g",
+        "name": "sovány (0",
+        "note": "1%) joghurt",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "édesítő ízlés szerint (eritrit, stevia), csipet só, 1 tk sütőpor (gluténmentes)",
+        "mustBeGlutenFree": true
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "A túrót keverd ki habverővel a tojással, az édesítővel (eritrit vagy stevia), az olvasztott, langyos vajjal, a joghurttal és egy csipet sóval, amíg sima, krémes állagot nem kapsz – kb. 1–2 perc.",
+          "Szórd rá a lisztkeveréket és a sütőport, és kanállal keverd össze, amíg eltűnnek a lisztcsomók.",
+          "Óvatosan forgasd bele az epret 2–3 mozdulattal, hogy ne törjön szét és ne fesse át a tésztát.",
+          "Öntsd a masszát a sütőpapíros tepsibe, és simítsd el a tetejét egy kanál hátával.",
+          "Süsd 180 °C-on 35–45 percig, amíg a teteje aranybarna, és egy fogpiszkálóval a közepébe szúrva szárazon jön ki.",
+          "Vedd ki a sütőből, és hagyd a tepsiben teljesen kihűlni (kb. 30 perc), mielőtt szeletelnéd – melegen még túl puha lenne a vágáshoz."
+        ]
+      }
+    ],
+    "macros": {
+      "kcal": 546,
+      "proteinG": 34,
+      "carbsG": 57,
+      "saltMg": 176,
+      "fatG": 20,
+      "fiberG": 2
+    },
+    "glutenFreeNote": "Ugyanaz a szabály, mint a muffinnál: csak jelölt gluténmentes lisztkeverék, és nézd meg a sütőpor címkéjét is (a legtöbb hazai márka gluténmentes, de érdemes egyszer megnézni)."
+  },
+  {
+    "id": "gf-vacsora-melegszendvics",
+    "title": "Melegszendvics",
+    "mealType": "dinner",
+    "servingsLabel": "1 adagra",
+    "ingredients": [
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "gluténmentes zsemle vagy kenyér (kb. 1 db zsemle)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 5,
+        "unit": "g",
+        "name": "teavaj",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "csirke- vagy pulykamell sonka (csere: comb-/karajsonka",
+        "note": "füstölt pisztráng, sós vizes tonhalkonzerv)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "light sajt",
+        "note": "szeletelve (trappista, mozzarella)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 50,
+        "unit": "g",
+        "name": "ketchup",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "oregánó ízlés szerint",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Kend meg vékonyan teavajjal a zsemle mindkét felének belső oldalát.",
+          "Pakold rá az egyik felére a sonkát és a light sajtot, csorgasd rá a ketchupot, és szórd meg oregánóval.",
+          "Tedd rá a másik felét, hogy szendvicset formázz.",
+          "Melegszendvicssütőben süsd a gyártó utasítása szerint (jellemzően 3–5 perc), vagy 180 °C-os sütőben, tepsin süsd 5–6 percig, amíg a sajt megolvad és a zsemle kívül ropogós, aranybarna lesz.",
+          "Hagyd 1 percig hűlni, mielőtt beleharapsz – a megolvadt sajt nagyon forró tud lenni."
+        ]
+      }
+    ],
+    "tip": "Egy egész gluténmentes zsemle kb. 45–50 g – félbevágva kényelmesen elfér rajta minden hozzávaló, és a két fél között egyenletesen olvad meg a sajt.",
+    "source": "RUTIN étrendterv",
+    "macros": {
+      "kcal": 562,
+      "proteinG": 42,
+      "carbsG": 66,
+      "saltMg": 4631,
+      "fatG": 14,
+      "fiberG": 9
+    },
+    "glutenFreeNote": "A gluténmentes zsemle/kenyér mellett a sonkát és a ketchupot is érdemes egyszer átnézni – mindkettő szinte mindig gluténmentes, de az összetevőlistán a \"búzakeményítő\" vagy \"árpamaláta-kivonat\" szó kizáró ok."
+  },
+  {
+    "id": "gf-vacsora-sajtos-szendvics",
+    "title": "Sajtos szendvics",
+    "mealType": "dinner",
+    "servingsLabel": "1 adagra",
+    "ingredients": [
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "gluténmentes kenyér",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 60,
+        "unit": "g",
+        "name": "túró (1% zsír)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "light sajt",
+        "note": "szeletelve (trappista, mozzarella)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "szendvics zöldségek",
+        "note": "kb. 0,5 cm vastag karikákra/csíkokra szeletelve (paradicsom, paprika, uborka, salátalevél)",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Kend meg a gluténmentes kenyeret egyenletesen a túróval.",
+          "Rakd rá a light sajtot.",
+          "Pakold rá a felszeletelt szendvics zöldségeket.",
+          "Tálald azonnal, vagy csomagold be, ha később viszed magaddal."
+        ]
+      }
+    ],
+    "macros": {
+      "kcal": 549,
+      "proteinG": 44,
+      "carbsG": 58,
+      "saltMg": 2031,
+      "fatG": 16,
+      "fiberG": 10
+    },
+    "glutenFreeNote": "Csak a kenyeret kell cserélni, a többi hozzávaló eleve gluténmentes."
+  },
+  {
+    "id": "gf-vacsora-sonkas-tukortojas",
+    "title": "Sonkás tükörtojás",
+    "mealType": "dinner",
+    "servingsLabel": "1 adagra",
+    "ingredients": [
+      {
+        "amount": 2,
+        "unit": "db",
+        "name": "M-es tojás (kb. 100 g)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "gluténmentes kenyér",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "szendvics zöldségek (paradicsom",
+        "note": "paprika, uborka, salátalevél)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "csirke- vagy pulykamell sonka (csere: comb-/karajsonka",
+        "note": "füstölt pisztráng, sós vizes tonhalkonzerv)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 5,
+        "unit": "g",
+        "name": "zsír (sütéshez)",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Melegíts fel egy serpenyőt közepes lángon, és tedd bele a zsiradék felét.",
+          "Süsd ki a sonkaszeleteket 2–3 percig, amíg enyhén ropogósak lesznek a szélei, majd vedd ki egy tányérra.",
+          "Tedd a serpenyőbe a maradék zsiradékot, és csúsztasd bele a tojásokat a tálkákból.",
+          "Süsd közepes lángon 2–3 percig, amíg a fehérje széle megszilárdul.",
+          "Ha folyós sárgáját szeretnél, fedd le a serpenyőt 1–2 percre – a gőz megsüti a fehérjét felül, a sárgája krémes marad; ha kemény sárgáját szeretnél, süsd fedő nélkül még 2–3 percig.",
+          "Pakold a gluténmentes kenyérre a sonkával és a tükörtojással, tálald a szendvics zöldségekkel."
+        ]
+      }
+    ],
+    "tip": "A tojást mindig kis tálkába törd fel először, ne közvetlenül a forró serpenyőbe – ez a legbiztosabb módja, hogy ne kerüljön héj a tojásba, és a sárgája se sérüljön meg. Közepes lángot használj: túl erős hőn az alja odaég, mire a teteje megsül.",
+    "source": "Street Kitchen – A tökéletes tükörtojás nyomában",
+    "macros": {
+      "kcal": 580,
+      "proteinG": 43,
+      "carbsG": 58,
+      "saltMg": 3133,
+      "fatG": 20,
+      "fiberG": 10
+    },
+    "glutenFreeNote": "A kenyér cseréje mellett a sonkát is érdemes egyszer ellenőrizni: sok szeletelt sonka/pulykamell tartalmaz búzakeményítőt töltőanyagként – válassz kifejezetten \"gluténmentes\" jelölésű vagy tiszta összetételű (hús + só + fűszerek) terméket."
+  },
+  {
+    "id": "gf-vacsora-tojasos-avokado-salata",
+    "title": "Tojásos-avokádó saláta",
+    "mealType": "dinner",
+    "servingsLabel": "1 adagra",
+    "ingredients": [
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "avokádó",
+        "note": "érett, 1,5 cm-es kockákra vágva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 3,
+        "unit": "db",
+        "name": "M-es tojás (kb. 150 g)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "csirke- vagy pulykamell sonka (csere: comb-/karajsonka",
+        "note": "füstölt pisztráng, sós vizes tonhalkonzerv)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 100,
+        "unit": "g",
+        "name": "alma",
+        "note": "lereszelve vagy vékonyan (kb. 0,3 cm) felszeletelve",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Elkészítés",
+        "steps": [
+          "Óvatosan tedd a tojásokat a forrásban lévő vízbe, és főzd 8–9 percig kemény tojásra (8 perc lágyabb, 9 perc szilárdabb sárgáját ad).",
+          "Szűrőkanállal vedd ki a tojásokat, és azonnal tedd hideg vízbe 2–3 percre, hogy leálljon a főzés és könnyebb legyen hámozni.",
+          "Hámozd meg a tojásokat, és vágd 1–1,5 cm-es kockákra vagy karikákra.",
+          "Az avokádót vágd 1,5 cm-es kockákra, az almát reszeld le vagy vágd vékony, kb. 0,3 cm-es szeletekre.",
+          "Pakolj mindent egy tálba a sonkával együtt, és óvatosan keverd össze – az avokádó könnyen péppé válik, ne kevergesd túl sokáig.",
+          "Ízlés szerint sózd meg, és tálald."
+        ]
+      }
+    ],
+    "macros": {
+      "kcal": 546,
+      "proteinG": 42,
+      "carbsG": 24,
+      "saltMg": 2721,
+      "fatG": 31,
+      "fiberG": 8
+    },
+    "glutenFreeNote": "Csak a sonkát érdemes egyszer leellenőrizni (lásd az általános megjegyzést a többi receptnél)."
+  },
+  {
+    "id": "mezes-mustaros-sult-oldalas",
+    "title": "Mézes-mustáros sült oldalas",
+    "mealType": "extra",
+    "servingsLabel": "4 főre",
+    "ingredients": [
+      {
+        "amount": 1.2,
+        "amountText": "1,2–1,5",
+        "unit": "kg",
+        "name": "sertés oldalas",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 4,
+        "unit": "evőkanál",
+        "name": "mustár (a legtöbb tiszta mustár gluténmentes",
+        "note": "de van, amelyik búzaalapú sűrítőt tartalmaz — ellenőrizd a címkét)",
+        "mustBeGlutenFree": true
+      },
+      {
+        "amount": 3,
+        "amountText": "3-4",
+        "unit": "evőkanál",
+        "name": "méz",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 2,
+        "amountText": "2-3",
+        "unit": "gerezd",
+        "name": "fokhagyma",
+        "note": "összezúzva",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 2,
+        "unit": "evőkanál",
+        "name": "olívaolaj",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": 1,
+        "unit": "tk",
+        "name": "füstölt paprika (opcionális)",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "só, bors",
+        "mustBeGlutenFree": false
+      },
+      {
+        "amount": null,
+        "unit": null,
+        "name": "csipet szárított kakukkfű vagy rozmaring (opcionális)",
+        "mustBeGlutenFree": false
+      }
+    ],
+    "stepGroups": [
+      {
+        "heading": "Pácolás (előző este)",
+        "steps": [
+          "Keverd össze a mustárt, mézet, fokhagymát, olívaolajat és a fűszereket simára. Ha van hártya a csontos oldalon, húzd le — jobban felszívja a pácot, omlósabb lesz. Kend be alaposan az oldalast minden oldalról, tedd jól záródó dobozba vagy zacskóba, hűtőbe egész éjszakára."
+        ]
+      },
+      {
+        "heading": "Sütés másnap",
+        "steps": [
+          "Fél órával sütés előtt vedd ki a húst a hűtőből.",
+          "Melegítsd elő a sütőt 150°C-ra.",
+          "Tepsibe téve, alufóliával szorosan letakarva süsd kb. 2–2,5 órán át.",
+          "Vedd le a fóliát, kend meg még egyszer mézzel-mustárral, süsd további 20–30 percig fólia nélkül 200°C-on, amíg szép barnára nem sül.",
+          "Szeletelés előtt pihentesd 10 percet."
+        ]
+      }
+    ]
+  }
+]
