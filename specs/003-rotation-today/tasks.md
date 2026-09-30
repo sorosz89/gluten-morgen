@@ -35,7 +35,7 @@ and names the ACs it serves.
     `anchorRepository` and renders the setup prompt when none is set;
     `npm run check` green.
 
-- [ ] T4 – Today's meals + cook flag (AC2, AC3, AC4, AC5)
+- [x] T4 – Today's meals + cook flag (AC2, AC3, AC4, AC5)
   - Test first: extend `TodayPage.test.tsx` — with an anchor of 2026-10-04
     stored and `today` pinned via the component's `today` prop, asserts the
     three correct recipe titles and "cook today?" text for each of
