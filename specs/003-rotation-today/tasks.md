@@ -16,7 +16,7 @@ and names the ACs it serves.
     `getBlockRecipeIds`, `isSunday`, `parseIsoDate`, `formatIsoDate`; all
     tests pass; `npm run check` green.
 
-- [ ] T2 – Anchor repository (foundation for AC1, AC7)
+- [x] T2 – Anchor repository (foundation for AC1, AC7)
   - Test first: `src/data/anchorRepository.test.ts` — `getAnchor` returns
     `null` when nothing is stored; `setAnchor` then `getAnchor` round-trips
     the same ISO date string; uses an injected in-memory fake storage, not
