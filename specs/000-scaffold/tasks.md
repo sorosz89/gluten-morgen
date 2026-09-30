@@ -24,12 +24,19 @@ far green, and names the ACs it serves.
     react-refresh); `npm run lint` runs and reports zero errors on the
     scaffolded files.
 
-- [ ] T3 – Add Vitest + React Testing Library and `test` script (AC1)
+- [x] T3 – Add Vitest + React Testing Library and `test` script (AC1)
   - Test first: n/a (test infra itself; nothing to assert yet).
   - Done when: `vite.config.ts` has a `test` block (jsdom env, `src/test/setup.ts`
     wired in); `@testing-library/react`, `@testing-library/jest-dom`, `jsdom`
     installed; `npm test` runs and exits 0 (even with zero test files or a
     trivial smoke test).
+  - Note: used `vitest run --passWithNoTests` for the `test` script instead
+    of a throwaway smoke test file — Vitest exits 1 on zero test files by
+    default, and a smoke test would just be deleted once T5 adds the real
+    one. The flag is a no-op once real tests exist. Also hit an unrelated
+    global npm cache permission error (a root-owned entry from a past `sudo
+    npm` run); worked around it with a scratch-local `--cache` dir for
+    installs rather than touching the system cache.
 
 - [ ] T4 – Create folder layout from CLAUDE.md (AC5)
   - Test first: n/a (structural).
