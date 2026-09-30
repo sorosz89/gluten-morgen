@@ -41,6 +41,6 @@ describe('App', () => {
       </MemoryRouter>,
     )
 
-    expect(screen.getByText(/vasárnap/i)).toBeInTheDocument()
+    expect(screen.getByText(/add meg, melyik vasárnap/i)).toBeInTheDocument()
   })
 })

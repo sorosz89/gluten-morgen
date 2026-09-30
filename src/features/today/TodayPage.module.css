@@ -22,3 +22,23 @@
   color: #7a5c00;
   font-size: 0.8rem;
 }
+
+.anchorForm {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.anchorForm label {
+  flex-basis: 100%;
+}
+
+.anchorForm input,
+.anchorForm button {
+  min-height: 44px;
+  box-sizing: border-box;
+}

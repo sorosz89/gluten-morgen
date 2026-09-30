@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
@@ -21,7 +21,7 @@ describe('TodayPage', () => {
   it('AC1: shows a setup prompt and no meal or cook-today info when no anchor is set', () => {
     render(<TodayPage />)
 
-    expect(screen.getByText(/vasárnap/i)).toBeInTheDocument()
+    expect(screen.getByText(/add meg, melyik vasárnap/i)).toBeInTheDocument()
     expect(screen.queryByText(/kell főzni/i)).not.toBeInTheDocument()
   })
 
@@ -72,5 +72,31 @@ describe('TodayPage', () => {
     const lunchLine = screen.getByText('Húsos zöldséges passata').closest('li')
     expect(lunchLine).not.toBeNull()
     expect(within(lunchLine!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
+  })
+
+  it('AC7: changing the anchor to a different Sunday updates today\'s meals', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderToday(parseIsoDate('2026-10-04'))
+
+    expect(screen.getByText('Gulyásleves')).toBeInTheDocument()
+
+    fireEvent.change(screen.getByLabelText(/ciklus kezdete/i), { target: { value: '2026-09-27' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Mentés' }))
+
+    expect(screen.queryByText('Gulyásleves')).not.toBeInTheDocument()
+    expect(screen.getByText('Savanyú lencseleves')).toBeInTheDocument()
+    expect(anchorRepository.getAnchor()).toBe('2026-09-27')
+  })
+
+  it('AC7: rejects a non-Sunday anchor and leaves the stored anchor and meals unchanged', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderToday(parseIsoDate('2026-10-04'))
+
+    fireEvent.change(screen.getByLabelText(/ciklus kezdete/i), { target: { value: '2026-10-05' } })
+    fireEvent.click(screen.getByRole('button', { name: 'Mentés' }))
+
+    expect(screen.getByText(/válassz vasárnapot/i)).toBeInTheDocument()
+    expect(screen.getByText('Gulyásleves')).toBeInTheDocument()
+    expect(anchorRepository.getAnchor()).toBe('2026-10-04')
   })
 })

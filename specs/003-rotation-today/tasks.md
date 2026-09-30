@@ -52,7 +52,7 @@ and names the ACs it serves.
   - Done when: `TodayPage` reuses `recipeHasGlutenRiskIngredient` from
     `src/domain/catalog.ts` for each meal entry; `npm run check` green.
 
-- [ ] T6 – Edit the cycle anchor (AC7)
+- [x] T6 – Edit the cycle anchor (AC7)
   - Test first: extend `TodayPage.test.tsx` — starting from anchor
     2026-10-04, changing the date input to a different Sunday and saving
     updates the displayed meals/cook-flag to match, and the repository
@@ -61,6 +61,11 @@ and names the ACs it serves.
   - Done when: `TodayPage` renders an always-visible date input pre-filled
     with the current anchor and a save action; save validates `isSunday`
     before writing via `anchorRepository`; `npm run check` green.
+  - Note: T3's no-anchor prompt text and the new "Ciklus kezdete (vasárnap)"
+    label both contain "vasárnap", so `TodayPage.test.tsx`'s and
+    `App.test.tsx`'s AC1 assertions (`getByText(/vasárnap/i)`) became
+    ambiguous once this task added the always-visible form; tightened both
+    to match the exact prompt sentence instead.
 
 - [ ] T7 – Responsive / tap-target pass (AC8)
   - Test first: none automated (jsdom doesn't do real layout) — verified
