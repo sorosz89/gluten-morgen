@@ -10,7 +10,7 @@ and names the ACs it serves.
     `src/data/recipes.ts` imports `recipes.json` and exports `recipes:
     Recipe[]` via `recipeSchema.array().parse(raw)`; `npm run check` green.
 
-- [ ] T2 – Domain catalog helpers (AC1, AC2, AC3, AC4)
+- [x] T2 – Domain catalog helpers (AC1, AC2, AC3, AC4)
   - Test first: `src/domain/catalog.test.ts` — `groupRecipesByMealType`
     returns sections in the fixed order breakfast/lunch/dinner/
     alternative/extra and omits any section with zero recipes (use a
@@ -24,6 +24,11 @@ and names the ACs it serves.
     `mealTypeLabel`, `groupRecipesByMealType`,
     `recipeHasGlutenRiskIngredient`, `recipeMatchesQuery`; all tests pass;
     `npm run check` green.
+  - Note: `catalog.test.ts` (under `src/domain/`, part of `tsconfig.node.json`'s
+    `module: nodenext` project) transitively imports `src/data/recipes.ts`'s
+    JSON import, which `nodenext` requires an import attribute for; added
+    `with { type: 'json' }` to that import in `recipes.ts` (T1) to keep
+    `tsc -b` green.
 
 - [ ] T3 – Routing + CatalogPage skeleton (AC1, AC2, AC3)
   - Test first: `src/features/catalog/CatalogPage.test.tsx` — renders 5
