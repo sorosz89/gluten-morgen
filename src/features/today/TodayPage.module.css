@@ -12,3 +12,13 @@
 .mealList li {
   padding: 0.4rem 0;
 }
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #fff3cd;
+  color: #7a5c00;
+  font-size: 0.8rem;
+}

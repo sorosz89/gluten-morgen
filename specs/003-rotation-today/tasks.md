@@ -45,7 +45,7 @@ and names the ACs it serves.
     meal's title linking to `/recipes/:id`, and renders the cook-flag text;
     `npm run check` green.
 
-- [ ] T5 – Gluten-risk badge reuse (AC6)
+- [x] T5 – Gluten-risk badge reuse (AC6)
   - Test first: extend `TodayPage.test.tsx` — on 2026-10-07, the dinner
     entry "Melegszendvics" shows the same badge used in spec 002's
     catalog; the lunch entry "Húsos zöldséges passata" shows none.

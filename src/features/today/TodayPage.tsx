@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
 import { recipes } from '../../data/recipes.ts'
-import { mealTypeLabel } from '../../domain/catalog.ts'
+import { mealTypeLabel, recipeHasGlutenRiskIngredient } from '../../domain/catalog.ts'
 import { getBlockRecipeIds, getRotationDay, parseIsoDate } from '../../domain/rotation.ts'
 import styles from './TodayPage.module.css'
 
@@ -37,6 +37,9 @@ function TodayPage({ today = new Date() }: TodayPageProps = {}) {
         {[breakfast, lunch, dinner].map((recipe) => (
           <li key={recipe.id}>
             {mealTypeLabel(recipe.mealType)}: <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
+            {recipeHasGlutenRiskIngredient(recipe) && (
+              <span className={styles.badge}>Gluténmentes termék szükséges</span>
+            )}
           </li>
         ))}
       </ul>

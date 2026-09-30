@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
@@ -59,5 +59,18 @@ describe('TodayPage', () => {
 
     expect(screen.getByText('Gulyásleves')).toBeInTheDocument()
     expect(screen.getByText(/kell főzni ma\?/i)).toHaveTextContent('igen')
+  })
+
+  it('AC6: flags Melegszendvics with the gluten-risk badge, not Húsos zöldséges passata', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderToday(parseIsoDate('2026-10-07'))
+
+    const dinnerLine = screen.getByText('Melegszendvics').closest('li')
+    expect(dinnerLine).not.toBeNull()
+    expect(within(dinnerLine!).getByText('Gluténmentes termék szükséges')).toBeInTheDocument()
+
+    const lunchLine = screen.getByText('Húsos zöldséges passata').closest('li')
+    expect(lunchLine).not.toBeNull()
+    expect(within(lunchLine!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
   })
 })
