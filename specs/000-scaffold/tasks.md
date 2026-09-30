@@ -18,7 +18,7 @@ far green, and names the ACs it serves.
     references + per-config `noEmit: true`), not a bare `tsc --noEmit`,
     since `--noEmit` isn't compatible with `--build` mode.
 
-- [ ] T2 – Add ESLint flat config and `lint` script (AC1)
+- [x] T2 – Add ESLint flat config and `lint` script (AC1)
   - Test first: n/a (lint config itself).
   - Done when: `eslint.config.js` exists (typescript-eslint + react-hooks +
     react-refresh); `npm run lint` runs and reports zero errors on the
