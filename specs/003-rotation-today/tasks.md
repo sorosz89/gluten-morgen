@@ -67,7 +67,7 @@ and names the ACs it serves.
     ambiguous once this task added the always-visible form; tightened both
     to match the exact prompt sentence instead.
 
-- [ ] T7 – Responsive / tap-target pass (AC8)
+- [x] T7 – Responsive / tap-target pass (AC8)
   - Test first: none automated (jsdom doesn't do real layout) — verified
     by a written manual check instead, same approach as spec 002's T7.
   - Done when: `TodayPage.module.css` (and the new nav) ensure no
@@ -75,3 +75,14 @@ and names the ACs it serves.
     input/save action, and the nav links; manually verified with `npm run
     dev` at a 360px viewport; note the manual check result in this task's
     completion commit message.
+  - Manual check result: verified with a headless Chromium (360×740
+    viewport) against `npm run dev`, both the no-anchor prompt and the
+    meals state (anchor set via the real UI). `scrollWidth === clientWidth
+    === 360` in both states — no horizontal overflow. Tap-target bounding
+    boxes: nav link 63×44px, date input 148×44px, save button 60×44px —
+    all already ≥44px. Found and fixed one real gap: the meal `<Link>`
+    itself was only ~18px tall (just the inline title text), even though
+    the row had visual padding around it — outside the text, taps would
+    have missed. Restructured so the whole row (meal-type label + title +
+    badge) is one `<Link>` sized to ≥44px (now 312×56.8px), matching the
+    full-card-is-a-link pattern spec 002 used for `CatalogPage`.

@@ -69,10 +69,13 @@ function TodayMeals({ anchorIso, today }: { anchorIso: string; today: Date }) {
       <ul className={styles.mealList}>
         {[breakfast, lunch, dinner].map((recipe) => (
           <li key={recipe.id}>
-            {mealTypeLabel(recipe.mealType)}: <Link to={`/recipes/${recipe.id}`}>{recipe.title}</Link>
-            {recipeHasGlutenRiskIngredient(recipe) && (
-              <span className={styles.badge}>Gluténmentes termék szükséges</span>
-            )}
+            <Link to={`/recipes/${recipe.id}`} className={styles.mealLink}>
+              <span className={styles.mealType}>{mealTypeLabel(recipe.mealType)}:</span>
+              <span>{recipe.title}</span>
+              {recipeHasGlutenRiskIngredient(recipe) && (
+                <span className={styles.badge}>Gluténmentes termék szükséges</span>
+              )}
+            </Link>
           </li>
         ))}
       </ul>

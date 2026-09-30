@@ -9,8 +9,19 @@
   padding: 0;
 }
 
-.mealList li {
+.mealLink {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  min-height: 44px;
   padding: 0.4rem 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.mealType {
+  font-weight: bold;
+  margin-right: 0.3em;
 }
 
 .badge {
