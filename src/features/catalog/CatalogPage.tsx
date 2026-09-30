@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { recipes } from '../../data/recipes.ts'
 import {
   groupRecipesByMealType,
@@ -28,12 +29,14 @@ function CatalogPage() {
           <h2 className={styles.sectionTitle}>{section.label}</h2>
           <ul className={styles.cardList}>
             {section.recipes.map((recipe) => (
-              <li key={recipe.id} className={styles.card}>
-                <p className={styles.cardTitle}>{recipe.title}</p>
-                <p className={styles.servings}>{recipe.servingsLabel}</p>
-                {recipeHasGlutenRiskIngredient(recipe) && (
-                  <span className={styles.badge}>Gluténmentes termék szükséges</span>
-                )}
+              <li key={recipe.id}>
+                <Link to={`/recipes/${recipe.id}`} className={styles.card}>
+                  <p className={styles.cardTitle}>{recipe.title}</p>
+                  <p className={styles.servings}>{recipe.servingsLabel}</p>
+                  {recipeHasGlutenRiskIngredient(recipe) && (
+                    <span className={styles.badge}>Gluténmentes termék szükséges</span>
+                  )}
+                </Link>
               </li>
             ))}
           </ul>

@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom'
+import { Link, Navigate, useParams } from 'react-router-dom'
 import { recipes } from '../../data/recipes.ts'
 import { mealTypeLabel } from '../../domain/catalog.ts'
 import type { Ingredient } from '../../domain/recipe.ts'
@@ -23,6 +23,9 @@ function RecipeDetailPage() {
 
   return (
     <div className={styles.page}>
+      <Link to="/" className={styles.backLink}>
+        Vissza a receptekhez
+      </Link>
       <h1>{recipe.title}</h1>
       <p className={styles.mealType}>{mealTypeLabel(recipe.mealType)}</p>
       <p className={styles.servings}>{recipe.servingsLabel}</p>

@@ -1,12 +1,21 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
+import { MemoryRouter } from 'react-router-dom'
 import { recipes } from '../../data/recipes.ts'
 import { MEAL_TYPE_ORDER, mealTypeLabel } from '../../domain/catalog.ts'
 import CatalogPage from './CatalogPage.tsx'
 
+function renderCatalog() {
+  render(
+    <MemoryRouter>
+      <CatalogPage />
+    </MemoryRouter>,
+  )
+}
+
 describe('CatalogPage', () => {
   it('AC1: renders all sections in the fixed order with the right recipe counts', () => {
-    render(<CatalogPage />)
+    renderCatalog()
 
     const headings = screen.getAllByRole('heading', { level: 2 }).map((heading) => heading.textContent)
     expect(headings).toEqual(MEAL_TYPE_ORDER.map(mealTypeLabel))
@@ -21,7 +30,7 @@ describe('CatalogPage', () => {
   })
 
   it('AC2: shows a gluten-risk badge on the Melegszendvics card', () => {
-    render(<CatalogPage />)
+    renderCatalog()
 
     const card = screen.getByText('Melegszendvics').closest('li')
     expect(card).not.toBeNull()
@@ -29,7 +38,7 @@ describe('CatalogPage', () => {
   })
 
   it('AC3: shows no gluten-risk badge on the alternative rice card', () => {
-    render(<CatalogPage />)
+    renderCatalog()
 
     const card = screen.getByText('[Alternatíva] Csirkés rizses egytálétel zöldségekkel').closest('li')
     expect(card).not.toBeNull()
@@ -37,7 +46,7 @@ describe('CatalogPage', () => {
   })
 
   it('AC4: filters to matching recipes and hides empty sections when searching "sonka"', () => {
-    render(<CatalogPage />)
+    renderCatalog()
 
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'sonka' } })
 
@@ -56,7 +65,7 @@ describe('CatalogPage', () => {
   })
 
   it('AC4: restores every recipe when the search is cleared', () => {
-    render(<CatalogPage />)
+    renderCatalog()
 
     const searchInput = screen.getByRole('searchbox')
     fireEvent.change(searchInput, { target: { value: 'sonka' } })
@@ -67,7 +76,7 @@ describe('CatalogPage', () => {
   })
 
   it('AC5: shows an explicit no-results message when nothing matches', () => {
-    render(<CatalogPage />)
+    renderCatalog()
 
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'xyz' } })
 

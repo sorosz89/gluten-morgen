@@ -74,7 +74,7 @@ and names the ACs it serves.
   - Done when: `RecipeDetailPage.tsx` renders every recipe field per the
     plan; `npm run check` green.
 
-- [ ] T6 – Card → detail navigation, back link (AC8)
+- [x] T6 – Card → detail navigation, back link (AC8)
   - Test first: from `CatalogPage`, clicking a recipe card navigates to
     that recipe's `/recipes/:id` route and its detail renders; clicking
     the "Vissza a receptekhez" link on the detail page navigates back to
@@ -82,6 +82,10 @@ and names the ACs it serves.
   - Done when: cards are `Link`s to their detail route; detail page has a
     working back link; `src/App.test.tsx` covers the round trip; `npm run
     check` green.
+  - Note: `CatalogPage.test.tsx` previously rendered `<CatalogPage />`
+    standalone; now that cards are `<Link>`s, that throws without a Router
+    ancestor. Added a `renderCatalog()` helper wrapping it in
+    `<MemoryRouter>` and updated all its tests to use it.
 
 - [ ] T7 – Responsive / tap-target pass (AC9)
   - Test first: none automated (jsdom doesn't do real layout) — this is

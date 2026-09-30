@@ -45,6 +45,8 @@
   border: 1px solid #ddd;
   border-radius: 0.5rem;
   box-sizing: border-box;
+  color: inherit;
+  text-decoration: none;
 }
 
 .cardTitle {

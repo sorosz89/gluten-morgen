@@ -3,6 +3,14 @@
   max-width: 100%;
 }
 
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-bottom: 0.5rem;
+  color: inherit;
+}
+
 .mealType {
   color: #555;
   margin: 0 0 0.25rem;
