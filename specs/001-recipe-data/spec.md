@@ -1,6 +1,6 @@
 # 001 – Recipe data model & import
 
-Status: draft (review it, then set to approved)
+Status: approved
 Depends on: 000
 
 ## Problem
@@ -76,6 +76,8 @@ Numbers use Hungarian decimals (`0,5`) and ranges (`1,2–1,5 kg`, `2-3 evőkan�
 For a range, store the lower bound in `amount` and the original text in `amountText`.
 
 ## Open questions
-- [ ] Should `extra` (the oldalas recipe, 4 főre, not per person) be imported now
-      or excluded until a spec needs it?
-- [ ] Keep units as written (`evőkanál`, `db`, `gerezd`) or normalize to an enum?
+- none — resolved during planning (see `plan.md`):
+  - The oldalas recipe (`mezes-mustaros-sult-oldalas.md`) is imported now as
+    `mealType: "extra"`, not excluded.
+  - Ingredient units are normalized to a closed enum (`g`, `kg`, `db`,
+    `gerezd`, `evőkanál`, `tk`), not kept as free text.
