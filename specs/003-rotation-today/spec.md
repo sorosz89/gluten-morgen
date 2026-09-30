@@ -1,6 +1,6 @@
 # 003 – Rotation & "Today" screen
 
-Status: approved
+Status: implemented
 Depends on: 001, 002
 
 ## Problem
