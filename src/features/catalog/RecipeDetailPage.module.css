@@ -1,0 +1,52 @@
+.page {
+  padding: 1rem;
+  max-width: 100%;
+}
+
+.mealType {
+  color: #555;
+  margin: 0 0 0.25rem;
+}
+
+.servings {
+  margin: 0 0 1rem;
+  font-weight: bold;
+}
+
+.ingredientList,
+.macrosList {
+  list-style: none;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.ingredientList li,
+.macrosList li {
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.5rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #fff3cd;
+  color: #7a5c00;
+  font-size: 0.8rem;
+}
+
+.stepList {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+
+.stepList li {
+  margin-bottom: 0.5rem;
+}
+
+.tip,
+.glutenFreeNote,
+.source {
+  margin-bottom: 1rem;
+}

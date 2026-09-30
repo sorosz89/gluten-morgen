@@ -63,7 +63,7 @@ and names the ACs it serves.
     sections hidden while filtering; no-results state implemented; `npm
     run check` green.
 
-- [ ] T5 – RecipeDetailPage (AC6, AC7)
+- [x] T5 – RecipeDetailPage (AC6, AC7)
   - Test first: `src/features/catalog/RecipeDetailPage.test.tsx` — routing
     to `/recipes/gf-ebed-gulyasleves` renders `servingsLabel` ("4 napi
     adagra"), all 8 ingredients, the "Elkészítés" heading with all 9 steps
