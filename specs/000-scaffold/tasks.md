@@ -50,9 +50,14 @@ far green, and names the ACs it serves.
   - Done when: `src/App.tsx` renders `<h1>Zéró Glutén Konyha</h1>`, the test
     passes (`npm test`), and `npm run dev` shows the heading in the browser.
 
-- [ ] T6 – `.gitignore`, `check` script, final green run (AC1)
+- [x] T6 – `.gitignore`, `check` script, final green run (AC1)
   - Test first: n/a (wiring + verification task).
   - Done when: `.gitignore` covers `node_modules`, `dist`,
     editor/OS cruft; `package.json` has a `check` script running
     `typecheck && lint && test`; a fresh `npm install && npm run check`
     passes end to end, satisfying AC1.
+  - Note: verified with a real fresh install (`rm -rf node_modules && npm
+    install && npm run check`), not just a re-run — used the scratch-local
+    `--cache` workaround from T3 since the global npm cache permission
+    issue on this machine is still unresolved (see T3's note; fix is
+    `sudo chown -R $(whoami) ~/.npm`, outside this session's scope).
