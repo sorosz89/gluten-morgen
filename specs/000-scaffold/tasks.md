@@ -38,7 +38,7 @@ far green, and names the ACs it serves.
     npm` run); worked around it with a scratch-local `--cache` dir for
     installs rather than touching the system cache.
 
-- [ ] T4 – Create folder layout from CLAUDE.md (AC5)
+- [x] T4 – Create folder layout from CLAUDE.md (AC5)
   - Test first: n/a (structural).
   - Done when: `src/domain/`, `src/data/`, `src/features/`, `scripts/` exist
     in git (each with a `.gitkeep` or a first real file).
