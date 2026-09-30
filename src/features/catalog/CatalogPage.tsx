@@ -1,12 +1,28 @@
+import { useState } from 'react'
 import { recipes } from '../../data/recipes.ts'
-import { groupRecipesByMealType, recipeHasGlutenRiskIngredient } from '../../domain/catalog.ts'
+import {
+  groupRecipesByMealType,
+  recipeHasGlutenRiskIngredient,
+  recipeMatchesQuery,
+} from '../../domain/catalog.ts'
 import styles from './CatalogPage.module.css'
 
 function CatalogPage() {
-  const sections = groupRecipesByMealType(recipes)
+  const [query, setQuery] = useState('')
+  const filteredRecipes = recipes.filter((recipe) => recipeMatchesQuery(recipe, query))
+  const sections = groupRecipesByMealType(filteredRecipes)
 
   return (
     <div className={styles.page}>
+      <input
+        type="search"
+        className={styles.search}
+        placeholder="Keresés recept vagy hozzávaló alapján"
+        aria-label="Keresés recept vagy hozzávaló alapján"
+        value={query}
+        onChange={(event) => setQuery(event.target.value)}
+      />
+      {sections.length === 0 && <p className={styles.noResults}>Nincs találat.</p>}
       {sections.map((section) => (
         <section key={section.mealType} className={styles.section}>
           <h2 className={styles.sectionTitle}>{section.label}</h2>

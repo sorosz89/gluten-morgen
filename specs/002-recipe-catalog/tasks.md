@@ -54,7 +54,7 @@ and names the ACs it serves.
     this minimal update was required here to keep `npm run check` green
     after T3's routing change.
 
-- [ ] T4 – Search wired into CatalogPage (AC4, AC5)
+- [x] T4 – Search wired into CatalogPage (AC4, AC5)
   - Test first: typing "sonka" in the search box leaves only matching
     cards visible and hides sections with no matches; clearing the box
     restores every recipe; a query matching nothing (e.g. "xyz") shows an

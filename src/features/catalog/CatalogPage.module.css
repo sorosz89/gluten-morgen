@@ -3,6 +3,22 @@
   max-width: 100%;
 }
 
+.search {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  margin-bottom: 1rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.noResults {
+  color: #555;
+}
+
 .section {
   margin-bottom: 1.5rem;
 }
