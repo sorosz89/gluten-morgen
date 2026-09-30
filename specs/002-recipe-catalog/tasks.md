@@ -87,7 +87,7 @@ and names the ACs it serves.
     ancestor. Added a `renderCatalog()` helper wrapping it in
     `<MemoryRouter>` and updated all its tests to use it.
 
-- [ ] T7 – Responsive / tap-target pass (AC9)
+- [x] T7 – Responsive / tap-target pass (AC9)
   - Test first: none automated (jsdom doesn't do real layout) — this is
     the one AC verified by a written manual check instead.
   - Done when: `CatalogPage.module.css` / `RecipeDetailPage.module.css`
@@ -95,3 +95,13 @@ and names the ACs it serves.
     search input and the back link; manually verified with `npm run dev`
     at a 360px viewport (browser devtools device toolbar); note the
     manual check result in this task's completion commit message.
+  - Manual check result: verified with a headless Chromium (360×740
+    viewport) against `npm run dev`, catalog + detail + no-results
+    states. `document.documentElement.scrollWidth === clientWidth`
+    (360px) on both pages — no horizontal overflow. Tap-target bounding
+    boxes: recipe card 312×92.8px, search input 312×44px, back link
+    133×44px — all ≥44px tall. Fixed one overflow-adjacent issue found
+    during the check: the search placeholder text ("Keresés recept vagy
+    hozzávaló alapján") was visually clipped mid-word inside the 312px
+    input; shortened to "Keresés recept vagy hozzávaló" (aria-label
+    left unchanged, full text still read by screen readers).

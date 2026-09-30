@@ -18,7 +18,7 @@ function CatalogPage() {
       <input
         type="search"
         className={styles.search}
-        placeholder="Keresés recept vagy hozzávaló alapján"
+        placeholder="Keresés recept vagy hozzávaló"
         aria-label="Keresés recept vagy hozzávaló alapján"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
