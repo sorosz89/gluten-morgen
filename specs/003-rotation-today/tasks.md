@@ -26,7 +26,7 @@ and names the ACs it serves.
     default `anchorRepository` instance backed by `window.localStorage`;
     `npm run check` green.
 
-- [ ] T3 – TodayPage first-run prompt + `/ma` route (AC1)
+- [x] T3 – TodayPage first-run prompt + `/ma` route (AC1)
   - Test first: `src/features/today/TodayPage.test.tsx` — with no anchor
     stored (repository cleared before the test), renders the anchor-setup
     prompt and no recipe titles or cook-flag text.

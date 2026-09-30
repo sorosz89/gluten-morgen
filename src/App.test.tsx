@@ -1,7 +1,11 @@
 import { fireEvent, render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import App from './App.tsx'
+
+beforeEach(() => {
+  localStorage.clear()
+})
 
 describe('App', () => {
   it('AC1: renders the catalog at "/"', () => {
@@ -28,5 +32,15 @@ describe('App', () => {
     fireEvent.click(screen.getByRole('link', { name: 'Vissza a receptekhez' }))
 
     expect(screen.getByRole('heading', { name: 'Reggeli', level: 2 })).toBeInTheDocument()
+  })
+
+  it('AC1 (003): renders TodayPage\'s setup prompt at "/ma"', () => {
+    render(
+      <MemoryRouter initialEntries={['/ma']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(screen.getByText(/vasárnap/i)).toBeInTheDocument()
   })
 })
