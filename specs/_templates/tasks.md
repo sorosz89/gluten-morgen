@@ -1,0 +1,9 @@
+# NNN – Tasks
+
+Each task is small (≈ one commit, < 1 hour), leaves `npm run check` green,
+and names the ACs it serves.
+
+- [ ] T1 – <title> (AC1)
+  - Test first: …
+  - Done when: …
+- [ ] T2 – …
