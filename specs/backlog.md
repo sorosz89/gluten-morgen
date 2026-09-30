@@ -4,7 +4,7 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 
 | # | Feature | Notes |
 |---|---|---|
-| 000 | Project scaffold | spec ready |
+| 000 | Project scaffold | implemented |
 | 001 | Recipe data model & import | spec drafted, review it |
 | 002 | Recipe catalog & detail view | list by meal type, detail page, gluten flags visible |
 | 003 | Rotation & "Today" screen | pick a cycle start date → today's block, breakfast/lunch/dinner, "cook today?" |
