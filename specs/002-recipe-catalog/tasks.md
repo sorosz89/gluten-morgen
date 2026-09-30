@@ -30,7 +30,7 @@ and names the ACs it serves.
     `with { type: 'json' }` to that import in `recipes.ts` (T1) to keep
     `tsc -b` green.
 
-- [ ] T3 – Routing + CatalogPage skeleton (AC1, AC2, AC3)
+- [x] T3 – Routing + CatalogPage skeleton (AC1, AC2, AC3)
   - Test first: `src/features/catalog/CatalogPage.test.tsx` — renders 5
     labeled sections in the fixed order with the right recipe counts; the
     "Melegszendvics" card shows a gluten-risk badge; the alternative rice
@@ -40,6 +40,19 @@ and names the ACs it serves.
     `CatalogPage` and `"/recipes/:id"` → a placeholder `RecipeDetailPage`;
     `CatalogPage.tsx` renders sections/cards/badges from T1+T2; `npm run
     check` green.
+  - Note: `src/test/setup.ts` had no `afterEach(cleanup)` wired up (vitest
+    `globals` is off, so Testing Library's implicit auto-cleanup never
+    registered) — with 3 tests in one file, the second and third `render()`
+    calls left the first render's DOM in place, breaking `getByText`.
+    Added an explicit `afterEach(() => cleanup())`. This affects every
+    component test file, not just this task's.
+  - Note: `App.tsx` no longer renders the literal "Zéró Glutén Konyha"
+    heading (routing moved that content into `CatalogPage`), and `Routes`
+    now requires a Router ancestor, so `App.test.tsx` was updated to wrap
+    `<App/>` in `<MemoryRouter>` and assert on the catalog's "Reggeli"
+    section heading instead. Plan/tasks had `App.test.tsx` pegged to T6;
+    this minimal update was required here to keep `npm run check` green
+    after T3's routing change.
 
 - [ ] T4 – Search wired into CatalogPage (AC4, AC5)
   - Test first: typing "sonka" in the search box leaves only matching
