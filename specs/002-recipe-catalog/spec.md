@@ -1,6 +1,6 @@
 # 002 – Recipe catalog & detail view
 
-Status: approved
+Status: implemented
 Depends on: 001
 
 ## Problem
