@@ -43,7 +43,7 @@ far green, and names the ACs it serves.
   - Done when: `src/domain/`, `src/data/`, `src/features/`, `scripts/` exist
     in git (each with a `.gitkeep` or a first real file).
 
-- [ ] T5 – Home page heading + component test (AC2, AC3)
+- [x] T5 – Home page heading + component test (AC2, AC3)
   - Test first: write `src/App.test.tsx` asserting
     `screen.getByRole('heading', { name: 'Zéró Glutén Konyha' })` is present;
     confirm it fails against a stub/empty `App`.
