@@ -1,6 +1,6 @@
 # 001 – Recipe data model & import
 
-Status: approved
+Status: implemented
 Depends on: 000
 
 ## Problem
