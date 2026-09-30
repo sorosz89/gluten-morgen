@@ -7,7 +7,7 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 000 | Project scaffold | implemented |
 | 001 | Recipe data model & import | implemented |
 | 002 | Recipe catalog & detail view | implemented |
-| 003 | Rotation & "Today" screen | pick a cycle start date → today's block, breakfast/lunch/dinner, "cook today?" |
+| 003 | Rotation & "Today" screen | pick a cycle start date → today's block, breakfast/lunch/dinner, "cook today?" — spec written, see `specs/003-rotation-today/spec.md` |
 | 004 | Shopping list | 3 trips, × family size, check off items, persists in localStorage |
 | 005 | Cooking schedule | which day to cook which batch, thaw reminders (fagyasztóból kiolvasztva) |
 | 006 | Label checklist | hidden-gluten products to check once, remember "safe brands" |
