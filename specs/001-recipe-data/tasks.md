@@ -35,7 +35,7 @@ and names the ACs it serves.
   - Done when: `splitSections` + `parseStepGroups` implemented, all cases
     pass, `npm run check` green.
 
-- [ ] T4 – Full `parseRecipeMarkdown` wiring (AC2, AC3 shape, mealType,
+- [x] T4 – Full `parseRecipeMarkdown` wiring (AC2, AC3 shape, mealType,
       Makró, Tipp/source, gluten note)
   - Test first: one inline "complete recipe" fixture shaped like
     `gf-ebed-gulyasleves.md` (small but with all sections) asserting the

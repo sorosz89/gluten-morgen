@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
 import {
   RecipeImportError,
+  classifyMealType,
   parseIngredientLine,
+  parseRecipeMarkdown,
   parseStepGroups,
   splitSections,
 } from './recipeMarkdown.ts'
@@ -138,5 +140,104 @@ Csak egy tipp, semmi más.
 
     expect(() => parseStepGroups(sections, 'test.md')).toThrow(RecipeImportError)
     expect(() => parseStepGroups(sections, 'test.md')).toThrow(/test\.md/)
+  })
+})
+
+describe('classifyMealType', () => {
+  it('classifies by filename substring, defaulting to "extra"', () => {
+    expect(classifyMealType('gf-reggeli-joghurtos-magmix.md')).toBe('breakfast')
+    expect(classifyMealType('gf-ebed-gulyasleves.md')).toBe('lunch')
+    expect(classifyMealType('gf-vacsora-melegszendvics.md')).toBe('dinner')
+    expect(classifyMealType('gf-alternativ-sertesszelet.md')).toBe('alternative')
+    expect(classifyMealType('mezes-mustaros-sult-oldalas.md')).toBe('extra')
+  })
+})
+
+describe('parseRecipeMarkdown', () => {
+  const COMPLETE_FIXTURE = `# Gulyásleves (gluténmentes, 822 kcal/adag, 4 napra – hagyományos magyar leves)
+
+## Idő és eszközök
+Elkészítési idő: kb. 2 óra. Eszközök: nagy fazék.
+
+## Hozzávalók (4 napi adagra)
+- 1000 g pörköltnek való sovány hús, 2 cm-es kockákra vágva
+- 500 g burgonya, kockára vágva
+- 300 g **gluténmentes kenyér** (a levesbetéthez)
+
+## Előkészület (mise en place)
+1. Vágd fel a húst.
+2. Pucold meg a zöldségeket.
+
+## Elkészítés
+1. Hevítsd fel a zsírt.
+2. Pirítsd meg a hagymát.
+3. Add hozzá a húst.
+
+## Tipp
+Jó étvágyat!
+
+*Forrás: családi recept*
+
+## Makró (1 napi adag)
+822 kcal | 65 g fehérje | 77 g szénhidrát | 670 mg só | 28 g zsír | 12 g rost
+
+## Gluténmentességi megjegyzés
+Csak GM kenyeret használj.
+`
+
+  it('AC3 shape: parses title, mealType, servingsLabel, ingredients, steps, macros, tip/source, gluten note', () => {
+    const recipe = parseRecipeMarkdown('gf-ebed-gulyasleves.md', COMPLETE_FIXTURE)
+
+    expect(recipe.id).toBe('gf-ebed-gulyasleves')
+    expect(recipe.title).toBe('Gulyásleves')
+    expect(recipe.mealType).toBe('lunch')
+    expect(recipe.servingsLabel).toBe('4 napi adagra')
+    expect(recipe.ingredients).toHaveLength(3)
+    expect(recipe.stepGroups).toEqual([
+      {
+        heading: 'Elkészítés',
+        steps: ['Hevítsd fel a zsírt.', 'Pirítsd meg a hagymát.', 'Add hozzá a húst.'],
+      },
+    ])
+    expect(recipe.macros).toEqual({
+      kcal: 822,
+      proteinG: 65,
+      carbsG: 77,
+      saltMg: 670,
+      fatG: 28,
+      fiberG: 12,
+    })
+    expect(recipe.tip).toBe('Jó étvágyat!')
+    expect(recipe.source).toBe('családi recept')
+    expect(recipe.glutenFreeNote).toBe('Csak GM kenyeret használj.')
+  })
+
+  it('AC2: throws RecipeImportError naming the file and "Hozzávalók" when that section is missing', () => {
+    const fixture = `# Title\n\n## Elkészítés\n1. Csinálj valamit.\n`
+
+    expect(() => parseRecipeMarkdown('bad.md', fixture)).toThrow(RecipeImportError)
+    expect(() => parseRecipeMarkdown('bad.md', fixture)).toThrow(/bad\.md/)
+    expect(() => parseRecipeMarkdown('bad.md', fixture)).toThrow(/Hozzávalók/)
+  })
+
+  it('a title with no " (" parenthetical (oldalas shape) becomes the whole line, no macros required', () => {
+    const fixture = `# Mézes-mustáros sült oldalas
+
+## Hozzávalók (4 főre)
+- 1,2–1,5 kg sertés oldalas
+
+## Pácolás (előző este)
+Keverd össze a hozzávalókat.
+
+## Sütés másnap
+1. Süsd meg.
+`
+
+    const recipe = parseRecipeMarkdown('mezes-mustaros-sult-oldalas.md', fixture)
+
+    expect(recipe.title).toBe('Mézes-mustáros sült oldalas')
+    expect(recipe.mealType).toBe('extra')
+    expect(recipe.macros).toBeUndefined()
+    expect(recipe.stepGroups).toHaveLength(2)
   })
 })
