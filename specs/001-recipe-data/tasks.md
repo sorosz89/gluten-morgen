@@ -13,7 +13,7 @@ and names the ACs it serves.
     `stepGroupSchema`, `macrosSchema`, `recipeSchema` and their inferred
     types; `npm run check` green.
 
-- [ ] T2 – Ingredient line parser (AC4, AC5)
+- [x] T2 – Ingredient line parser (AC4, AC5)
   - Test first: table-driven tests in `src/domain/recipeMarkdown.test.ts`
     for `parseIngredientLine`: the exact AC4 example line; the
     no-leading-number example (`amount: null`, whole line as `name`); a
