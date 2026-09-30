@@ -48,7 +48,7 @@ and names the ACs it serves.
     filenames.
   - Done when: `parseRecipeMarkdown` fully implemented, all green.
 
-- [ ] T5 – Import script + `npm run import` (AC1 mechanics)
+- [x] T5 – Import script + `npm run import` (AC1 mechanics)
   - Test first: n/a for the CLI wiring itself; `buildRecipes(sourceDir):
     Recipe[]` must be exported so T6 can test it.
   - Done when: `scripts/import-recipes.ts` reads `data/source/*.md`
@@ -58,6 +58,12 @@ and names the ACs it serves.
     `main()` prints one line per failure and sets `process.exitCode = 1` on
     any error; `tsconfig.node.json`'s `include` widened as planned; running
     `npm run import` for real produces 18 recipes.
+  - Note: confirmed against real data — `npm run import` produced all 18
+    recipes on the first run (no tsx/ts-node needed, cross-directory
+    `scripts/` → `src/domain/` imports resolved fine), and a spot-check of
+    the generated `gf-ebed-gulyasleves` entry already matches AC3's exact
+    numbers. `src/data/recipes.json` is generated but left uncommitted —
+    T7 commits it. `scripts/.gitkeep` and `src/domain/.gitkeep` removed.
 
 - [ ] T6 – Real-data integration tests (AC1, AC3, AC6)
   - Test first: `scripts/import-recipes.integration.test.ts` calls

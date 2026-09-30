@@ -11,7 +11,8 @@
     "typecheck": "tsc -b",
     "lint": "eslint .",
     "test": "vitest run --passWithNoTests",
-    "check": "npm run typecheck && npm run lint && npm test"
+    "check": "npm run typecheck && npm run lint && npm test",
+    "import": "node scripts/import-recipes.ts"
   },
   "dependencies": {
     "react": "^19.2.8",
