@@ -65,7 +65,7 @@ and names the ACs it serves.
     numbers. `src/data/recipes.json` is generated but left uncommitted —
     T7 commits it. `scripts/.gitkeep` and `src/domain/.gitkeep` removed.
 
-- [ ] T6 – Real-data integration tests (AC1, AC3, AC6)
+- [x] T6 – Real-data integration tests (AC1, AC3, AC6)
   - Test first: `scripts/import-recipes.integration.test.ts` calls
     `buildRecipes` on the real `data/source/` directly (not the generated
     JSON) and asserts: length 18; the `gf-ebed-gulyasleves` recipe has
