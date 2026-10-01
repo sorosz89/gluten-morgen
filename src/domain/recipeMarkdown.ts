@@ -32,7 +32,7 @@ const UNIT_ALIASES: Record<string, Unit> = {
   teáskanál: 'tk',
 }
 
-const WATCHLIST = [
+export const WATCHLIST = [
   'gluténmentes',
   'zab',
   'kenyér',
@@ -54,7 +54,7 @@ function parseAmount(quantityText: string): number {
   return Number(firstNumber.replace(',', '.'))
 }
 
-function isGlutenFree(name: string, note: string | undefined): boolean {
+export function isGlutenFree(name: string, note: string | undefined): boolean {
   const haystack = `${name} ${note ?? ''}`.toLowerCase()
   return WATCHLIST.some((term) => haystack.includes(term.toLowerCase()))
 }

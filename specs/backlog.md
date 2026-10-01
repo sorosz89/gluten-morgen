@@ -8,7 +8,7 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 001 | Recipe data model & import | implemented |
 | 002 | Recipe catalog & detail view | implemented |
 | 003 | Rotation & "Today" screen | implemented |
-| 004 | Shopping list | 3 trips, × family size, check off items, persists in localStorage |
+| 004 | Shopping list | 3 trips, × family size, check off items, persists in localStorage — spec written, see `specs/004-shopping-list/spec.md` |
 | 005 | Cooking schedule | which day to cook which batch, thaw reminders (fagyasztóból kiolvasztva) |
 | 006 | Label checklist | hidden-gluten products to check once, remember "safe brands" |
 | 007 | Alternatives | browse alternative lunches, swap one into the rotation (updates list) |
