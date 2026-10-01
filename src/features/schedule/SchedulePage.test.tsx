@@ -53,6 +53,8 @@ describe('SchedulePage', () => {
     renderSchedule(parseIsoDate('2026-10-04'))
 
     const todayRow = screen.getByText('2026-10-04').closest('li')!
+    expect(within(todayRow).getByText('Vasárnap')).toBeInTheDocument()
+    expect(within(todayRow).getByText('1. blokk')).toBeInTheDocument()
     expect(within(todayRow).getByText(/kell főzni: igen/i)).toBeInTheDocument()
     expect(within(todayRow).getByText('Gyümölcsös joghurtos magmix')).toBeInTheDocument()
     expect(within(todayRow).getByText('Gulyásleves')).toBeInTheDocument()
@@ -73,6 +75,8 @@ describe('SchedulePage', () => {
     renderSchedule(parseIsoDate('2026-10-04'))
 
     const wednesdayRow = screen.getByText('2026-10-07').closest('li')!
+    expect(within(wednesdayRow).getByText('Szerda')).toBeInTheDocument()
+    expect(within(wednesdayRow).getByText('2. blokk')).toBeInTheDocument()
     expect(within(wednesdayRow).getByText('Görög joghurtos-banános muffin dupla tojással')).toBeInTheDocument()
     expect(within(wednesdayRow).getByText('Húsos zöldséges passata')).toBeInTheDocument()
     expect(within(wednesdayRow).getByText('Melegszendvics')).toBeInTheDocument()
