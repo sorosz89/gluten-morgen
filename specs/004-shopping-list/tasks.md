@@ -63,7 +63,7 @@ and names the ACs it serves.
     `key()`/enumeration to scan for a trip's items another way.
     `clearTrip` filters that object by key prefix and rewrites it.
 
-- [ ] T4 – ShoppingPage skeleton: trips, categories, items, gluten badge (AC1, AC2, AC5)
+- [x] T4 – ShoppingPage skeleton: trips, categories, items, gluten badge (AC1, AC2, AC5)
   - Test first: `src/features/shopping/ShoppingPage.test.tsx` — renders
     the 3 trips in order, each labeled, with every item from
     `src/data/shoppingList.json` appearing exactly once under its

@@ -43,4 +43,14 @@ describe('App', () => {
 
     expect(screen.getByText(/add meg, melyik vasárnap/i)).toBeInTheDocument()
   })
+
+  it('AC1 (004): renders ShoppingPage\'s trips at "/bevasarlas"', () => {
+    render(
+      <MemoryRouter initialEntries={['/bevasarlas']}>
+        <App />
+      </MemoryRouter>,
+    )
+
+    expect(screen.getByRole('heading', { name: '1. Kamra & fagyasztó', level: 2 })).toBeInTheDocument()
+  })
 })
