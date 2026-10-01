@@ -2,8 +2,11 @@ import { render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
+import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { parseIsoDate } from '../../domain/rotation.ts'
 import SchedulePage from './SchedulePage.tsx'
+
+const SALMON_TITLE = '[Alternatíva] Sült lazacfilé citromos burgonyapürével és gőzölt brokkolival'
 
 beforeEach(() => {
   localStorage.clear()
@@ -120,5 +123,15 @@ describe('SchedulePage', () => {
     const lunchLine = screen.getByText('Húsos zöldséges passata').closest('li')
     expect(lunchLine).not.toBeNull()
     expect(within(lunchLine!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
+  })
+
+  it('AC2: block 2\'s swapped-in lunch shows instead of the default on its cook day', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-sult-lazac')
+    renderSchedule(parseIsoDate('2026-10-04'))
+
+    const wednesdayRow = screen.getByText('2026-10-07').closest('li')!
+    expect(within(wednesdayRow).getByText(SALMON_TITLE)).toBeInTheDocument()
+    expect(within(wednesdayRow).queryByText('Húsos zöldséges passata')).not.toBeInTheDocument()
   })
 })

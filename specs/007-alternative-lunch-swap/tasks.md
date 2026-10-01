@@ -34,7 +34,7 @@ and names the ACs it serves.
     `npm run check` green. AC10 (360px) is a manual visual check, same
     convention as every prior spec in this project.
 
-- [ ] T4 – Today & Schedule screens read the active lunch (AC2)
+- [x] T4 – Today & Schedule screens read the active lunch (AC2)
   - Test first: extend `TodayPage.test.tsx` — with block 2 swapped to
     "Sült lazacfilé citromos burgonyapürével és gőzölt brokkolival",
     rendering Today on 2026-10-07 shows the salmon dish instead of "Húsos

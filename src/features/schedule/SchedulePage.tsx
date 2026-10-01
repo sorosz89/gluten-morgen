@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
+import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { recipes } from '../../data/recipes.ts'
 import { mealTypeLabel, recipeHasGlutenRiskIngredient } from '../../domain/catalog.ts'
+import { getActiveLunchId } from '../../domain/lunchSwap.ts'
 import { formatIsoDate, getBlockRecipeIds, getSchedule, parseIsoDate } from '../../domain/rotation.ts'
 import type { BlockNumber, ScheduleDay } from '../../domain/rotation.ts'
 import styles from './SchedulePage.module.css'
@@ -67,7 +69,8 @@ function ScheduleDayRow({ day }: { day: ScheduleDay }) {
 }
 
 function BlockMeals({ block }: { block: BlockNumber }) {
-  const { breakfastId, lunchId, dinnerId } = getBlockRecipeIds(block)
+  const { breakfastId, dinnerId } = getBlockRecipeIds(block)
+  const lunchId = getActiveLunchId(block, lunchSwapRepository.getSwaps())
   const breakfast = recipesById.get(breakfastId)!
   const lunch = recipesById.get(lunchId)!
   const dinner = recipesById.get(dinnerId)!

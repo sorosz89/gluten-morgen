@@ -2,8 +2,11 @@ import { fireEvent, render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { MemoryRouter } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
+import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { parseIsoDate } from '../../domain/rotation.ts'
 import TodayPage from './TodayPage.tsx'
+
+const SALMON_TITLE = '[Alternatíva] Sült lazacfilé citromos burgonyapürével és gőzölt brokkolival'
 
 beforeEach(() => {
   localStorage.clear()
@@ -98,5 +101,23 @@ describe('TodayPage', () => {
     expect(screen.getByText(/válassz vasárnapot/i)).toBeInTheDocument()
     expect(screen.getByText('Gulyásleves')).toBeInTheDocument()
     expect(anchorRepository.getAnchor()).toBe('2026-10-04')
+  })
+
+  it('AC2: shows block 2\'s swapped-in lunch instead of the default, and the swap survives a 14-day wrap', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-sult-lazac')
+    renderToday(parseIsoDate('2026-10-07'))
+
+    expect(screen.getByText(SALMON_TITLE)).toBeInTheDocument()
+    expect(screen.queryByText('Húsos zöldséges passata')).not.toBeInTheDocument()
+  })
+
+  it('AC2: the block 2 swap still shows 14 days later, when the cycle reaches block 2 again', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-sult-lazac')
+    renderToday(parseIsoDate('2026-10-21'))
+
+    expect(screen.getByText(SALMON_TITLE)).toBeInTheDocument()
+    expect(screen.queryByText('Húsos zöldséges passata')).not.toBeInTheDocument()
   })
 })
