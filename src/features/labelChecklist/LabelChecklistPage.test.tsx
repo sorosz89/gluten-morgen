@@ -43,4 +43,25 @@ describe('LabelChecklistPage', () => {
 
     expect(screen.getByRole('checkbox', { name: 'étcsokoládé' })).not.toBeChecked()
   })
+
+  it('AC4: with 3 of 7 products checked, the summary shows "4 maradt"', () => {
+    render(<LabelChecklistPage />)
+
+    fireEvent.click(screen.getByRole('checkbox', { name: 'sonka/felvágott' }))
+    fireEvent.click(screen.getByRole('checkbox', { name: 'fehérjekoncentrátum (protein por)' }))
+    fireEvent.click(screen.getByRole('checkbox', { name: 'étcsokoládé' }))
+
+    expect(screen.getByText('4 maradt')).toBeInTheDocument()
+  })
+
+  it('AC5: with all 7 products checked, the summary shows a distinct all-done message, not "0 maradt"', () => {
+    render(<LabelChecklistPage />)
+
+    for (const product of LABEL_CHECKLIST_PRODUCTS) {
+      fireEvent.click(screen.getByRole('checkbox', { name: product }))
+    }
+
+    expect(screen.queryByText('0 maradt')).not.toBeInTheDocument()
+    expect(screen.getByText('Minden termék ellenőrizve')).toBeInTheDocument()
+  })
 })

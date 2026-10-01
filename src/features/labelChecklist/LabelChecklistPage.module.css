@@ -3,6 +3,11 @@
   max-width: 100%;
 }
 
+.summary {
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
 .itemList {
   list-style: none;
   margin: 0;

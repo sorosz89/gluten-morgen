@@ -20,8 +20,13 @@ function LabelChecklistPage() {
     setCheckedState((previous) => ({ ...previous, [product]: nextChecked }))
   }
 
+  const remaining = LABEL_CHECKLIST_PRODUCTS.filter((product) => !checkedState[product]).length
+
   return (
     <div className={styles.page}>
+      <p className={styles.summary}>
+        {remaining === 0 ? 'Minden termék ellenőrizve' : `${remaining} maradt`}
+      </p>
       <ul className={styles.itemList}>
         {LABEL_CHECKLIST_PRODUCTS.map((product) => (
           <li key={product} className={styles.item}>

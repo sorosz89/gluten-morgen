@@ -32,7 +32,7 @@ and names the ACs it serves.
     `App.tsx` at route `/cimkek` with a "Címkék" nav link; each checkbox
     reads/writes `labelChecklistRepository`; `npm run check` green.
 
-- [ ] T4 – Remaining-count / all-done summary (AC4, AC5, AC6 verification)
+- [x] T4 – Remaining-count / all-done summary (AC4, AC5, AC6 verification)
   - Test first: extend `LabelChecklistPage.test.tsx` — with 3 of 7 products
     checked, the summary shows "4 maradt"; with all 7 checked, the summary
     shows a distinct all-done message (not "0 maradt").
