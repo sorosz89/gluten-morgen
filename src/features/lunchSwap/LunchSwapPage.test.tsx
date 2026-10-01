@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { shoppingListRepository } from '../../data/shoppingListRepository.ts'
 import LunchSwapPage from './LunchSwapPage.tsx'
 
@@ -38,6 +39,22 @@ describe('LunchSwapPage', () => {
 
     expect(screen.getByText(`Aktuális ebéd: ${SALMON_TITLE}`)).toBeInTheDocument()
     expect(screen.queryByText('Aktuális ebéd: Húsos zöldséges passata')).not.toBeInTheDocument()
+  })
+
+  it('AC4: picking a different alternative for an already-swapped block replaces it, not adds alongside it', () => {
+    render(<LunchSwapPage />)
+
+    const block2Select = screen.getByLabelText('2. blokk ebédje')
+    fireEvent.change(block2Select, { target: { value: 'gf-alternativ-sult-lazac' } })
+    expect(screen.getByText(`Aktuális ebéd: ${SALMON_TITLE}`)).toBeInTheDocument()
+
+    fireEvent.change(block2Select, { target: { value: 'gf-alternativ-tonhalas-tesztasalata' } })
+
+    const TUNA_TITLE = '[Alternatíva] Tonhalas gluténmentes tésztasaláta zöldségekkel'
+    expect(screen.getByText(`Aktuális ebéd: ${TUNA_TITLE}`)).toBeInTheDocument()
+    expect(screen.queryByText(`Aktuális ebéd: ${SALMON_TITLE}`)).not.toBeInTheDocument()
+    expect(screen.queryByText('Aktuális ebéd: Húsos zöldséges passata')).not.toBeInTheDocument()
+    expect(lunchSwapRepository.getSwaps()).toEqual({ 2: 'gf-alternativ-tonhalas-tesztasalata' })
   })
 
   it('AC3: choosing "eredeti recept" reverts a swapped block back to its default', () => {

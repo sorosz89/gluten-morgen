@@ -120,4 +120,14 @@ describe('TodayPage', () => {
     expect(screen.getByText(SALMON_TITLE)).toBeInTheDocument()
     expect(screen.queryByText('Húsos zöldséges passata')).not.toBeInTheDocument()
   })
+
+  it('AC3: after block 2 is reverted to its default, Today shows the default again', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-sult-lazac')
+    lunchSwapRepository.setSwap(2, null)
+    renderToday(parseIsoDate('2026-10-07'))
+
+    expect(screen.getByText('Húsos zöldséges passata')).toBeInTheDocument()
+    expect(screen.queryByText(SALMON_TITLE)).not.toBeInTheDocument()
+  })
 })
