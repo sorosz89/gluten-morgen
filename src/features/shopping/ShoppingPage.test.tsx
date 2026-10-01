@@ -1,8 +1,13 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { shoppingList } from '../../data/shoppingList.ts'
 import { shoppingListRepository } from '../../data/shoppingListRepository.ts'
 import ShoppingPage from './ShoppingPage.tsx'
+
+function getTripSection(label: string) {
+  return screen.getByRole('heading', { level: 2, name: label }).closest('section')!
+}
 
 beforeEach(() => {
   localStorage.clear()
@@ -145,5 +150,56 @@ describe('ShoppingPage', () => {
 
     expect(within(week1Line).getByRole('checkbox')).not.toBeChecked()
     expect(within(week2Line).getByRole('checkbox')).toBeChecked()
+  })
+
+  it('AC5/AC6: block 2 swapped to the salmon dish shows the updated shopping-list lines', () => {
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-sult-lazac')
+    render(<ShoppingPage />)
+
+    const pantry = getTripSection('1. Kamra & fagyasztó')
+    const freshWeek1 = getTripSection('2. heti bevásárlás (friss)')
+
+    expect(within(within(pantry).getByText('darált hús').closest('li')!).getByText('800 g')).toBeInTheDocument()
+    expect(within(pantry).queryByText('csicseriborsó (konzerv)')).not.toBeInTheDocument()
+    expect(
+      within(within(pantry).getByText('paradicsom passata').closest('li')!).getByText('500 g'),
+    ).toBeInTheDocument()
+    expect(within(freshWeek1).queryByText('sárgarépa')).not.toBeInTheDocument()
+    expect(within(freshWeek1).queryByText('cukkini')).not.toBeInTheDocument()
+
+    expect(
+      within(within(freshWeek1).getByText('lazacfilé').closest('li')!).getByText('640 g'),
+    ).toBeInTheDocument()
+    expect(
+      within(within(freshWeek1).getByText('brokkoli').closest('li')!).getByText('400 g'),
+    ).toBeInTheDocument()
+    expect(
+      within(within(freshWeek1).getByText('burgonya').closest('li')!).getByText('1300 g'),
+    ).toBeInTheDocument()
+  })
+
+  it('AC5/AC6: the swapped-in lines scale by family size like every other line', () => {
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-sult-lazac')
+    render(<ShoppingPage />)
+
+    fireEvent.change(screen.getByLabelText(/családtagok száma/i), { target: { value: '2' } })
+
+    const freshWeek1 = getTripSection('2. heti bevásárlás (friss)')
+    expect(
+      within(within(freshWeek1).getByText('lazacfilé').closest('li')!).getByText('1280 g'),
+    ).toBeInTheDocument()
+    expect(
+      within(within(freshWeek1).getByText('burgonya').closest('li')!).getByText('2600 g'),
+    ).toBeInTheDocument()
+  })
+
+  it('AC7: a block swapped to the tuna pasta salad shows the gluten-risk badge on "gluténmentes tészta"', () => {
+    lunchSwapRepository.setSwap(2, 'gf-alternativ-tonhalas-tesztasalata')
+    render(<ShoppingPage />)
+
+    const line = screen.getByText('gluténmentes tészta').closest('li')
+    expect(line).not.toBeNull()
+    expect(within(line!).getByText('280 g')).toBeInTheDocument()
+    expect(within(line!).getByText('Gluténmentes termék szükséges')).toBeInTheDocument()
   })
 })

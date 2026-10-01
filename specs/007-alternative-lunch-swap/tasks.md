@@ -68,7 +68,7 @@ and names the ACs it serves.
     `LUNCH_SHOPPING_MAP`, `resolveTripId`, `applyLunchSwaps`,
     `diffRemovedItems`; all pass.
 
-- [ ] T6 – Shopping list screen reflects active swaps (AC5, AC6, AC7)
+- [x] T6 – Shopping list screen reflects active swaps (AC5, AC6, AC7)
   - Test first: extend `ShoppingPage.test.tsx` — with block 2's swap to
     the salmon dish set in the repository before render, the rendered
     trips show the AC5/AC6 line changes, correctly scaled by family size;
