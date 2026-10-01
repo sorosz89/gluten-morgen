@@ -30,12 +30,14 @@ and names the ACs it serves.
     (2026-10-07) listing its three recipes, beyond the plan's minimum, to
     pin down the block→recipe lookup works for a block other than block 1.
 
-- [ ] T3 – Day-in-block / last-day indicator (AC3, AC4)
+- [x] T3 – Day-in-block / last-day indicator (AC3, AC4)
   - Test first: extend `SchedulePage.test.tsx` with the day-3/3-last-day
     (`2026-10-06`), day-4/4-last-day (`2026-10-10`), and mid-block
     (`2026-10-05`, day 2/3, no flag) assertions.
   - Done when: each row renders `dayInBlock`/`blockLength` and a distinct
     marker when `isLastDayOfBlock`; `npm run check` green.
+  - Note: rendered as "`N`. nap / `blockLength`" plus an "Utolsó nap" badge
+    on the last day, styled like the existing gluten-badge pill.
 
 - [ ] T4 – Gluten-risk badge reuse (AC5)
   - Test first: extend `SchedulePage.test.tsx` — for `2026-10-07`, dinner

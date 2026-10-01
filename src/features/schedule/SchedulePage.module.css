@@ -25,6 +25,15 @@
   font-weight: bold;
 }
 
+.lastDay {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  background: #e2e3e5;
+  color: #383d41;
+  font-size: 0.8rem;
+}
+
 .mealList {
   list-style: none;
   margin: 0.4rem 0 0;

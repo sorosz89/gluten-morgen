@@ -77,4 +77,31 @@ describe('SchedulePage', () => {
     expect(within(wednesdayRow).getByText('Húsos zöldséges passata')).toBeInTheDocument()
     expect(within(wednesdayRow).getByText('Melegszendvics')).toBeInTheDocument()
   })
+
+  it('AC3: flags 2026-10-06 as day 3 of 3, the last day of block 1\'s batch', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderSchedule(parseIsoDate('2026-10-04'))
+
+    const tuesdayRow = screen.getByText('2026-10-06').closest('li')!
+    expect(within(tuesdayRow).getByText('3. nap / 3')).toBeInTheDocument()
+    expect(within(tuesdayRow).getByText(/utolsó nap/i)).toBeInTheDocument()
+  })
+
+  it('AC4: flags 2026-10-10 as day 4 of 4, the last day of block 2\'s batch', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderSchedule(parseIsoDate('2026-10-04'))
+
+    const saturdayRow = screen.getByText('2026-10-10').closest('li')!
+    expect(within(saturdayRow).getByText('4. nap / 4')).toBeInTheDocument()
+    expect(within(saturdayRow).getByText(/utolsó nap/i)).toBeInTheDocument()
+  })
+
+  it('a mid-block day (2026-10-05) shows its position but no last-day flag', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderSchedule(parseIsoDate('2026-10-04'))
+
+    const mondayRow = screen.getByText('2026-10-05').closest('li')!
+    expect(within(mondayRow).getByText('2. nap / 3')).toBeInTheDocument()
+    expect(within(mondayRow).queryByText(/utolsó nap/i)).not.toBeInTheDocument()
+  })
 })

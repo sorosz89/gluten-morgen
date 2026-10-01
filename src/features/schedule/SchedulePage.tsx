@@ -52,6 +52,10 @@ function ScheduleDayRow({ day }: { day: ScheduleDay }) {
         <span className={styles.date}>{formatIsoDate(day.date)}</span>
         <span className={styles.weekday}>{weekday}</span>
         <span className={styles.block}>{day.block}. blokk</span>
+        <span className={styles.dayInBlock}>
+          {day.dayInBlock}. nap / {day.blockLength}
+        </span>
+        {day.isLastDayOfBlock && <span className={styles.lastDay}>Utolsó nap</span>}
         <span className={styles.cookFlag}>Kell főzni: {day.cookToday ? 'igen' : 'nem'}</span>
       </div>
 
