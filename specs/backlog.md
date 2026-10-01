@@ -10,7 +10,7 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 003 | Rotation & "Today" screen | implemented |
 | 004 | Shopping list | implemented |
 | 005 | Cooking schedule | implemented |
-| 006 | Label checklist | hidden-gluten products to check once, remember "safe brands" |
+| 006 | Label checklist | spec drafted — `specs/006-label-checklist` |
 | 007 | Alternatives | browse alternative lunches, swap one into the rotation (updates list) |
 | 008 | Offline / PWA | installable, works in the shop without signal |
 | 009 | E2E tests | Playwright happy paths for Today, Recipe, Shopping |
