@@ -46,7 +46,7 @@ and names the ACs it serves.
   - Done when: rows reuse `recipeHasGlutenRiskIngredient` exactly as
     `TodayPage` does; `npm run check` green.
 
-- [ ] T5 – Responsive / tap-target pass (AC6)
+- [x] T5 – Responsive / tap-target pass (AC6)
   - Test first: none automated — jsdom doesn't do real layout; same
     approach as specs 002/003/004's final task.
   - Done when: `SchedulePage.module.css` follows the `ShoppingPage`
@@ -54,3 +54,15 @@ and names the ACs it serves.
     360px check performed in the running app (no horizontal scroll, tap
     targets ≥44px) and the result recorded in this task and the commit
     message; `npm run check` green.
+  - Manual check result: verified against `npm run dev` using a 360×740
+    `<iframe>` (same technique as spec 004's T7, since the OS enforces a
+    wider minimum Chrome window). `scrollWidth === clientWidth === 360` in
+    both the no-anchor state and the 7-day schedule — no horizontal
+    overflow. Tap-target bounding boxes: nav links (incl. the new "Heti
+    terv") 23–63px wide × 44px tall; each meal row `<Link>` 312×56.8px
+    (whole row, same full-card-is-a-link pattern as spec 003's fix) — all
+    ≥44px. Found and fixed one real gap: the no-anchor prompt's inline
+    `/ma` link was only 21.3×18.5px (just the word "Ma" inline in a
+    sentence). Restructured so the whole explanatory sentence is itself
+    the `<Link>`, styled like the meal-row links (`flex`, `align-items:
+    center`, `min-height: 44px`) — now 312×44px.

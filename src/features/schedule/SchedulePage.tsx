@@ -20,10 +20,12 @@ function SchedulePage({ today = new Date() }: SchedulePageProps = {}) {
   return (
     <div className={styles.page}>
       {!anchorIso && (
-        <p>
-          Nincs beállítva a ciklus kezdete. Állítsd be a <Link to="/ma">Ma</Link> oldalon, hogy a
-          heti terv tudja, hol állunk a forgásban.
-        </p>
+        <>
+          <p>Nincs beállítva a ciklus kezdete.</p>
+          <Link to="/ma" className={styles.anchorLink}>
+            Állítsd be a Ma oldalon, hogy a heti terv tudja, hol állunk a forgásban.
+          </Link>
+        </>
       )}
 
       {anchorIso && <ScheduleDays anchorIso={anchorIso} today={today} />}
