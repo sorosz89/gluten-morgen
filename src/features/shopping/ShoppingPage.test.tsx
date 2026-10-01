@@ -92,4 +92,58 @@ describe('ShoppingPage', () => {
     expect(line).not.toBeNull()
     expect(within(line!).getByText('6000 g')).toBeInTheDocument()
   })
+
+  it('AC6: checking an item persists it as checked and survives a re-render', () => {
+    const { unmount } = render(<ShoppingPage />)
+
+    const line = screen.getByText('teavaj').closest('li')
+    expect(line).not.toBeNull()
+    fireEvent.click(within(line!).getByRole('checkbox'))
+    expect(within(line!).getByRole('checkbox')).toBeChecked()
+    expect(shoppingListRepository.isChecked('pantry', 'teavaj')).toBe(true)
+
+    unmount()
+    render(<ShoppingPage />)
+
+    const lineAfterReload = screen.getByText('teavaj').closest('li')
+    expect(lineAfterReload).not.toBeNull()
+    expect(within(lineAfterReload!).getByRole('checkbox')).toBeChecked()
+  })
+
+  it('AC6: the same item name in a different trip has independent checked state', () => {
+    render(<ShoppingPage />)
+
+    const week1Heading = screen.getByRole('heading', { level: 2, name: '2. heti bevásárlás (friss)' })
+    const week1Section = week1Heading.closest('section')!
+    const week2Heading = screen.getByRole('heading', { level: 2, name: '3. heti bevásárlás (friss)' })
+    const week2Section = week2Heading.closest('section')!
+
+    const week1Line = within(week1Section).getByText('leveszöldség').closest('li')!
+    const week2Line = within(week2Section).getByText('leveszöldség').closest('li')!
+
+    fireEvent.click(within(week1Line).getByRole('checkbox'))
+
+    expect(within(week1Line).getByRole('checkbox')).toBeChecked()
+    expect(within(week2Line).getByRole('checkbox')).not.toBeChecked()
+  })
+
+  it('AC7: a trip\'s "lista törlése" unchecks only that trip\'s items', () => {
+    render(<ShoppingPage />)
+
+    const week1Heading = screen.getByRole('heading', { level: 2, name: '2. heti bevásárlás (friss)' })
+    const week1Section = week1Heading.closest('section')!
+    const week2Heading = screen.getByRole('heading', { level: 2, name: '3. heti bevásárlás (friss)' })
+    const week2Section = week2Heading.closest('section')!
+
+    const week1Line = within(week1Section).getByText('leveszöldség').closest('li')!
+    const week2Line = within(week2Section).getByText('leveszöldség').closest('li')!
+
+    fireEvent.click(within(week1Line).getByRole('checkbox'))
+    fireEvent.click(within(week2Line).getByRole('checkbox'))
+
+    fireEvent.click(within(week1Section).getByRole('button', { name: 'Lista törlése' }))
+
+    expect(within(week1Line).getByRole('checkbox')).not.toBeChecked()
+    expect(within(week2Line).getByRole('checkbox')).toBeChecked()
+  })
 })

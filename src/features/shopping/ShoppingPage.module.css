@@ -21,6 +21,19 @@
   margin-bottom: 1.5rem;
 }
 
+.tripHeader {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.tripHeader button {
+  min-height: 44px;
+  min-width: 44px;
+}
+
 .category {
   margin-top: 0.75rem;
 }
@@ -38,6 +51,12 @@
   gap: 0.4em;
   min-height: 44px;
   padding: 0.3rem 0;
+}
+
+.checkbox {
+  width: 24px;
+  height: 24px;
+  flex: 0 0 auto;
 }
 
 .itemName {

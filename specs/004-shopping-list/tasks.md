@@ -91,7 +91,7 @@ and names the ACs it serves.
     values are ignored rather than written to the repository, since
     `valueAsNumber` is `NaN` while the field is empty mid-edit.
 
-- [ ] T6 – Checkboxes + per-trip clear (AC6, AC7)
+- [x] T6 – Checkboxes + per-trip clear (AC6, AC7)
   - Test first: extend `ShoppingPage.test.tsx` — checking an item persists
     it as checked via the repository and survives a re-render; the same
     item name in a different trip (e.g. "leveszöldség" in both fresh
@@ -101,6 +101,11 @@ and names the ACs it serves.
   - Done when: each item has a checkbox wired to
     `shoppingListRepository.isChecked`/`setChecked`; each trip has a
     "lista törlése" button wired to `clearTrip`; `npm run check` green.
+  - Note: checked state is mirrored into component state
+    (`Record<"tripId itemName", boolean>`, seeded once from the repository
+    on mount) so toggling or clearing re-renders — the repository itself
+    has no subscribe/notify mechanism. The checkbox's own tap-target
+    sizing is left to T7, which owns the responsive pass.
 
 - [ ] T7 – Responsive / tap-target pass (AC8)
   - Test first: none automated (jsdom doesn't do real layout) — verified
