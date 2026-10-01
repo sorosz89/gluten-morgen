@@ -1,6 +1,7 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { shoppingList } from '../../data/shoppingList.ts'
+import { shoppingListRepository } from '../../data/shoppingListRepository.ts'
 import ShoppingPage from './ShoppingPage.tsx'
 
 beforeEach(() => {
@@ -56,5 +57,39 @@ describe('ShoppingPage', () => {
     const unflaggedLine = screen.getAllByText('light sajt')[0]!.closest('li')
     expect(unflaggedLine).not.toBeNull()
     expect(within(unflaggedLine!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
+  })
+
+  it('AC3: setting family size to 4 scales every item quantity by 4', () => {
+    render(<ShoppingPage />)
+
+    fireEvent.change(screen.getByLabelText(/családtagok száma/i), { target: { value: '4' } })
+
+    const line = screen.getByText('pörköltnek való sovány hús').closest('li')
+    expect(line).not.toBeNull()
+    expect(within(line!).getByText('6000 g')).toBeInTheDocument()
+  })
+
+  it('AC4: a qualified amount keeps "kb." attached to the scaled number', () => {
+    render(<ShoppingPage />)
+
+    fireEvent.change(screen.getByLabelText(/családtagok száma/i), { target: { value: '4' } })
+
+    const line = screen.getByText('tojás (M-es)').closest('li')
+    expect(line).not.toBeNull()
+    expect(within(line!).getByText('kb. 68 db')).toBeInTheDocument()
+  })
+
+  it('AC3: the chosen family size persists after reloading the page', () => {
+    const { unmount } = render(<ShoppingPage />)
+    fireEvent.change(screen.getByLabelText(/családtagok száma/i), { target: { value: '4' } })
+    unmount()
+
+    render(<ShoppingPage />)
+
+    expect(screen.getByLabelText(/családtagok száma/i)).toHaveValue(4)
+    expect(shoppingListRepository.getFamilySize()).toBe(4)
+    const line = screen.getByText('pörköltnek való sovány hús').closest('li')
+    expect(line).not.toBeNull()
+    expect(within(line!).getByText('6000 g')).toBeInTheDocument()
   })
 })

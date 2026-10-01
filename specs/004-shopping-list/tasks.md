@@ -75,7 +75,7 @@ and names the ACs it serves.
     defaulting family size to 1 via the repository; `npm run check`
     green.
 
-- [ ] T5 – Editable family size (AC3, AC4)
+- [x] T5 – Editable family size (AC3, AC4)
   - Test first: extend `ShoppingPage.test.tsx` — setting family size to 4
     updates every displayed quantity to `amount × 4` (e.g. "pörköltnek
     való sovány hús" 1500 g → 6000 g); "tojás (M-es)" still shows its "kb."
@@ -86,6 +86,10 @@ and names the ACs it serves.
     `shoppingListRepository`; every item's displayed quantity is
     `amount × familySize`, qualifier and unit preserved; `npm run check`
     green.
+  - Note: the input is labeled "Családtagok száma" (not specified by the
+    spec, which left the label unchosen); non-finite or non-positive typed
+    values are ignored rather than written to the repository, since
+    `valueAsNumber` is `NaN` while the field is empty mid-edit.
 
 - [ ] T6 – Checkboxes + per-trip clear (AC6, AC7)
   - Test first: extend `ShoppingPage.test.tsx` — checking an item persists

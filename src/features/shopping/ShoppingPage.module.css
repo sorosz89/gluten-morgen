@@ -3,6 +3,20 @@
   max-width: 100%;
 }
 
+.familySize {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.familySize input {
+  min-height: 44px;
+  box-sizing: border-box;
+  width: 4rem;
+}
+
 .trip {
   margin-bottom: 1.5rem;
 }

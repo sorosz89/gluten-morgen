@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { shoppingList } from '../../data/shoppingList.ts'
 import { shoppingListRepository } from '../../data/shoppingListRepository.ts'
 import type { ShoppingItem } from '../../domain/shoppingList.ts'
@@ -10,10 +11,27 @@ function formatQuantity(item: ShoppingItem, familySize: number): string {
 }
 
 function ShoppingPage() {
-  const familySize = shoppingListRepository.getFamilySize()
+  const [familySize, setFamilySize] = useState(() => shoppingListRepository.getFamilySize())
+
+  function handleFamilySizeChange(value: number) {
+    if (!Number.isFinite(value) || value <= 0) return
+    shoppingListRepository.setFamilySize(value)
+    setFamilySize(value)
+  }
 
   return (
     <div className={styles.page}>
+      <div className={styles.familySize}>
+        <label htmlFor="family-size">Családtagok száma</label>
+        <input
+          id="family-size"
+          type="number"
+          min={1}
+          value={familySize}
+          onChange={(event) => handleFamilySizeChange(event.target.valueAsNumber)}
+        />
+      </div>
+
       {shoppingList.map((trip) => (
         <section key={trip.id} className={styles.trip}>
           <h2>{trip.label}</h2>
