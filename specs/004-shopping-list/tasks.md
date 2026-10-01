@@ -45,7 +45,7 @@ and names the ACs it serves.
     for `RecipeImportError` in spec 001 since that rule only checks
     built-in `Error` types).
 
-- [ ] T3 – Family-size & checked-item repository (foundation for AC2, AC3, AC6, AC7)
+- [x] T3 – Family-size & checked-item repository (foundation for AC2, AC3, AC6, AC7)
   - Test first: `src/data/shoppingListRepository.test.ts` —
     `getFamilySize` returns 1 when nothing is stored; `setFamilySize` then
     `getFamilySize` round-trips; `isChecked` returns `false` for an
@@ -57,6 +57,11 @@ and names the ACs it serves.
     `ShoppingListRepository`, `createShoppingListRepository(storage)`,
     and a default `shoppingListRepository` backed by
     `window.localStorage`; `npm run check` green.
+  - Note: checked items persist as one JSON object under a single
+    `zero-gluten:checked-items` key (`"tripId itemName"` → `true`), since
+    the injected storage type only exposes `getItem`/`setItem` — no
+    `key()`/enumeration to scan for a trip's items another way.
+    `clearTrip` filters that object by key prefix and rewrites it.
 
 - [ ] T4 – ShoppingPage skeleton: trips, categories, items, gluten badge (AC1, AC2, AC5)
   - Test first: `src/features/shopping/ShoppingPage.test.tsx` — renders
