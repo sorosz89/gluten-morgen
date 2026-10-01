@@ -78,7 +78,7 @@ and names the ACs it serves.
     `applyLunchSwaps(shoppingList, lunchSwapRepository.getSwaps(),
     recipesById)` instead of the raw `shoppingList`.
 
-- [ ] T7 – Checked-state cleared on swap (AC8)
+- [x] T7 – Checked-state cleared on swap (AC8)
   - Test first: `LunchSwapPage.test.tsx` — check "csicseriborsó (konzerv)"
     in the shopping repository, then perform the block-2-to-salmon swap
     from the picker; assert the repository's checked flag for that item is

@@ -1,5 +1,6 @@
 import { fireEvent, render, screen } from '@testing-library/react'
 import { beforeEach, describe, expect, it } from 'vitest'
+import { shoppingListRepository } from '../../data/shoppingListRepository.ts'
 import LunchSwapPage from './LunchSwapPage.tsx'
 
 const SALMON_TITLE = '[Alternatíva] Sült lazacfilé citromos burgonyapürével és gőzölt brokkolival'
@@ -62,5 +63,30 @@ describe('LunchSwapPage', () => {
     render(<LunchSwapPage />)
 
     expect(screen.getByText(`Aktuális ebéd: ${SALMON_TITLE}`)).toBeInTheDocument()
+  })
+
+  it('AC8: a swap clears the checked state of shopping-list items it removes, and new items start unchecked', () => {
+    shoppingListRepository.setChecked('pantry', 'csicseriborsó (konzerv)', true)
+    render(<LunchSwapPage />)
+
+    const block2Select = screen.getByLabelText('2. blokk ebédje')
+    fireEvent.change(block2Select, { target: { value: 'gf-alternativ-sult-lazac' } })
+
+    expect(shoppingListRepository.isChecked('pantry', 'csicseriborsó (konzerv)')).toBe(false)
+    expect(shoppingListRepository.isChecked('freshWeek1', 'lazacfilé')).toBe(false)
+  })
+
+  it('AC8: an item re-introduced by a later swap starts unchecked again, even if it was checked under an earlier swap', () => {
+    render(<LunchSwapPage />)
+
+    const block2Select = screen.getByLabelText('2. blokk ebédje')
+    fireEvent.change(block2Select, { target: { value: 'gf-alternativ-sult-lazac' } })
+    shoppingListRepository.setChecked('freshWeek1', 'lazacfilé', true)
+
+    fireEvent.change(block2Select, { target: { value: '' } })
+    fireEvent.change(block2Select, { target: { value: 'gf-alternativ-tonhalas-tesztasalata' } })
+    fireEvent.change(block2Select, { target: { value: 'gf-alternativ-sult-lazac' } })
+
+    expect(shoppingListRepository.isChecked('freshWeek1', 'lazacfilé')).toBe(false)
   })
 })

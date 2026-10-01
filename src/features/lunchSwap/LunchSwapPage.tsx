@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { recipes } from '../../data/recipes.ts'
+import { shoppingList } from '../../data/shoppingList.ts'
+import { shoppingListRepository } from '../../data/shoppingListRepository.ts'
 import type { ActiveSwaps } from '../../domain/lunchSwap.ts'
 import { ALTERNATIVE_RECIPE_IDS, getActiveLunchId } from '../../domain/lunchSwap.ts'
+import { applyLunchSwaps, diffRemovedItems } from '../../domain/lunchShoppingMap.ts'
 import { BLOCK_RECIPE_IDS } from '../../domain/rotation.ts'
 import type { BlockNumber } from '../../domain/rotation.ts'
 import styles from './LunchSwapPage.module.css'
@@ -17,8 +20,17 @@ function LunchSwapPage() {
 
   function handleChange(block: BlockNumber, value: string) {
     const recipeId = value === '' ? null : value
+    const before = applyLunchSwaps(shoppingList, swaps, recipesById)
+
     lunchSwapRepository.setSwap(block, recipeId)
-    setSwaps(lunchSwapRepository.getSwaps())
+    const nextSwaps = lunchSwapRepository.getSwaps()
+    const after = applyLunchSwaps(shoppingList, nextSwaps, recipesById)
+
+    for (const { tripId, itemName } of diffRemovedItems(before, after)) {
+      shoppingListRepository.setChecked(tripId, itemName, false)
+    }
+
+    setSwaps(nextSwaps)
   }
 
   return (
