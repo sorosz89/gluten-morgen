@@ -1,0 +1,23 @@
+.page {
+  padding: 1rem;
+  max-width: 100%;
+}
+
+.block {
+  margin-bottom: 1.5rem;
+}
+
+.blockHeading {
+  margin: 0 0 0.3rem;
+}
+
+.activeLunch {
+  margin: 0 0 0.5rem;
+}
+
+.select {
+  display: block;
+  width: 100%;
+  min-height: 44px;
+  font-size: 1rem;
+}

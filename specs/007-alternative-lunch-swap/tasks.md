@@ -22,7 +22,7 @@ and names the ACs it serves.
     `LunchSwapRepository` on `window.localStorage`, mirroring
     `anchorRepository.ts`'s shape.
 
-- [ ] T3 – Swap picker screen + route (AC1, AC3, AC4, AC10)
+- [x] T3 – Swap picker screen + route (AC1, AC3, AC4, AC10)
   - Test first: `LunchSwapPage.test.tsx` — renders all 4 blocks, each
     showing its currently active recipe title and a control offering the
     block's default plus the 5 alternatives (AC1); choosing an alternative
