@@ -45,7 +45,12 @@ and names the ACs it serves.
     via `getActiveLunchId(block, lunchSwapRepository.getSwaps())` instead
     of `getBlockRecipeIds(block).lunchId` directly.
 
-- [ ] T5 – Recipe→shopping-list contribution map + `applyLunchSwaps` (AC5, AC6, AC7)
+- [x] T5 – Recipe→shopping-list contribution map + `applyLunchSwaps` (AC5, AC6, AC7)
+  - Note: "M-es tojás" (50 g, Paradicsomos húsgombóc) is deliberately left
+    unmapped — the shopping list's only egg item ("tojás (M-es)") is counted
+    in db, an incompatible unit with no safe arithmetic merge. Documented as
+    a named exception in the completeness test rather than silently
+    skipped. 59 rows total (plan estimated ~60).
   - Test first: `lunchShoppingMap.test.ts` —
     - completeness: every ingredient with unit `g`/`db` and a non-null
       amount, across the 4 default lunch recipes and the 5 alternatives,
