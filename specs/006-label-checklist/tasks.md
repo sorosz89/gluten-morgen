@@ -11,7 +11,7 @@ and names the ACs it serves.
   - Done when: `src/domain/labelChecklist.ts` exports the constant;
     `npm run check` green.
 
-- [ ] T2 – `labelChecklistRepository` (AC2, AC3)
+- [x] T2 – `labelChecklistRepository` (AC2, AC3)
   - Test first: `src/data/labelChecklistRepository.test.ts`, fake-storage
     harness (copy `shoppingListRepository.test.ts`'s pattern) —
     `isChecked` defaults to `false`; `setChecked(product, true)` then
