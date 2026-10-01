@@ -1,6 +1,6 @@
 # 004 – Shopping list
 
-Status: approved
+Status: implemented
 Depends on: 001
 
 ## Problem
