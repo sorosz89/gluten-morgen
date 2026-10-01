@@ -12,7 +12,7 @@ and names the ACs it serves.
   - Done when: `src/domain/lunchSwap.ts` exports `ActiveSwaps`,
     `getActiveLunchId`, `ALTERNATIVE_RECIPE_IDS`; `npm run check` green.
 
-- [ ] T2 – Lunch-swap persistence repository (AC3, AC4, AC9)
+- [x] T2 – Lunch-swap persistence repository (AC3, AC4, AC9)
   - Test first: `lunchSwapRepository.test.ts` with a fake storage —
     `getSwaps()` is `{}` by default; `setSwap(2, id)` then `getSwaps()`
     reflects `{ 2: id }`; `setSwap(2, null)` removes that block's entry;
