@@ -30,7 +30,7 @@ and names the ACs it serves.
     `tsconfig.app.json` doesn't include `"node"` in `types`. The full real
     document is covered by T2's integration test instead.
 
-- [ ] T2 – Import script + generated `shoppingList.json` + loader (AC1)
+- [x] T2 – Import script + generated `shoppingList.json` + loader (AC1)
   - Test first: `scripts/import-shopping-list.integration.test.ts` —
     `buildShoppingList(sourceDir)` against the real `data/source` directory
     returns 3 trips that all pass `shoppingTripSchema.safeParse`;
@@ -40,6 +40,10 @@ and names the ACs it serves.
     `src/data/shoppingList.json`; `npm run import:shopping` added to
     `package.json`; `src/data/shoppingList.ts` imports and validates that
     JSON via `shoppingListSchema.parse`; `npm run check` green.
+  - Note: the re-thrown zod validation error needed an explicit `{ cause:
+    err }` to satisfy the `preserve-caught-error` eslint rule (not an issue
+    for `RecipeImportError` in spec 001 since that rule only checks
+    built-in `Error` types).
 
 - [ ] T3 – Family-size & checked-item repository (foundation for AC2, AC3, AC6, AC7)
   - Test first: `src/data/shoppingListRepository.test.ts` —

@@ -12,7 +12,8 @@
     "lint": "eslint .",
     "test": "vitest run --passWithNoTests",
     "check": "npm run typecheck && npm run lint && npm test",
-    "import": "node scripts/import-recipes.ts"
+    "import": "node scripts/import-recipes.ts",
+    "import:shopping": "node scripts/import-shopping-list.ts"
   },
   "dependencies": {
     "react": "^19.2.8",

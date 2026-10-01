@@ -1,0 +1,360 @@
+[
+  {
+    "id": "pantry",
+    "label": "1. Kamra & fagyasztó",
+    "categories": [
+      {
+        "heading": "Hús, tojás",
+        "items": [
+          {
+            "name": "pörköltnek való sovány hús",
+            "amount": 1500,
+            "unit": "g",
+            "note": "→ fagyasztva, 2 adagban (1000 g az 1. hétre, 500 g a 2. hétre)",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "darált hús",
+            "amount": 1300,
+            "unit": "g",
+            "note": "→ fagyasztva, 2 adagban (500 g az 1. hétre, 800 g a 2. hétre)",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "tojás (M-es)",
+            "amount": 17,
+            "amountQualifier": "kb.",
+            "unit": "db",
+            "note": "(a Görög joghurtos-banános muffin dupla adag tojást használ)",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Tejtermék",
+        "items": [
+          {
+            "name": "teavaj",
+            "amount": 55,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Száraz áru, konzerv, egyéb",
+        "items": [
+          {
+            "name": "lencse (száraz)",
+            "amount": 250,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "rizs",
+            "amount": 350,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "csicseriborsó (konzerv)",
+            "amount": 960,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "paradicsom passata",
+            "amount": 1500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "méz",
+            "amount": 20,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "ketchup",
+            "amount": 50,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "étcsoki (70%, gluténmentes jelöléssel)",
+            "amount": 60,
+            "unit": "g",
+            "mustBeGlutenFree": true
+          },
+          {
+            "name": "sótlan, pörköletlen olajos mag / dió / mogyoró",
+            "amount": 90,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "fehérjekoncentrátum (gluténmentes jelöléssel)",
+            "amount": 15,
+            "unit": "g",
+            "note": "– már csak a Laza proteines zabkásához kell, a muffin nem használ",
+            "mustBeGlutenFree": true
+          },
+          {
+            "name": "zsiradék (kókuszzsír / sertészsír / sütésre alkalmas olaj)",
+            "amount": 165,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Gluténmentes speciális termékek",
+        "items": [
+          {
+            "name": "gluténmentes lisztkeverék",
+            "amount": 350,
+            "unit": "g",
+            "mustBeGlutenFree": true
+          },
+          {
+            "name": "gluténmentes (GM) zabpehely",
+            "amount": 120,
+            "unit": "g",
+            "mustBeGlutenFree": true
+          },
+          {
+            "name": "gluténmentes kenyér/zsemle",
+            "amount": 800,
+            "amountQualifier": "kb.",
+            "unit": "g",
+            "note": "→ fagyasztva, szeletenként kiolvasztva",
+            "mustBeGlutenFree": true
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "freshWeek1",
+    "label": "2. heti bevásárlás (friss)",
+    "categories": [
+      {
+        "heading": "Zöldség, gyümölcs",
+        "items": [
+          {
+            "name": "leveszöldség",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "burgonya",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "sárgarépa",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "cukkini",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "vöröshagyma",
+            "amount": 300,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "paradicsom",
+            "amount": 50,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "banán",
+            "amount": 300,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "friss gyümölcs (bármilyen)",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "szendvics zöldségek (paradicsom, paprika, uborka, saláta)",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Tejtermékek",
+        "items": [
+          {
+            "name": "natúr skyr",
+            "amount": 250,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "görög joghurt, sovány, magas fehérjetartalmú",
+            "amount": 650,
+            "unit": "g",
+            "note": "(a Görög joghurtos-banános muffinhoz)",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "light sajt",
+            "amount": 50,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Hús, hal, tojás",
+        "items": [
+          {
+            "name": "csirke/pulykamell sonka",
+            "amount": 200,
+            "unit": "g",
+            "mustBeGlutenFree": true
+          },
+          {
+            "name": "pörköltnek való hús a fagyasztóból kiolvasztva (lásd fent)",
+            "amount": 1000,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "darált hús a fagyasztóból kiolvasztva (lásd fent)",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "freshWeek2",
+    "label": "3. heti bevásárlás (friss)",
+    "categories": [
+      {
+        "heading": "Zöldség, gyümölcs",
+        "items": [
+          {
+            "name": "leveszöldség",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "burgonya",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "vöröshagyma",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "földieper",
+            "amount": 400,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "alma",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "avokádó",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "szendvics zöldségek",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Tejtermékek",
+        "items": [
+          {
+            "name": "sovány (0,1%) joghurt",
+            "amount": 175,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "protein tej (0,2%)",
+            "amount": 330,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "túró (1% zsír)",
+            "amount": 560,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "tejföl (12%)",
+            "amount": 175,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "light sajt",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      },
+      {
+        "heading": "Hús, hal, tojás",
+        "items": [
+          {
+            "name": "csirke/pulykamell sonka",
+            "amount": 100,
+            "unit": "g",
+            "mustBeGlutenFree": true
+          },
+          {
+            "name": "pörköltnek való hús a fagyasztóból kiolvasztva (lásd fent)",
+            "amount": 500,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          },
+          {
+            "name": "darált hús a fagyasztóból kiolvasztva (lásd fent)",
+            "amount": 800,
+            "unit": "g",
+            "mustBeGlutenFree": false
+          }
+        ]
+      }
+    ]
+  }
+]
