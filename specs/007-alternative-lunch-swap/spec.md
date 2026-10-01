@@ -1,6 +1,6 @@
 # 007 – Alternative lunch swap
 
-Status: approved
+Status: implemented
 Depends on: 002, 003, 004
 
 ## Problem
