@@ -107,7 +107,7 @@ and names the ACs it serves.
     has no subscribe/notify mechanism. The checkbox's own tap-target
     sizing is left to T7, which owns the responsive pass.
 
-- [ ] T7 – Responsive / tap-target pass (AC8)
+- [x] T7 – Responsive / tap-target pass (AC8)
   - Test first: none automated (jsdom doesn't do real layout) — verified
     by a written manual check instead, same approach as specs 002/003's
     final task.
@@ -116,3 +116,14 @@ and names the ACs it serves.
     trip's clear action; manually verified with `npm run dev` at a 360px
     viewport; note the manual check result in this task's completion
     commit message.
+  - Manual check result: the OS enforces a ~570px minimum Chrome window
+    width, so verification used a 360×740 `<iframe>` embedding the live
+    `npm run dev` page (same rendering engine, precise viewport) instead
+    of resizing the window directly. `scrollWidth === clientWidth === 360`
+    on both the pantry trip and a long-wrapping item ("szendvics
+    zöldségek (paradicsom, paprika, uborka, saláta)" wraps to 2 lines,
+    127px tall, still 312px wide — no overflow). Tap-target bounding
+    boxes: checkbox 44×44px, family-size input 64×44px, "Lista törlése"
+    87.9×44px — all ≥44px. Found one real gap: the checkbox was only
+    24×24px; bumped `.checkbox` to 44×44px in `ShoppingPage.module.css`.
+    Checkbox click interaction verified working at this viewport.
