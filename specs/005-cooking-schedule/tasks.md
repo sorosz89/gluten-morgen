@@ -17,7 +17,7 @@ and names the ACs it serves.
     nothing outside `rotation.ts` needs it directly — `ScheduleDay` already
     exposes `blockLength` per day.
 
-- [ ] T2 – SchedulePage skeleton, route, no-anchor state (AC1, AC2, AC7)
+- [x] T2 – SchedulePage skeleton, route, no-anchor state (AC1, AC2, AC7)
   - Test first: `SchedulePage.test.tsx` — no-anchor prompt case (no
     schedule rows); anchor-set case asserting 7 rows' dates/weekdays/
     blocks/cook-flags and today's 3 recipe titles for block 1.
@@ -26,6 +26,9 @@ and names the ACs it serves.
     `getSchedule`, renders rows with recipe titles linking to
     `/recipes/:id` (same as `TodayMeals`); no anchor-setting form duplicated
     here — unset state links to `/ma` instead; `npm run check` green.
+  - Note: also added an explicit test for block 2's cook day
+    (2026-10-07) listing its three recipes, beyond the plan's minimum, to
+    pin down the block→recipe lookup works for a block other than block 1.
 
 - [ ] T3 – Day-in-block / last-day indicator (AC3, AC4)
   - Test first: extend `SchedulePage.test.tsx` with the day-3/3-last-day
