@@ -9,7 +9,7 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 002 | Recipe catalog & detail view | implemented |
 | 003 | Rotation & "Today" screen | implemented |
 | 004 | Shopping list | implemented |
-| 005 | Cooking schedule | approved: specs/005-cooking-schedule — 7-day look-ahead + batch day-remaining indicator; thaw reminders dropped (no freezer in source data) |
+| 005 | Cooking schedule | implemented |
 | 006 | Label checklist | hidden-gluten products to check once, remember "safe brands" |
 | 007 | Alternatives | browse alternative lunches, swap one into the rotation (updates list) |
 | 008 | Offline / PWA | installable, works in the shop without signal |
