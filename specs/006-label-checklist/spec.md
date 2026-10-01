@@ -1,6 +1,6 @@
 # 006 – Label checklist
 
-Status: approved
+Status: implemented
 Depends on: none
 
 ## Problem
