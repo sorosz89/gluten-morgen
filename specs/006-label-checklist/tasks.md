@@ -22,7 +22,7 @@ and names the ACs it serves.
     exported from `src/data/labelChecklistRepository.ts`, storage key
     `zero-gluten:label-checklist`; `npm run check` green.
 
-- [ ] T3 – `LabelChecklistPage` + route, checkbox persistence (AC1, AC2, AC3)
+- [x] T3 – `LabelChecklistPage` + route, checkbox persistence (AC1, AC2, AC3)
   - Test first: `src/features/labelChecklist/LabelChecklistPage.test.tsx`
     (`localStorage.clear()` in `beforeEach`) — renders exactly the 7
     products from `LABEL_CHECKLIST_PRODUCTS`, all unchecked; checking one
