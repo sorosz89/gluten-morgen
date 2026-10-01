@@ -104,4 +104,17 @@ describe('SchedulePage', () => {
     expect(within(mondayRow).getByText('2. nap / 3')).toBeInTheDocument()
     expect(within(mondayRow).queryByText(/utolsó nap/i)).not.toBeInTheDocument()
   })
+
+  it('AC5: flags Melegszendvics with the gluten-risk badge, not Húsos zöldséges passata', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderSchedule(parseIsoDate('2026-10-04'))
+
+    const dinnerLine = screen.getByText('Melegszendvics').closest('li')
+    expect(dinnerLine).not.toBeNull()
+    expect(within(dinnerLine!).getByText('Gluténmentes termék szükséges')).toBeInTheDocument()
+
+    const lunchLine = screen.getByText('Húsos zöldséges passata').closest('li')
+    expect(lunchLine).not.toBeNull()
+    expect(within(lunchLine!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
+  })
 })

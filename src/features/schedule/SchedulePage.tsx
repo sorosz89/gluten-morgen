@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { anchorRepository } from '../../data/anchorRepository.ts'
 import { recipes } from '../../data/recipes.ts'
-import { mealTypeLabel } from '../../domain/catalog.ts'
+import { mealTypeLabel, recipeHasGlutenRiskIngredient } from '../../domain/catalog.ts'
 import { formatIsoDate, getBlockRecipeIds, getSchedule, parseIsoDate } from '../../domain/rotation.ts'
 import type { BlockNumber, ScheduleDay } from '../../domain/rotation.ts'
 import styles from './SchedulePage.module.css'
@@ -77,6 +77,9 @@ function BlockMeals({ block }: { block: BlockNumber }) {
           <Link to={`/recipes/${recipe.id}`} className={styles.mealLink}>
             <span className={styles.mealType}>{mealTypeLabel(recipe.mealType)}:</span>
             <span>{recipe.title}</span>
+            {recipeHasGlutenRiskIngredient(recipe) && (
+              <span className={styles.badge}>Gluténmentes termék szükséges</span>
+            )}
           </Link>
         </li>
       ))}

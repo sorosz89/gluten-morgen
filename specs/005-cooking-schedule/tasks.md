@@ -39,7 +39,7 @@ and names the ACs it serves.
   - Note: rendered as "`N`. nap / `blockLength`" plus an "Utolsó nap" badge
     on the last day, styled like the existing gluten-badge pill.
 
-- [ ] T4 – Gluten-risk badge reuse (AC5)
+- [x] T4 – Gluten-risk badge reuse (AC5)
   - Test first: extend `SchedulePage.test.tsx` — for `2026-10-07`, dinner
     "Melegszendvics" shows the badge, lunch "Húsos zöldséges passata" does
     not.
