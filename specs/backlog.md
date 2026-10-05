@@ -15,4 +15,4 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 008 | Offline / PWA | installable, works in the shop without signal |
 | 009 | E2E tests | Playwright happy paths for Today, Recipe, Shopping |
 | 010 | Custom meal planner | build/save an alternate plan beyond the fixed 2-week rotation |
-| 011 | Recipe portion scaling | approved; +/- portion control on recipe detail page, default 4, independent of shopping list family size |
+| 011 | Recipe portion scaling | implemented |

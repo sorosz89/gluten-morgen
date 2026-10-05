@@ -1,6 +1,6 @@
 # 011 – Recipe portion scaling
 
-Status: approved
+Status: implemented
 Depends on: none
 
 ## Problem
