@@ -1,7 +1,10 @@
+import { Checkbox, Text } from '@fluentui/react-components'
 import { useState } from 'react'
 import { labelChecklistRepository } from '../../data/labelChecklistRepository.ts'
 import { LABEL_CHECKLIST_PRODUCTS } from '../../domain/labelChecklist.ts'
-import styles from './LabelChecklistPage.module.css'
+import { usePageBackdropStyles } from '../../styles/shell.ts'
+import { useLabelChecklistStyles } from './LabelChecklistPage.styles.ts'
+import styles from '../../styles/page.module.css'
 
 function initialCheckedState(): Record<string, boolean> {
   const state: Record<string, boolean> = {}
@@ -12,6 +15,8 @@ function initialCheckedState(): Record<string, boolean> {
 }
 
 function LabelChecklistPage() {
+  const fluentStyles = useLabelChecklistStyles()
+  const backdropStyles = usePageBackdropStyles()
   const [checkedState, setCheckedState] = useState(initialCheckedState)
 
   function toggleChecked(product: string) {
@@ -23,24 +28,24 @@ function LabelChecklistPage() {
   const remaining = LABEL_CHECKLIST_PRODUCTS.filter((product) => !checkedState[product]).length
 
   return (
-    <div className={styles.page}>
-      <p className={styles.summary}>
-        {remaining === 0 ? 'Minden termék ellenőrizve' : `${remaining} maradt`}
-      </p>
-      <ul className={styles.itemList}>
-        {LABEL_CHECKLIST_PRODUCTS.map((product) => (
-          <li key={product} className={styles.item}>
-            <input
-              type="checkbox"
-              className={styles.checkbox}
-              checked={checkedState[product] ?? false}
-              onChange={() => toggleChecked(product)}
-              aria-label={product}
-            />
-            <span className={styles.itemName}>{product}</span>
-          </li>
-        ))}
-      </ul>
+    <div className={backdropStyles.backdrop}>
+      <div className={styles.page}>
+        <Text as="p" className={fluentStyles.summary}>
+          {remaining === 0 ? 'Minden termék ellenőrizve' : `${remaining} maradt`}
+        </Text>
+        <div className={fluentStyles.shell}>
+          {LABEL_CHECKLIST_PRODUCTS.map((product) => (
+            <label key={product} className={fluentStyles.item}>
+              <Checkbox
+                checked={checkedState[product] ?? false}
+                onChange={() => toggleChecked(product)}
+                aria-label={product}
+              />
+              <span className={fluentStyles.itemName}>{product}</span>
+            </label>
+          ))}
+        </div>
+      </div>
     </div>
   )
 }

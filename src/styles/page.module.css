@@ -1,0 +1,13 @@
+.page {
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 1366px mirrors bpXXLarge in breakpoints.ts — CSS Modules can't import the
+   TS constant, so keep this literal in sync by hand if that value changes. */
+@media (min-width: 1366px) {
+  .page {
+    padding: 2rem 1.5rem;
+  }
+}

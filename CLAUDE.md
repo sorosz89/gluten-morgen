@@ -27,7 +27,9 @@ Rules for Claude:
 - Vite + React 19 + TypeScript (strict), no backend: data ships as static JSON
 - Zod for runtime validation of recipe data
 - Vitest + React Testing Library for tests; Playwright later for e2e
-- CSS Modules (no UI framework until the constitution says otherwise)
+- CSS Modules by default; Fluent UI v9 (`@fluentui/react-components`, `@fluentui/react-icons`)
+  is being piloted on the Today page (`/ma`) per `specs/constitution.md` Principle 7 — see
+  that principle before extending Fluent to another page or removing CSS Modules anywhere.
 - Persistence: `localStorage` behind a small repository interface
 
 ## Commands

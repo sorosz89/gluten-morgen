@@ -21,3 +21,11 @@ npm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# Personal/local tool settings and caches (machine-specific, not shared)
+.claude/settings.local.json
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+
+# Platform-specific downloaded binary (re-fetched automatically on first use)
+.claude/skills/impeccable/scripts/bin/

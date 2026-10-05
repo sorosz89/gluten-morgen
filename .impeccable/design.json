@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-05T10:30:00Z",
+  "title": "Design System: Zero Gluten",
+  "extensions": {
+    "colorMeta": {
+      "utility-bar-bg": {
+        "role": "neutral",
+        "displayName": "Utility Bar",
+        "canonical": "#120f1c",
+        "tonalRamp": ["#120f1c", "#1d1830", "#2a2244", "#3a2f5c", "#4f4178", "#6a5a9a", "#9586c2", "#d4cce8"]
+      },
+      "header-bar-bg": {
+        "role": "neutral",
+        "displayName": "Header Bar",
+        "canonical": "#241a3f",
+        "tonalRamp": ["#120f1c", "#1d1830", "#241a3f", "#352757", "#4a3a75", "#64539a", "#8f7cc2", "#d4cce8"]
+      },
+      "blob-violet": {
+        "role": "accent",
+        "displayName": "Blob Violet",
+        "canonical": "#5b21b6",
+        "tonalRamp": ["#1e0a3d", "#2e1159", "#3f1884", "#4e1da3", "#5b21b6", "#7c4fd1", "#a688e3", "#d4c4f2"]
+      },
+      "blob-magenta": {
+        "role": "accent",
+        "displayName": "Blob Magenta",
+        "canonical": "#9333ea",
+        "tonalRamp": ["#330f52", "#4a1778", "#631f9f", "#7a28c2", "#9333ea", "#b266f0", "#cc99f5", "#e6ccfa"]
+      },
+      "off-card-text": {
+        "role": "neutral-on-dark",
+        "displayName": "Off-Card Text",
+        "canonical": "#e3dcf2",
+        "tonalRamp": ["#120f1c", "#241a3f", "#3a2f5c", "#5c4f7a", "#8a7fa3", "#b3abc9", "#cdc4e0", "#e3dcf2"]
+      },
+      "off-card-text-muted": {
+        "role": "neutral-on-dark",
+        "displayName": "Off-Card Text Muted",
+        "canonical": "#cdbfe8",
+        "tonalRamp": ["#120f1c", "#241a3f", "#3a2f5c", "#5c4f7a", "#8a7fa3", "#ab9cc9", "#cdbfe8", "#e3dcf2"]
+      },
+      "off-card-accent-green": {
+        "role": "accent-on-dark",
+        "displayName": "Off-Card Accent Green",
+        "canonical": "#9fd9b9",
+        "tonalRamp": ["#0b2e1c", "#133d27", "#1d5938", "#2a7d4f", "#3fa06c", "#6cbf94", "#9fd9b9", "#d0efdf"]
+      },
+      "rozmaring-80": {
+        "role": "primary",
+        "displayName": "Rozmaring 80",
+        "canonical": "#2d7652",
+        "tonalRamp": ["#0b1e14", "#183f2b", "#22593d", "#2a6f4d", "#2d7652", "#3f9269", "#78bf9c", "#eff6f2"]
+      },
+      "gluten-risk-bg": {
+        "role": "secondary",
+        "displayName": "Gluten Risk",
+        "canonical": "#fbe0cc",
+        "tonalRamp": ["#4d2600", "#8a3b00", "#b85300", "#e06f10", "#f0943f", "#f6b676", "#fbd0ae", "#fbe0cc"]
+      },
+      "gluten-risk-text": {
+        "role": "secondary-on",
+        "displayName": "Gluten Risk Ink",
+        "canonical": "#8a3b00",
+        "tonalRamp": ["#2e1300", "#4d2600", "#6b3400", "#8a3b00", "#a8520d", "#c76f28", "#e08f4d", "#f0b57f"]
+      },
+      "breakfast-strip": {
+        "role": "tertiary",
+        "displayName": "Breakfast Gold",
+        "canonical": "#d9a33e",
+        "tonalRamp": ["#4d3b00", "#7a5c00", "#a67d00", "#c79214", "#d9a33e", "#e5bb6b", "#f0d4a0", "#fbefd9"]
+      },
+      "lunch-strip": {
+        "role": "tertiary",
+        "displayName": "Lunch Teal",
+        "canonical": "#2f8c82",
+        "tonalRamp": ["#0c2e2a", "#154842", "#1f5a54", "#276e66", "#2f8c82", "#4ea89e", "#8fc9c2", "#e1f1ef"]
+      },
+      "dinner-strip": {
+        "role": "tertiary",
+        "displayName": "Dinner Plum",
+        "canonical": "#8b5a8c",
+        "tonalRamp": ["#2c1c2d", "#432b44", "#5c3a5e", "#734876", "#8b5a8c", "#a97eaa", "#c7a9c7", "#f1e7f1"]
+      },
+      "neutral-background-1": {
+        "role": "neutral",
+        "displayName": "Neutral Background 1",
+        "canonical": "#ffffff",
+        "tonalRamp": ["#1f1f1f", "#3b3b3b", "#5c5c5c", "#8a8a8a", "#c0c0c0", "#e0e0e0", "#f5f5f5", "#ffffff"]
+      },
+      "neutral-stroke": {
+        "role": "neutral",
+        "displayName": "Neutral Stroke",
+        "canonical": "#e0e0e0",
+        "tonalRamp": ["#3a3a3a", "#5c5c5c", "#8a8a8a", "#b3b3b3", "#cfcfcf", "#e0e0e0", "#ececec", "#f7f7f7"]
+      },
+      "neutral-text-secondary": {
+        "role": "neutral",
+        "displayName": "Neutral Text Secondary",
+        "canonical": "#616161",
+        "tonalRamp": ["#1a1a1a", "#2e2e2e", "#424242", "#616161", "#757575", "#8a8a8a", "#aeaeae", "#d6d6d6"]
+      }
+    },
+    "typographyMeta": {
+      "status": { "displayName": "Status", "purpose": "The single highest-stakes fact on a screen (Today's cook-today yes/no), off-card. One per screen, at most." },
+      "title": { "displayName": "Title", "purpose": "Recipe titles on the detail page, off-card." },
+      "body": { "displayName": "Body", "purpose": "Ingredient lines, step text, item names — always on-card." },
+      "caption": { "displayName": "Caption", "purpose": "Date lines, servings, secondary metadata." },
+      "chipLabel": { "displayName": "Chip Label", "purpose": "Meal-type chips, category headings, badge text — uppercase, tracked." }
+    },
+    "shadows": [
+      { "name": "card-resting", "value": "0 0 2px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.14)", "purpose": "Fluent shadow4 — resting elevation for every card." },
+      { "name": "card-hover", "value": "0 0 2px rgba(0,0,0,0.12), 0 4px 8px rgba(0,0,0,0.14)", "purpose": "Fluent shadow8 — hover/focus lift for tappable cards." }
+    ],
+    "motion": [
+      { "name": "settings-handoff", "value": "duration var(--durationNormal), curve var(--curveEasyEase)", "purpose": "Today's rotation-anchor edit affordance collapse/expand — the one authored motion moment on that page." },
+      { "name": "card-hover", "value": "duration var(--durationFast), curve var(--curveEasyEase), properties: box-shadow, transform", "purpose": "Card lift on hover/focus across Today, Catalog, and Recipe cards." },
+      { "name": "nav-overlay", "value": "Fluent's own built-in drawer open/close motion, not overridden", "purpose": "NavDrawer's overlay slide-in/out on narrow viewports." }
+    ],
+    "breakpoints": [
+      { "name": "medium", "value": "480px" },
+      { "name": "large", "value": "640px" },
+      { "name": "xlarge", "value": "1024px" },
+      { "name": "xxlarge", "value": "1366px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Gluten-Risk Badge",
+      "kind": "chip",
+      "refersTo": "badge-gluten",
+      "description": "Flags a recipe, shopping-list, or meal-card item that needs a verified gluten-free product. Appears on every page that can show one. Hex pinned explicitly, sourced from src/styles/colors.ts — never Fluent's own color=\"warning\" token. Always renders on a white card body, so chrome/nav changes don't affect its contrast.",
+      "html": "<span class=\"ds-badge-gluten\">Gluténmentes termék szükséges</span>",
+      "css": ".ds-badge-gluten { display: inline-block; background: #fbe0cc; color: #8a3b00; border-radius: 10000px; padding: 0.15rem 0.6rem; font-size: 12px; font-weight: 600; }"
+    },
+    {
+      "name": "Meal-Type Chip",
+      "kind": "chip",
+      "refersTo": "meal-chip",
+      "description": "Small uppercase pill naming a meal type (Reggeli/Ebéd/Vacsora) in its matching data-series hue. Used on Today's card body and Schedule's meal rows.",
+      "html": "<span class=\"ds-meal-chip ds-meal-chip--lunch\">Ebéd</span>",
+      "css": ".ds-meal-chip { display: inline-block; padding: 0.15rem 0.6rem; border-radius: 10000px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; } .ds-meal-chip--breakfast { background: #fbefd9; color: #8a6416; } .ds-meal-chip--lunch { background: #e1f1ef; color: #1f5a54; } .ds-meal-chip--dinner { background: #f1e7f1; color: #5c3a5e; }"
+    },
+    {
+      "name": "Recipe Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Catalog's primary card: a left-edge meal-type rail, title, servings, optional gluten badge. shadow4/shadow8 elevation.",
+      "html": "<a class=\"ds-recipe-card\" href=\"#\"><div class=\"ds-recipe-card__rail\" style=\"background:#2f8c82\"></div><div class=\"ds-recipe-card__body\"><p class=\"ds-recipe-card__title\">Gulyásleves</p><p class=\"ds-recipe-card__meta\">4 napi adagra</p><span class=\"ds-badge-gluten\">Gluténmentes termék szükséges</span></div></a>",
+      "css": ".ds-recipe-card { display: flex; text-decoration: none; color: inherit; border-radius: 8px; overflow: hidden; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); border: 1px solid #e0e0e0; background: #ffffff; transition: box-shadow .15s ease, transform .15s ease; } .ds-recipe-card:hover, .ds-recipe-card:focus-visible { box-shadow: 0 0 2px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.14); transform: translateY(-2px); } .ds-recipe-card__rail { width: 6px; flex: none; align-self: stretch; } .ds-recipe-card__body { padding: 0.9rem 1rem 1.1rem; flex: 1 1 auto; } .ds-recipe-card__title { font-weight: 600; margin: 0 0 0.3rem; } .ds-recipe-card__meta { color: #616161; font-size: 12px; margin: 0 0 0.5rem; }"
+    },
+    {
+      "name": "Step Card (Recipe Detail)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Each recipe step group is its own white card rather than plain text on the backdrop, since recoloring many nested list items individually would be more error-prone than boxing.",
+      "html": "<section class=\"ds-step-card\"><h2>Elkészítés</h2><ol><li>Egy nagy fazékban hevítsd fel a zsírt…</li></ol></section>",
+      "css": ".ds-step-card { border-radius: 8px; border: 1px solid #e0e0e0; background: #ffffff; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); padding: 1rem 1.25rem 1.1rem; }"
+    },
+    {
+      "name": "Trip Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Shopping's per-trip container: header, a responsive category grid, and an isolated destructive-ghost footer action. Deliberately does not take a meal-type stripe — trips group by shopping trip, not meal type.",
+      "html": "<section class=\"ds-trip-card\"><div class=\"ds-trip-card__header\"><h2>1. Kamra &amp; fagyasztó</h2></div><div class=\"ds-trip-card__categories\">…</div><div class=\"ds-trip-card__footer\"><button class=\"ds-clear-button\">Lista törlése</button></div></section>",
+      "css": ".ds-trip-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); overflow: hidden; } .ds-trip-card__header { padding: 1.1rem 1.25rem 0.25rem; } .ds-trip-card__footer { padding: 0.75rem 1.25rem 1.1rem; display: flex; justify-content: flex-end; }"
+    },
+    {
+      "name": "Destructive Ghost Button",
+      "kind": "button",
+      "refersTo": "button-destructive-ghost",
+      "description": "Shopping's \"Lista törlése\". Outline-only, neutral at rest, reddens only on hover/focus. Isolated in its own footer row.",
+      "html": "<button class=\"ds-clear-button\" type=\"button\">Lista törlése</button>",
+      "css": ".ds-clear-button { min-height: 44px; padding: 0.5rem 1rem; border-radius: 10000px; border: 1px solid #e0e0e0; background: transparent; color: #616161; font-size: 12px; cursor: pointer; } .ds-clear-button:hover { border-color: #d13438; color: #bc2f32; background: #fdf6f6; } .ds-clear-button:focus-visible { outline: 2px solid #d13438; outline-offset: 1px; }"
+    },
+    {
+      "name": "Shell Card (Label Checklist)",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "One card wraps the whole flat label-checking list, deliberately not per-item cards.",
+      "html": "<div class=\"ds-shell-card\"><label class=\"ds-shell-card__row\"><input type=\"checkbox\"><span>sonka/felvágott</span></label>…</div>",
+      "css": ".ds-shell-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); overflow: hidden; } .ds-shell-card__row { display: flex; align-items: center; column-gap: 0.5rem; min-height: 44px; padding: 0.3rem 1rem; border-bottom: 1px solid #e0e0e0; }"
+    },
+    {
+      "name": "Left Nav Pane",
+      "kind": "nav",
+      "refersTo": "nav-pane",
+      "description": "Rebuilt this pass on Fluent 2's own NavDrawer/NavDrawerHeader/NavDrawerBody/NavItem/Hamburger primitives, replacing the prior hand-rolled two-tier top bar (a plain <nav> of <Link>s under a brand strip). Inline (persistent, 320px) at 1024px and up; overlay (closed by default, floats above content) below it, switched by a window.matchMedia listener. Each item carries a bundleIcon'd Fluent icon that swaps outline-to-filled on the active route, plus the Hungarian label. Selected state is Fluent's native treatment (bold white text, tinted background, inset left accent bar) re-pinned to the shell palette instead of Fluent's brand green. The prior per-item 'tint' marking two secondary routes was dropped — a top-bar-specific highlight with no meaning once items are full-width vertical rows.",
+      "html": "<nav class=\"ds-nav-pane\"><div class=\"ds-nav-pane__header\"><button class=\"ds-hamburger\" aria-label=\"Menü összecsukása\">☰</button><span class=\"ds-nav-pane__brand\">Zero Gluten</span></div><div class=\"ds-nav-pane__body\"><a class=\"ds-nav-item ds-nav-item--active\" href=\"#\">🏠 Ma</a><a class=\"ds-nav-item\" href=\"#\">🛒 Lista</a></div></nav>",
+      "css": ".ds-nav-pane { width: 320px; background: #241a3f; display: flex; flex-direction: column; } .ds-nav-pane__header { display: flex; align-items: center; column-gap: 0.6rem; padding: 0.6rem 0.9rem; background: #120f1c; border-bottom: 1px solid rgba(255,255,255,.08); } .ds-nav-pane__brand { color: #b9aed6; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; } .ds-nav-item { display: flex; align-items: center; column-gap: 0.6rem; min-height: 44px; margin-inline: 0.5rem; border-radius: 4px; padding-inline: 0.75rem; color: #b9aed6; font-weight: 600; text-decoration: none; background: transparent; } .ds-nav-item:hover { color: #ffffff; background: rgba(255,255,255,.06); } .ds-nav-item--active { color: #ffffff; background: rgba(255,255,255,.1); box-shadow: inset 3px 0 0 0 #ffffff; }"
+    },
+    {
+      "name": "Page Backdrop",
+      "kind": "custom",
+      "refersTo": "backdrop",
+      "description": "The full-bleed dark/purple gradient every page's outer wrapper applies via the shared usePageBackdropStyles hook (src/styles/shell.ts) — one hook, one place, not re-declared per page. min-height: 100dvh ensures it fills the content column's height even on short pages; the column is now narrower than the viewport whenever the nav pane is open, which the gradient's percentage-based positions absorb with no per-page change.",
+      "html": "<div class=\"ds-page-backdrop\"><div class=\"ds-page-content\">…</div></div>",
+      "css": ".ds-page-backdrop { min-height: 100dvh; background-color: #1b1430; background-image: radial-gradient(ellipse 900px 700px at 8% 95%, #5b21b6 0%, #312e81 45%, transparent 72%), radial-gradient(ellipse 800px 650px at 95% 2%, #9333ea 0%, #241a3f 50%, transparent 75%); background-repeat: no-repeat; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Violet Shift",
+    "overview": "Zero Gluten runs inside a dark navy/indigo chrome over a purple gradient backdrop — a register borrowed, user-pinned, from an unrelated enterprise dashboard reference. The product itself hasn't changed across either shell pass: it's still a plain-spoken kitchen companion, read one-handed, sometimes in a dim kitchen or a shop. Every real task — ingredient lists, shopping checkboxes, the cook-today answer — still lives on the same white, elevated cards this system built before any of the dark chrome existed; only the chrome and the page background around those cards went dark and colorful. This pass rebuilt the chrome itself: the nav moved from a two-tier top bar to a collapsible left pane, built on Fluent 2's own NavDrawer primitives rather than hand-rolled links. The visual identity carries over unchanged — same hex, same two-tier brand/link split, just rotated from horizontal to vertical — but the nav is now a distinct, Fluent-native component: real keyboard navigation, a native selected-state treatment, and a built-in responsive collapse to an overlay on narrow viewports. The theme architecture itself stayed light (FluentProvider on zeroGlutenTheme, unchanged): the dark/purple treatment is hand-pinned hex applied only to chrome and page backgrounds, never inside a card, so every already-proven component — including the new nav, once its own default theme-driven background was overridden — kept its exact in-card contrast with zero re-verification needed.",
+    "keyCharacteristics": [
+      "Theme architecture is deliberately split: Fluent stays on the light theme; dark/purple is hand-pinned hex on chrome and backdrop only, never inside a card.",
+      "The left nav is a real Fluent 2 component (NavDrawer/NavItem/Hamburger), not a styled list of links — it inherits the shell palette via per-slot className overrides, not Fluent's own default theme-driven styling.",
+      "Purple/indigo is the chrome/world color; rosemary green is demoted, not removed — it keeps its prior meaning inside cards.",
+      "Left-edge status stripes, not top strips, on Catalog and Today's cards.",
+      "Off-card text is a first-class concern: several real content elements, including the nav's own brand label and links, sit directly on the dark backdrop and are individually checked against the rendered page, not assumed safe.",
+      "Bundle size unaffected — no new dependency beyond the already-installed Fluent package; pure hex constants and CSS gradients."
+    ],
+    "rules": [
+      { "name": "The Always-Flagged Rule", "body": "The gluten-risk-ingredient signal is reserved exclusively for that one meaning, on every page, regardless of color or backdrop. Never reuse it for anything else, never ship a screen that lists a flaggable ingredient without it. Codified in specs/constitution.md Principle 7.", "section": "colors" },
+      { "name": "The One Hex, One Place Rule", "body": "In-card colors stay in src/styles/colors.ts, shell/backdrop colors in src/styles/shellColors.ts, each imported everywhere needed, never re-declared locally.", "section": "colors" },
+      { "name": "The Left-Border Reversal", "body": "Left/right decorative card borders are a standing craft-floor ban in general, but meal-type color deliberately renders as a left-edge stripe on Catalog and Today cards, and the nav's selected-item indicator is a 3px inset box-shadow in the same spirit — both earned exceptions, re-pinned to the shell palette. The nest-cards-inside-cards ban is unaffected.", "section": "shapes" },
+      { "name": "The Check-The-Component's-Own-Defaults Rule", "body": "A library component (NavItem) carries its own default background from the active Fluent theme regardless of what backdrop it's dropped onto — composing it inside a hand-pinned dark surface requires explicitly overriding that default, not just adding new color on top. Caught only by reading the rendered page's computed styles.", "section": "components" }
+    ],
+    "dos": [
+      "Do keep FluentProvider on the light theme — dark/purple styling is chrome-only, hand-pinned hex, never a theme-level switch.",
+      "Do check every page's actual rendered output — including a library component's own computed styles — before trusting a written plan's survey.",
+      "Do reach for Fluent's own primitives (NavDrawer, NavItem, Hamburger) over hand-rolled nav markup when the library ships one — only the color layer needs re-pinning to the shell palette.",
+      "Do keep the gluten-risk color and the three meal-type hues sourced from their one shared module each, regardless of position or backdrop.",
+      "Do box genuinely dense content in its own white card rather than recoloring many individual text nodes."
+    ],
+    "donts": [
+      "Don't assume a page — or a drop-in component — has no contrast problem because nothing in the diff touched color; verify the real render.",
+      "Don't map the gluten-risk signal or any data-series hue to a UI framework's own semantic color token.",
+      "Don't carry forward a decorative distinction into a new structure just because it existed before — the old nav's route 'tint' was dropped precisely because the left-pane layout gave it no meaning to preserve.",
+      "Don't give every list card treatment by default — Label checklist's flat list is a deliberate exception.",
+      "Don't treat this file as a transition snapshot — the left-pane-nav, dark-shell system is the one and only shipped state across all six pages plus the app shell."
+    ]
+  }
+}

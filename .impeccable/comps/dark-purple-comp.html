@@ -1,0 +1,468 @@
+<title>Zero Gluten Dark Comps</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Work+Sans:wght@400;500;600;700&display=swap');
+
+  :root {
+    --review-bg: #16231c;
+    --review-fg: #eef3ee;
+    --review-muted: #9fb3a6;
+    --review-accent: #7fd9a6;
+
+    /* shell (new) */
+    --utility-bar-bg: #120f1c;
+    --header-bar-bg: #241a3f;
+    --nav-link-default: #b9aed6;
+    --nav-link-tint: #c7b6f5;
+    --nav-link-active: #ffffff;
+    --blob-violet: #5b21b6;
+    --blob-magenta: #9333ea;
+    --blob-indigo: #312e81;
+    --backdrop-base: #1b1430;
+
+    /* in-card system (unchanged from the shipped light theme) */
+    --brand-500: #2e7d4f;
+    --brand-600: #256640;
+    --surface: #ffffff;
+    --ink: #1c2b22;
+    --ink-soft: #57685d;
+    --border: #e6e2d9;
+
+    --gold-bg: #fbefd9;   --gold-fg: #8a6416; --gold-strip: #d9a33e;
+    --teal-bg: #e1f1ef;   --teal-fg: #1f5a54; --teal-strip: #2f8c82;
+    --plum-bg: #f1e7f1;   --plum-fg: #5c3a5e; --plum-strip: #8b5a8c;
+
+    --gluten-bg: #fbe0cc; --gluten-fg: #8a3b00;
+
+    --shadow-sm: 0 1px 2px rgba(28,43,34,.07), 0 1px 1px rgba(28,43,34,.04);
+    --shadow-md: 0 6px 16px rgba(28,43,34,.10), 0 2px 5px rgba(28,43,34,.06);
+
+    --r-md: 12px;
+    --r-lg: 18px;
+    --r-pill: 999px;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--review-bg);
+    color: var(--ink);
+    font-family: 'Work Sans', system-ui, sans-serif;
+  }
+  h1, h2, h3, .display { font-family: 'Outfit', system-ui, sans-serif; text-wrap: balance; }
+  button { font-family: inherit; }
+
+  /* ---------- review toolbar ---------- */
+  .review-bar {
+    position: sticky; top: 0; z-index: 50;
+    display: flex; flex-wrap: wrap; align-items: center; gap: 1rem;
+    padding: 0.75rem 1.25rem;
+    background: var(--review-bg); color: var(--review-fg);
+    font-size: 0.85rem;
+  }
+  .review-bar__title { font-weight: 600; white-space: nowrap; }
+  .review-bar__hint { color: var(--review-muted); font-size: 0.78rem; }
+  .review-tabs { display: flex; gap: 0.25rem; margin-left: auto; }
+  .review-tabs button {
+    border: 1px solid rgba(255,255,255,.18); background: transparent; color: var(--review-fg);
+    padding: 0.4rem 0.75rem; border-radius: var(--r-pill); cursor: pointer; font-size: 0.82rem;
+  }
+  .review-tabs button[aria-selected="true"] {
+    background: var(--review-accent); color: #0e2016; border-color: var(--review-accent); font-weight: 600;
+  }
+  .review-tabs button:focus-visible { outline: 2px solid var(--review-accent); outline-offset: 2px; }
+
+  .screen { display: none; }
+  .screen.active { display: block; }
+
+  /* ---------- new two-tier dark chrome ---------- */
+  .utility-bar {
+    padding: 0.4rem 1.25rem;
+    background: var(--utility-bar-bg);
+    color: var(--nav-link-default);
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+  }
+  .app-nav {
+    display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;
+    padding: 0.9rem 1.5rem;
+    background: var(--header-bar-bg); color: #eaf5ee;
+  }
+  .app-nav a { color: var(--nav-link-default); text-decoration: none; font-weight: 600; font-size: 0.92rem; border-bottom: 2px solid transparent; padding-bottom: 2px; }
+  .app-nav a.tint { color: var(--nav-link-tint); }
+  .app-nav a.current { color: var(--nav-link-active); border-bottom-color: var(--nav-link-active); }
+
+  /* ---------- page backdrop: purple gradient over dark base ---------- */
+  .page-backdrop {
+    min-height: 100vh;
+    background-color: var(--backdrop-base);
+    background-image:
+      radial-gradient(ellipse 900px 700px at 8% 95%, var(--blob-violet) 0%, var(--blob-indigo) 45%, transparent 72%),
+      radial-gradient(ellipse 800px 650px at 95% 2%, var(--blob-magenta) 0%, var(--header-bar-bg) 50%, transparent 75%);
+    background-repeat: no-repeat;
+  }
+  .app-body { padding: 1.5rem; max-width: 1200px; margin: 0 auto; }
+  @media (min-width: 1366px) { .app-body { padding: 2.5rem 1.5rem; } }
+
+  .page-title { font-size: 1.5rem; font-weight: 700; margin: 0 0 1.25rem; color: #ffffff; }
+
+  /* ---------- Catalog screen ---------- */
+  .search-box {
+    display: block; width: 100%; max-width: 420px;
+    padding: 0.65rem 1rem; margin-bottom: 1.75rem;
+    border: 1px solid var(--border); border-radius: var(--r-pill);
+    background: var(--surface); font-size: 0.95rem; color: var(--ink);
+  }
+  .search-box::placeholder { color: var(--ink-soft); }
+
+  .catalog-section { margin-bottom: 2rem; }
+  .catalog-section h2 { font-size: 1.05rem; margin: 0 0 0.75rem; color: #ffffff; }
+  .card-grid { display: grid; grid-template-columns: 1fr; gap: 0.9rem; }
+  @media (min-width: 640px)  { .card-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .card-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1366px) { .card-grid { grid-template-columns: repeat(4, 1fr); } }
+
+  /* recipe card: left-edge stripe (reversed from the top-strip of the prior round) */
+  .recipe-card {
+    display: flex; text-decoration: none; color: inherit;
+    background: var(--surface); border-radius: var(--r-lg); overflow: hidden;
+    box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+    transition: box-shadow .15s ease, transform .15s ease;
+  }
+  .recipe-card:hover, .recipe-card:focus-visible { box-shadow: var(--shadow-md); transform: translateY(-2px); outline: none; }
+  .recipe-card:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+  .recipe-card__rail { width: 6px; flex: none; align-self: stretch; }
+  .rail--breakfast { background: var(--gold-strip); }
+  .rail--lunch { background: var(--teal-strip); }
+  .rail--dinner { background: var(--plum-strip); }
+  .recipe-card__body { padding: 0.9rem 1rem 1.1rem; flex: 1 1 auto; }
+  .recipe-card__title { font-weight: 600; font-size: 0.98rem; margin: 0 0 0.3rem; }
+  .recipe-card__meta { color: var(--ink-soft); font-size: 0.84rem; margin: 0 0 0.5rem; }
+
+  .badge {
+    display: inline-flex; align-items: center; gap: 0.3rem;
+    padding: 0.2rem 0.6rem; border-radius: var(--r-pill);
+    background: var(--gluten-bg); color: var(--gluten-fg);
+    font-size: 0.74rem; font-weight: 600;
+  }
+
+  /* ---------- Shopping screen ---------- */
+  .family-field { display: flex; flex-direction: column; gap: 0.3rem; max-width: 160px; margin-bottom: 1.75rem; }
+  @media (min-width: 480px) { .family-field { flex-direction: row; align-items: center; max-width: none; gap: 0.6rem; } }
+  .family-field label { font-size: 0.85rem; color: #e3dcf2; }
+  .family-field input {
+    width: 4.5rem; padding: 0.5rem 0.6rem; border: 1px solid var(--border);
+    border-radius: var(--r-md); font-size: 1rem; font-variant-numeric: tabular-nums;
+  }
+
+  .trip-card { background: var(--surface); border-radius: var(--r-lg); box-shadow: var(--shadow-sm); border: 1px solid var(--border); margin-bottom: 1.5rem; overflow: hidden; }
+  .trip-card__header { padding: 1.1rem 1.25rem 0.25rem; }
+  .trip-card__header h2 { font-size: 1.1rem; margin: 0; }
+  .trip-card__categories { display: grid; grid-template-columns: 1fr; gap: 0; padding: 0.5rem 1.25rem 1.25rem; }
+  @media (min-width: 640px)  { .trip-card__categories { grid-template-columns: repeat(2, 1fr); gap: 0 2rem; } }
+  @media (min-width: 1024px) { .trip-card__categories { grid-template-columns: repeat(3, 1fr); } }
+
+  .category { padding-top: 1rem; }
+  .category h3 { font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); margin: 0 0 0.5rem; }
+  .item-row { display: flex; align-items: center; gap: 0.6rem; min-height: 44px; padding: 0.3rem 0; border-bottom: 1px solid var(--border); font-size: 0.92rem; }
+  .item-row:last-child { border-bottom: none; }
+  .item-row input[type="checkbox"] { width: 20px; height: 20px; accent-color: var(--brand-500); flex: none; }
+  .item-row__name { flex: 1 1 auto; }
+  .item-row__qty { font-variant-numeric: tabular-nums; color: var(--ink-soft); font-size: 0.86rem; white-space: nowrap; }
+
+  .trip-card__footer { padding: 0.25rem 1.25rem 1.1rem; display: flex; justify-content: flex-end; }
+  .btn-destructive-ghost {
+    border: 1px solid var(--border); background: transparent; color: var(--ink-soft);
+    padding: 0.5rem 1rem; border-radius: var(--r-pill); font-size: 0.84rem; cursor: pointer;
+    min-height: 44px;
+  }
+  .btn-destructive-ghost:hover { border-color: #c0564a; color: #a8402f; background: #fdf3f1; }
+  .btn-destructive-ghost:focus-visible { outline: 2px solid #a8402f; outline-offset: 2px; }
+
+  /* ---------- Today screen ---------- */
+  .date-line { color: #cdbfe8; font-size: 0.9rem; margin: 0 0 0.4rem; }
+  .cook-status { font-size: 1.65rem; font-weight: 700; margin: 0 0 1.5rem; color: #ffffff; }
+  .cook-status .yes { color: #9fd9b9; }
+  .meal-cards { display: grid; grid-template-columns: 1fr; gap: 0.9rem; margin-bottom: 1.5rem; }
+  @media (min-width: 1024px) { .meal-cards { grid-template-columns: repeat(3, 1fr); } }
+
+  /* meal card: left-edge rail replaces the old top head-band; meal-type name now a chip in the body */
+  .meal-card { display: flex; text-decoration: none; color: inherit; border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border); background: var(--surface); transition: box-shadow .15s ease, transform .15s ease; }
+  .meal-card:hover, .meal-card:focus-visible { box-shadow: var(--shadow-md); transform: translateY(-2px); outline: none; }
+  .meal-card:focus-visible { outline: 2px solid var(--brand-500); outline-offset: 2px; }
+  .meal-card__rail { width: 6px; flex: none; align-self: stretch; }
+  .meal-card__body { padding: 0.9rem 1rem 1.1rem; flex: 1 1 auto; }
+  .meal-chip { display: inline-block; padding: 0.15rem 0.6rem; border-radius: var(--r-pill); font-size: 0.74rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 0.5rem; }
+  .meal-chip--breakfast { background: var(--gold-bg); color: var(--gold-fg); }
+  .meal-chip--lunch { background: var(--teal-bg); color: var(--teal-fg); }
+  .meal-chip--dinner { background: var(--plum-bg); color: var(--plum-fg); }
+  .meal-card__title { font-weight: 600; font-size: 1rem; margin: 0 0 0.6rem; }
+
+  .edit-affordance {
+    border: none; background: transparent; color: #cdbfe8;
+    padding: 0.5rem 0.25rem; font-size: 0.88rem; cursor: pointer; min-height: 44px;
+  }
+  .edit-affordance:hover { color: #ffffff; }
+  .edit-affordance:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+</style>
+
+<div class="review-bar">
+  <span class="review-bar__title">Zero Gluten — dark/purple dashboard irány</span>
+  <span class="review-bar__hint">Méretezd az ablakot a töréspontok ellenőrzéséhez · figyeld a lapsáv kontrasztját</span>
+  <nav class="review-tabs" role="tablist" aria-label="Oldal-makettek">
+    <button role="tab" aria-selected="true" data-screen="today">Ma</button>
+    <button role="tab" aria-selected="false" data-screen="catalog">Receptek</button>
+    <button role="tab" aria-selected="false" data-screen="shopping">Bevásárlólista</button>
+  </nav>
+</div>
+
+<main>
+
+<!-- ============ TODAY ============ -->
+<section class="screen active" id="screen-today" aria-label="Ma makett">
+  <div class="page-backdrop">
+    <div class="utility-bar">Zero Gluten</div>
+    <nav class="app-nav">
+      <a href="#">Receptek</a>
+      <a href="#" class="current">Ma</a>
+      <a href="#">Heti terv</a>
+      <a href="#" class="tint">Lista</a>
+      <a href="#">Címkék</a>
+      <a href="#" class="tint">Csere</a>
+    </nav>
+    <div class="app-body">
+      <p class="date-line">2026-10-02, péntek</p>
+      <p class="cook-status">Kell főzni ma? <span class="yes">igen</span></p>
+
+      <div class="meal-cards">
+        <a class="meal-card" href="#">
+          <div class="meal-card__rail" style="background:#d9a33e"></div>
+          <div class="meal-card__body">
+            <span class="meal-chip meal-chip--breakfast">Reggeli</span>
+            <p class="meal-card__title">Gyümölcsös joghurtos magmix</p>
+          </div>
+        </a>
+        <a class="meal-card" href="#">
+          <div class="meal-card__rail" style="background:#2f8c82"></div>
+          <div class="meal-card__body">
+            <span class="meal-chip meal-chip--lunch">Ebéd</span>
+            <p class="meal-card__title">Gulyásleves</p>
+            <span class="badge">Gluténmentes termék szükséges</span>
+          </div>
+        </a>
+        <a class="meal-card" href="#">
+          <div class="meal-card__rail" style="background:#8b5a8c"></div>
+          <div class="meal-card__body">
+            <span class="meal-chip meal-chip--dinner">Vacsora</span>
+            <p class="meal-card__title">Sonkás tükörtojás</p>
+          </div>
+        </a>
+      </div>
+
+      <button class="edit-affordance" type="button">Ciklus kezdetének módosítása</button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATALOG ============ -->
+<section class="screen" id="screen-catalog" aria-label="Receptek makett">
+  <div class="page-backdrop">
+    <div class="utility-bar">Zero Gluten</div>
+    <nav class="app-nav">
+      <a href="#" class="current">Receptek</a>
+      <a href="#">Ma</a>
+      <a href="#">Heti terv</a>
+      <a href="#" class="tint">Lista</a>
+      <a href="#">Címkék</a>
+      <a href="#" class="tint">Csere</a>
+    </nav>
+    <div class="app-body">
+      <h1 class="page-title">Receptek</h1>
+      <input class="search-box" type="search" placeholder="Keresés recept vagy hozzávaló" aria-label="Keresés recept vagy hozzávaló">
+
+      <section class="catalog-section">
+        <h2>Reggeli</h2>
+        <div class="card-grid">
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--breakfast"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Görög joghurtos-banános muffin dupla tojással</p>
+              <p class="recipe-card__meta">teljes tepsi, 4 napi adagra</p>
+              <span class="badge">Gluténmentes termék szükséges</span>
+            </div>
+          </a>
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--breakfast"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Gyümölcsös joghurtos magmix</p>
+              <p class="recipe-card__meta">1 adagra</p>
+            </div>
+          </a>
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--breakfast"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Laza proteines zabkása</p>
+              <p class="recipe-card__meta">1 adagra</p>
+              <span class="badge">Gluténmentes termék szükséges</span>
+            </div>
+          </a>
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--breakfast"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Túrós epres kevert süti</p>
+              <p class="recipe-card__meta">4 napi adagra / teljes tepsire</p>
+              <span class="badge">Gluténmentes termék szükséges</span>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="catalog-section">
+        <h2>Ebéd</h2>
+        <div class="card-grid">
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--lunch"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Gulyásleves</p>
+              <p class="recipe-card__meta">4 napi adagra</p>
+              <span class="badge">Gluténmentes termék szükséges</span>
+            </div>
+          </a>
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--lunch"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Húsos zöldséges passata</p>
+              <p class="recipe-card__meta">4 napi adagra</p>
+            </div>
+          </a>
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--lunch"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Paradicsomos húsgombóc</p>
+              <p class="recipe-card__meta">4 napi adagra</p>
+              <span class="badge">Gluténmentes termék szükséges</span>
+            </div>
+          </a>
+          <a class="recipe-card" href="#">
+            <div class="recipe-card__rail rail--lunch"></div>
+            <div class="recipe-card__body">
+              <p class="recipe-card__title">Savanyú lencseleves</p>
+              <p class="recipe-card__meta">4 napi adagra</p>
+              <span class="badge">Gluténmentes termék szükséges</span>
+            </div>
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SHOPPING ============ -->
+<section class="screen" id="screen-shopping" aria-label="Bevásárlólista makett">
+  <div class="page-backdrop">
+    <div class="utility-bar">Zero Gluten</div>
+    <nav class="app-nav">
+      <a href="#">Receptek</a>
+      <a href="#">Ma</a>
+      <a href="#">Heti terv</a>
+      <a href="#" class="tint current">Lista</a>
+      <a href="#">Címkék</a>
+      <a href="#" class="tint">Csere</a>
+    </nav>
+    <div class="app-body">
+      <h1 class="page-title">Bevásárlólista</h1>
+      <div class="family-field">
+        <label for="familySize">Családtagok száma</label>
+        <input id="familySize" type="number" value="4" min="1">
+      </div>
+
+      <section class="trip-card">
+        <div class="trip-card__header"><h2>1. Kamra &amp; fagyasztó</h2></div>
+        <div class="trip-card__categories">
+          <div class="category">
+            <h3>Hús, tojás</h3>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">pörköltnek való sovány hús</span>
+              <span class="item-row__qty">1500 g</span>
+            </div>
+            <div class="item-row">
+              <input type="checkbox" checked>
+              <span class="item-row__name">darált hús</span>
+              <span class="item-row__qty">1300 g</span>
+            </div>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">tojás (M-es)</span>
+              <span class="item-row__qty">kb. 17 db</span>
+            </div>
+          </div>
+          <div class="category">
+            <h3>Száraz áru, konzerv</h3>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">lencse (száraz)</span>
+              <span class="item-row__qty">250 g</span>
+            </div>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">rizs</span>
+              <span class="item-row__qty">350 g</span>
+            </div>
+          </div>
+          <div class="category">
+            <h3>Gluténmentes speciális termékek</h3>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">gluténmentes lisztkeverék</span>
+              <span class="item-row__qty">350 g</span>
+              <span class="badge">GM</span>
+            </div>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">gluténmentes kenyér/zsemle</span>
+              <span class="item-row__qty">800 g</span>
+              <span class="badge">GM</span>
+            </div>
+          </div>
+        </div>
+        <div class="trip-card__footer">
+          <button class="btn-destructive-ghost">Lista törlése</button>
+        </div>
+      </section>
+
+      <section class="trip-card">
+        <div class="trip-card__header"><h2>2. heti bevásárlás (friss)</h2></div>
+        <div class="trip-card__categories">
+          <div class="category">
+            <h3>Hús, hal, tojás</h3>
+            <div class="item-row">
+              <input type="checkbox">
+              <span class="item-row__name">csirke/pulykamell sonka</span>
+              <span class="item-row__qty">200 g</span>
+              <span class="badge">GM</span>
+            </div>
+          </div>
+        </div>
+        <div class="trip-card__footer">
+          <button class="btn-destructive-ghost">Lista törlése</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<script>
+  var tabs = document.querySelectorAll('.review-tabs button');
+  var screens = document.querySelectorAll('.screen');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () {
+      tabs.forEach(function (t) { t.setAttribute('aria-selected', 'false'); });
+      tab.setAttribute('aria-selected', 'true');
+      var target = tab.getAttribute('data-screen');
+      screens.forEach(function (s) { s.classList.toggle('active', s.id === 'screen-' + target); });
+    });
+  });
+</script>

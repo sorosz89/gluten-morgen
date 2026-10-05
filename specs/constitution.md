@@ -33,6 +33,17 @@ the kitchen or the shop:
 5. **Small, tested steps.** Domain logic is pure and unit tested. Every feature
    has acceptance criteria that are checked by tests or a written manual check.
 6. **No backend** until a spec proves we need one.
+7. **A UI framework is an implementation detail, not a new truth source.** The app may
+   adopt a component library (first: Fluent UI v9 / Fluent 2, piloted on the Today
+   page) only when it still satisfies principles 1–3 unchanged: every gluten-risk
+   signal stays visibly flagged and visually unique (the Caution Amber convention,
+   or its documented successor, is never diluted into a generic "info" or "neutral"
+   badge color just because the library ships one), every core screen still works
+   at 360px with 44×44px tap targets, and the library's own default theme is treated
+   as a token source to restyle deliberately, not an unreviewed aesthetic to accept
+   wholesale. Adopting, upgrading, or dropping a UI framework is a deliberate,
+   recorded decision (this change log), never an incidental one made inside an
+   unrelated feature spec.
 
 ## Domain facts
 
@@ -52,3 +63,8 @@ per person, AI features.
 ## Change log
 
 - 2026-09-30 – initial version.
+- 2026-10-02 – added Principle 7 (UI framework is an implementation detail) ahead of
+  piloting Fluent UI v9 / Fluent 2 on the Today page (`/ma`), so that adopting a
+  component library stays subordinate to gluten-safety flagging, mobile tap-target
+  size, and deliberate recorded decisions rather than silently inherited from the
+  library's defaults.

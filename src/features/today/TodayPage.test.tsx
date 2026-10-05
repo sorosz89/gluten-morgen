@@ -68,11 +68,11 @@ describe('TodayPage', () => {
     anchorRepository.setAnchor('2026-10-04')
     renderToday(parseIsoDate('2026-10-07'))
 
-    const dinnerLine = screen.getByText('Melegszendvics').closest('li')
+    const dinnerLine = screen.getByText('Melegszendvics').closest('a')
     expect(dinnerLine).not.toBeNull()
     expect(within(dinnerLine!).getByText('Gluténmentes termék szükséges')).toBeInTheDocument()
 
-    const lunchLine = screen.getByText('Húsos zöldséges passata').closest('li')
+    const lunchLine = screen.getByText('Húsos zöldséges passata').closest('a')
     expect(lunchLine).not.toBeNull()
     expect(within(lunchLine!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
   })
@@ -83,6 +83,7 @@ describe('TodayPage', () => {
 
     expect(screen.getByText('Gulyásleves')).toBeInTheDocument()
 
+    fireEvent.click(screen.getByRole('button', { name: /ciklus kezdetének módosítása/i }))
     fireEvent.change(screen.getByLabelText(/ciklus kezdete/i), { target: { value: '2026-09-27' } })
     fireEvent.click(screen.getByRole('button', { name: 'Mentés' }))
 
@@ -95,12 +96,28 @@ describe('TodayPage', () => {
     anchorRepository.setAnchor('2026-10-04')
     renderToday(parseIsoDate('2026-10-04'))
 
+    fireEvent.click(screen.getByRole('button', { name: /ciklus kezdetének módosítása/i }))
     fireEvent.change(screen.getByLabelText(/ciklus kezdete/i), { target: { value: '2026-10-05' } })
     fireEvent.click(screen.getByRole('button', { name: 'Mentés' }))
 
     expect(screen.getByText(/válassz vasárnapot/i)).toBeInTheDocument()
     expect(screen.getByText('Gulyásleves')).toBeInTheDocument()
     expect(anchorRepository.getAnchor()).toBe('2026-10-04')
+  })
+
+  it('collapses the anchor form to a small edit affordance once an anchor is configured', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderToday(parseIsoDate('2026-10-04'))
+
+    expect(screen.queryByLabelText(/ciklus kezdete/i)).not.toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /ciklus kezdetének módosítása/i })).toBeInTheDocument()
+  })
+
+  it('shows today\'s date and weekday', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    renderToday(parseIsoDate('2026-10-07'))
+
+    expect(screen.getByText('2026-10-07, Szerda')).toBeInTheDocument()
   })
 
   it('AC2: shows block 2\'s swapped-in lunch instead of the default, and the swap survives a 14-day wrap', () => {
@@ -119,6 +136,16 @@ describe('TodayPage', () => {
 
     expect(screen.getByText(SALMON_TITLE)).toBeInTheDocument()
     expect(screen.queryByText('Húsos zöldséges passata')).not.toBeInTheDocument()
+  })
+
+  it('shows a per-meal fallback instead of crashing when a swap points at an unknown recipe id', () => {
+    anchorRepository.setAnchor('2026-10-04')
+    lunchSwapRepository.setSwap(1, 'does-not-exist')
+    renderToday(parseIsoDate('2026-10-04'))
+
+    expect(screen.getByText('Gyümölcsös joghurtos magmix')).toBeInTheDocument()
+    expect(screen.getByText('Sonkás tükörtojás')).toBeInTheDocument()
+    expect(screen.getByText(/a recept nem található/i)).toBeInTheDocument()
   })
 
   it('AC3: after block 2 is reverted to its default, Today shows the default again', () => {

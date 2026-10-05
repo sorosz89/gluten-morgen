@@ -1,0 +1,45 @@
+{
+  "buildPath": "code",
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "design-system-font",
+        "value": "outfit",
+        "files": [
+          ".impeccable/comps/rebrand-comp.html"
+        ],
+        "createdAt": "2026-10-02T10:40:34.557Z",
+        "reason": "deliberate comp proposing new typography direction for the rebrand, not app code"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "work sans",
+        "files": [
+          ".impeccable/comps/rebrand-comp.html"
+        ],
+        "createdAt": "2026-10-02T10:40:34.648Z",
+        "reason": "deliberate comp proposing new typography direction for the rebrand, not app code"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "outfit",
+        "files": [
+          ".impeccable/comps/dark-purple-comp.html"
+        ],
+        "createdAt": "2026-10-02T11:56:42.026Z",
+        "reason": "deliberate comp proposing a second redesign direction, not app code"
+      },
+      {
+        "rule": "design-system-font",
+        "value": "work sans",
+        "files": [
+          ".impeccable/comps/dark-purple-comp.html"
+        ],
+        "createdAt": "2026-10-02T11:56:42.065Z",
+        "reason": "deliberate comp proposing a second redesign direction, not app code"
+      }
+    ]
+  }
+}
