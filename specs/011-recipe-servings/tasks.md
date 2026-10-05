@@ -44,7 +44,7 @@ and names the ACs it serves.
     1000 g hús → 1250 g at 5 adag, 50 g paradicsom → 63 g, rounded),
     and a full page reload still shows "5 adag" with the scaled amounts.
 
-- [ ] T4 – UI: scaled ingredient rendering + edge cases
+- [x] T4 – UI: scaled ingredient rendering + edge cases
       (AC2, AC5, AC6, AC9)
   - Test first: add cases to `RecipeDetailPage.test.tsx` for: a base≠4
     recipe's default display already scaled (e.g. zabkása 70 g → 280 g);
@@ -55,3 +55,6 @@ and names the ACs it serves.
   - Done when: `recipe.ingredients.map` feeds `scaleIngredient(...)` output
     into the existing `formatIngredientLine`; all listed tests pass;
     `npm run check` green end-to-end.
+  - Note: all 4 new tests passed immediately against the wiring already
+    done in T3 — no production code changed for this task, only test
+    coverage added (as anticipated in T3's note).

@@ -162,3 +162,49 @@ describe('Portion stepper', () => {
     expect(screen.getByText('4 adag')).toBeInTheDocument()
   })
 })
+
+describe('Scaled ingredient edge cases', () => {
+  it('AC2: a base-1 recipe is already scaled at the default of 4 adag (70 g -> 280 g)', () => {
+    renderAt('gf-reggeli-proteines-zabkasa')
+
+    expect(screen.getByText('4 adag')).toBeInTheDocument()
+    expect(screen.getByText(/280 g gluténmentes \(GM\) zabpehely/)).toBeInTheDocument()
+    expect(screen.queryByText(/70 g gluténmentes \(GM\) zabpehely/)).not.toBeInTheDocument()
+  })
+
+  it('AC5: a to-taste ingredient (amount: null) stays unchanged at any portion count', () => {
+    renderAt('mezes-mustaros-sult-oldalas')
+
+    expect(screen.getByText('só, bors')).toBeInTheDocument()
+
+    fireEvent.click(increaseButton())
+    fireEvent.click(increaseButton())
+    expect(screen.getByText('6 adag')).toBeInTheDocument()
+    expect(screen.getByText('só, bors')).toBeInTheDocument()
+  })
+
+  it('AC6: a range ingredient (amountText) shows the range at its own base count and a scaled number once moved off it', () => {
+    renderAt('mezes-mustaros-sult-oldalas')
+
+    expect(screen.getByText('4 adag')).toBeInTheDocument()
+    expect(screen.getByText(/3-4 evőkanál méz/)).toBeInTheDocument()
+
+    fireEvent.click(increaseButton())
+    fireEvent.click(increaseButton())
+    expect(screen.getByText('6 adag')).toBeInTheDocument()
+
+    expect(screen.queryByText(/3-4 evőkanál méz/)).not.toBeInTheDocument()
+    expect(screen.getByText(/5 evőkanál méz/)).toBeInTheDocument()
+  })
+
+  it('AC9: the gluten-free badge keeps rendering once amounts are scaled', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    fireEvent.click(increaseButton())
+
+    const ingredientList = screen.getByRole('list', { name: 'Hozzávalók' })
+    const flaggedLine = within(ingredientList).getByText(/gluténmentes kenyér/).closest('li')
+    expect(flaggedLine).not.toBeNull()
+    expect(within(flaggedLine!).getByText('Gluténmentes termék szükséges')).toBeInTheDocument()
+  })
+})
