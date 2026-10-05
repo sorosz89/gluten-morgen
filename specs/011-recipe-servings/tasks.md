@@ -15,7 +15,7 @@ and names the ACs it serves.
     zabkása oats line is named `"gluténmentes (GM) zabpehely (csere: köles-"`
     — tests reference the actual stored names, not the markdown prose.
 
-- [ ] T2 – Data: per-recipe portion persistence (AC8)
+- [x] T2 – Data: per-recipe portion persistence (AC8)
   - Test first: `src/data/recipePortionsRepository.test.ts` with fake
     storage, covering default-null-for-unseen-id, round-trip get/set,
     per-id isolation, and a reload simulation (second repository instance
