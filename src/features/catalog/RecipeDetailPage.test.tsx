@@ -1,5 +1,5 @@
-import { render, screen, within } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import { fireEvent, render, screen, within } from '@testing-library/react'
+import { beforeEach, describe, expect, it } from 'vitest'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import RecipeDetailPage from './RecipeDetailPage.tsx'
 
@@ -12,6 +12,18 @@ function renderAt(id: string) {
     </MemoryRouter>,
   )
 }
+
+function decreaseButton() {
+  return screen.getByRole('button', { name: 'Adag csökkentése' })
+}
+
+function increaseButton() {
+  return screen.getByRole('button', { name: 'Adag növelése' })
+}
+
+beforeEach(() => {
+  localStorage.clear()
+})
 
 describe('RecipeDetailPage', () => {
   it('AC6: renders every field of Gulyásleves', () => {
@@ -57,5 +69,96 @@ describe('RecipeDetailPage', () => {
 
     const flaggedCount = within(ingredientList).getAllByText('Gluténmentes termék szükséges')
     expect(flaggedCount).toHaveLength(1)
+  })
+})
+
+describe('Portion stepper', () => {
+  it('AC1: defaults to 4 and shows unscaled amounts for a base-4 recipe', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    expect(screen.getByText('4 adag')).toBeInTheDocument()
+    expect(screen.getByText(/1000 g pörköltnek való sovány hús/)).toBeInTheDocument()
+    expect(screen.getByText(/500 g burgonya/)).toBeInTheDocument()
+  })
+
+  it('AC3: pressing + recalculates amounts immediately', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    fireEvent.click(increaseButton())
+
+    expect(screen.getByText('5 adag')).toBeInTheDocument()
+    expect(screen.getByText(/1250 g pörköltnek való sovány hús/)).toBeInTheDocument()
+    expect(screen.getByText(/625 g burgonya/)).toBeInTheDocument()
+  })
+
+  it('AC3: pressing - recalculates amounts immediately', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    fireEvent.click(decreaseButton())
+
+    expect(screen.getByText('3 adag')).toBeInTheDocument()
+    expect(screen.getByText(/750 g pörköltnek való sovány hús/)).toBeInTheDocument()
+    expect(screen.getByText(/375 g burgonya/)).toBeInTheDocument()
+  })
+
+  it('AC4: - disables at the minimum of 1 and does not go lower', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    fireEvent.click(decreaseButton())
+    fireEvent.click(decreaseButton())
+    fireEvent.click(decreaseButton())
+
+    expect(screen.getByText('1 adag')).toBeInTheDocument()
+    expect(decreaseButton()).toBeDisabled()
+
+    fireEvent.click(decreaseButton())
+    expect(screen.getByText('1 adag')).toBeInTheDocument()
+  })
+
+  it('AC4: + disables at the maximum of 20 and does not go higher', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    for (let i = 0; i < 16; i++) {
+      fireEvent.click(increaseButton())
+    }
+
+    expect(screen.getByText('20 adag')).toBeInTheDocument()
+    expect(increaseButton()).toBeDisabled()
+
+    fireEvent.click(increaseButton())
+    expect(screen.getByText('20 adag')).toBeInTheDocument()
+  })
+
+  it('AC8: the chosen count is remembered when the recipe is reopened', () => {
+    const { unmount } = render(
+      <MemoryRouter initialEntries={['/recipes/gf-ebed-gulyasleves']}>
+        <Routes>
+          <Route path="/recipes/:id" element={<RecipeDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    )
+
+    fireEvent.click(increaseButton())
+    fireEvent.click(increaseButton())
+    expect(screen.getByText('6 adag')).toBeInTheDocument()
+    unmount()
+
+    renderAt('gf-ebed-gulyasleves')
+    expect(screen.getByText('6 adag')).toBeInTheDocument()
+  })
+
+  it('AC8: a different recipe keeps its own default, unaffected by another recipe\'s chosen count', () => {
+    const { unmount } = render(
+      <MemoryRouter initialEntries={['/recipes/gf-ebed-gulyasleves']}>
+        <Routes>
+          <Route path="/recipes/:id" element={<RecipeDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    )
+    fireEvent.click(increaseButton())
+    unmount()
+
+    renderAt('gf-reggeli-proteines-zabkasa')
+    expect(screen.getByText('4 adag')).toBeInTheDocument()
   })
 })

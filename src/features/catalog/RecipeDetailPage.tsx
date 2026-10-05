@@ -1,7 +1,16 @@
+import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
 import { recipes } from '../../data/recipes.ts'
 import { mealTypeLabel } from '../../domain/catalog.ts'
 import type { Ingredient } from '../../domain/recipe.ts'
+import {
+  DEFAULT_PORTION_COUNT,
+  MAX_PORTION_COUNT,
+  MIN_PORTION_COUNT,
+  parseBaseCount,
+  scaleIngredient,
+} from '../../domain/recipeScaling.ts'
 import { usePageBackdropStyles } from '../../styles/shell.ts'
 import { useRecipeDetailStyles } from './RecipeDetailPage.styles.ts'
 import styles from '../../styles/page.module.css'
@@ -20,10 +29,24 @@ function RecipeDetailPage() {
   const backdropStyles = usePageBackdropStyles()
   const { id } = useParams()
   const recipe = recipes.find((candidate) => candidate.id === id)
+  const [count, setCount] = useState<number>(
+    () => recipePortionsRepository.getPortions(id ?? '') ?? DEFAULT_PORTION_COUNT,
+  )
 
   if (!recipe) {
     return <Navigate to="/" replace />
   }
+
+  const recipeId = recipe.id
+
+  function updateCount(next: number) {
+    const clamped = Math.min(MAX_PORTION_COUNT, Math.max(MIN_PORTION_COUNT, next))
+    setCount(clamped)
+    recipePortionsRepository.setPortions(recipeId, clamped)
+  }
+
+  const factor = count / parseBaseCount(recipe.servingsLabel)
+  const scaledIngredients = recipe.ingredients.map((ingredient) => scaleIngredient(ingredient, factor))
 
   return (
     <div className={backdropStyles.backdrop}>
@@ -35,10 +58,32 @@ function RecipeDetailPage() {
         <span className={fluentStyles.mealType}>{mealTypeLabel(recipe.mealType)}</span>
         <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
 
+        <div className={fluentStyles.portionControl}>
+          <button
+            type="button"
+            className={fluentStyles.portionButton}
+            onClick={() => updateCount(count - 1)}
+            disabled={count <= MIN_PORTION_COUNT}
+            aria-label="Adag csökkentése"
+          >
+            −
+          </button>
+          <span className={fluentStyles.portionCount}>{count} adag</span>
+          <button
+            type="button"
+            className={fluentStyles.portionButton}
+            onClick={() => updateCount(count + 1)}
+            disabled={count >= MAX_PORTION_COUNT}
+            aria-label="Adag növelése"
+          >
+            +
+          </button>
+        </div>
+
         <div className={fluentStyles.twoColumn}>
           <div className={fluentStyles.ingredientsColumn}>
             <ul className={fluentStyles.list} aria-label="Hozzávalók">
-              {recipe.ingredients.map((ingredient, index) => (
+              {scaledIngredients.map((ingredient, index) => (
                 <li key={index} className={fluentStyles.listItem}>
                   {formatIngredientLine(ingredient)}
                   {ingredient.mustBeGlutenFree && (

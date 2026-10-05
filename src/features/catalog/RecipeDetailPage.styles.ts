@@ -40,7 +40,40 @@ export const useRecipeDetailStyles = makeStyles({
   servings: {
     display: 'block',
     fontWeight: tokens.fontWeightSemibold,
+    marginBottom: '0.5rem',
+    color: shellColors.offCardText,
+  },
+  portionControl: {
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: '0.75rem',
     marginBottom: '1.25rem',
+  },
+  portionButton: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '44px',
+    minHeight: '44px',
+    borderRadius: tokens.borderRadiusCircular,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
+    backgroundColor: tokens.colorNeutralBackground1,
+    color: tokens.colorNeutralForeground1,
+    fontSize: tokens.fontSizeBase400,
+    fontWeight: tokens.fontWeightSemibold,
+    cursor: 'pointer',
+    ':disabled': {
+      opacity: 0.4,
+      cursor: 'not-allowed',
+    },
+    ':hover:not(:disabled)': {
+      backgroundColor: tokens.colorNeutralBackground1Hover,
+    },
+  },
+  portionCount: {
+    minWidth: '4.5rem',
+    textAlign: 'center',
+    fontWeight: tokens.fontWeightSemibold,
     color: shellColors.offCardText,
   },
   twoColumn: {

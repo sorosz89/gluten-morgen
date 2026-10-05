@@ -24,7 +24,7 @@ and names the ACs it serves.
     `createRecipePortionsRepository` and the `recipePortionsRepository`
     singleton (key `zero-gluten:recipe-portions`); tests pass.
 
-- [ ] T3 – UI: portion stepper control on the recipe detail page
+- [x] T3 – UI: portion stepper control on the recipe detail page
       (AC1, AC3, AC4, AC8)
   - Test first: extend/create `RecipeDetailPage.test.tsx` for: default
     count display of 4; `+`/`-` recalculating amounts with no reload;
@@ -35,6 +35,14 @@ and names the ACs it serves.
     `RecipeDetailPage.tsx`, wired to `recipeScaling` and
     `recipePortionsRepository`, styled in `RecipeDetailPage.styles.ts`
     with 44×44px tap targets; tests pass.
+  - Note: this task also wired `scaledIngredients` into the ingredient
+    list (necessary for AC1/AC3 to be observable at all), ahead of T4's
+    own "done when" bullet describing the same wiring — T4 now mainly
+    adds edge-case test coverage over the wiring already in place.
+    Manually verified in the browser: stepper defaults to "4 adag" on
+    the gulyásleves page, `+` recalculates every amount live (e.g.
+    1000 g hús → 1250 g at 5 adag, 50 g paradicsom → 63 g, rounded),
+    and a full page reload still shows "5 adag" with the scaled amounts.
 
 - [ ] T4 – UI: scaled ingredient rendering + edge cases
       (AC2, AC5, AC6, AC9)
