@@ -12,7 +12,7 @@ and names the ACs it serves.
   - Note: both pages' local `badge` keys became `badgeSpacing` (placement-only
     margin), since color/shape now live in the shared component.
 
-- [ ] T2 – `MealTypeChip` shared component, wired into Catalog cards & Detail header (AC6)
+- [x] T2 – `MealTypeChip` shared component, wired into Catalog cards & Detail header (AC6)
   - Test first: `src/components/MealTypeChip.test.tsx` (label per `MealType`, color
     class per type incl. `alternative`/`extra` → lunch fallback); update
     `CatalogPage.test.tsx` to assert each card shows its meal-type chip text; update
@@ -21,6 +21,9 @@ and names the ACs it serves.
   - Done when: Catalog card shows rail + chip + badge together (Today's recipe);
     Detail header shows the chip in place of the old plain `mealType` span;
     `npm run check` green.
+  - Note: Detail's old `mealType` style key became `mealTypeChipSpacing`
+    (placement-only block + margin); Catalog's card body got a new
+    `chipSpacing` key for the same reason.
 
 - [ ] T3 – Amber `glutenFreeNote` callout, distinct from `tip` (AC4)
   - Test first: add a `RecipeDetailPage.test.tsx` assertion that the `tip` and

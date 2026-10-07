@@ -30,6 +30,7 @@ describe('RecipeDetailPage', () => {
     renderAt('gf-ebed-gulyasleves')
 
     expect(screen.getByRole('heading', { name: 'Gulyásleves' })).toBeInTheDocument()
+    expect(screen.getByText('Ebéd')).toBeInTheDocument()
     expect(screen.getByText('4 napi adagra')).toBeInTheDocument()
 
     const stepHeading = screen.getByRole('heading', { name: 'Elkészítés' })

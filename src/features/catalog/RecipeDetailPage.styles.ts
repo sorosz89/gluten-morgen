@@ -31,10 +31,9 @@ export const useRecipeDetailStyles = makeStyles({
     marginBottom: '0.25rem',
     color: shellColors.offCardText,
   },
-  mealType: {
+  mealTypeChipSpacing: {
     display: 'block',
-    color: shellColors.offCardTextMuted,
-    marginBottom: '0.1rem',
+    marginBottom: '0.4rem',
   },
   servings: {
     display: 'block',

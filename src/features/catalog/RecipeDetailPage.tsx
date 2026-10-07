@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
+import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
 import { recipes } from '../../data/recipes.ts'
-import { mealTypeLabel } from '../../domain/catalog.ts'
 import type { Ingredient } from '../../domain/recipe.ts'
 import {
   DEFAULT_PORTION_COUNT,
@@ -56,7 +56,7 @@ function RecipeDetailPage() {
           Vissza a receptekhez
         </Link>
         <h1 className={fluentStyles.title}>{recipe.title}</h1>
-        <span className={fluentStyles.mealType}>{mealTypeLabel(recipe.mealType)}</span>
+        <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
         <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
 
         <div className={fluentStyles.portionControl}>

@@ -29,6 +29,21 @@ describe('CatalogPage', () => {
     }
   })
 
+  it('AC6: shows a meal-type chip matching its section on every card', () => {
+    renderCatalog()
+
+    for (const mealType of MEAL_TYPE_ORDER) {
+      const heading = screen.getByRole('heading', { level: 2, name: mealTypeLabel(mealType) })
+      const section = heading.closest('section')
+      expect(section).not.toBeNull()
+
+      const cards = within(section!).getAllByRole('listitem')
+      for (const card of cards) {
+        expect(within(card).getByText(mealTypeLabel(mealType))).toBeInTheDocument()
+      }
+    }
+  })
+
   it('AC2: shows a gluten-risk badge on the Melegszendvics card', () => {
     renderCatalog()
 

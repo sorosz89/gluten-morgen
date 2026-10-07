@@ -90,6 +90,10 @@ export const useCatalogStyles = makeStyles({
     padding: '0.9rem 1rem 1.1rem',
     flex: '1 1 auto',
   },
+  chipSpacing: {
+    display: 'block',
+    marginBottom: '0.5rem',
+  },
   cardTitle: {
     margin: '0 0 0.3rem',
     fontWeight: tokens.fontWeightSemibold,
