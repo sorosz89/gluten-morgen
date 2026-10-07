@@ -56,6 +56,22 @@ describe('RecipeDetailPage', () => {
     expect(screen.getByText(/Csak a levesbetét kenyerét kell cserélni/)).toBeInTheDocument()
   })
 
+  it('AC4: tip and glutenFreeNote render as visually distinct callouts', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    const tip = screen.getByText(/A fűszerpaprikát mindig lángról levéve keverd a levesbe/)
+    const note = screen.getByText(/Csak a levesbetét kenyerét kell cserélni/)
+
+    expect(tip.className).not.toBe('')
+    expect(note.className).not.toBe('')
+    expect(tip.className).not.toBe(note.className)
+
+    const noteContainer = note.closest('p')
+    expect(noteContainer?.querySelector('svg')).not.toBeNull()
+    const tipContainer = tip.closest('p')
+    expect(tipContainer?.querySelector('svg')).toBeNull()
+  })
+
   it('AC7: flags only the gluténmentes kenyér ingredient line', () => {
     renderAt('gf-ebed-gulyasleves')
 

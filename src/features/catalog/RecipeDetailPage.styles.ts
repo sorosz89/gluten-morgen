@@ -1,5 +1,6 @@
 import { makeStyles, tokens } from '@fluentui/react-components'
 import { shellColors } from '../../styles/shellColors.ts'
+import { glutenBg, glutenFg } from '../../styles/colors.ts'
 import { bpXLarge } from '../../styles/breakpoints.ts'
 
 export const useRecipeDetailStyles = makeStyles({
@@ -146,9 +147,22 @@ export const useRecipeDetailStyles = makeStyles({
     borderRadius: tokens.borderRadiusXLarge,
     backgroundColor: tokens.colorNeutralBackground2,
   },
+  // Boxed in the same amber pair as the gluten-risk badge, plus a warning
+  // icon, so the safety note is unambiguously higher-emphasis than the
+  // neutral `tip` box above (spec 012, AC4 — never the lower-emphasis one).
   glutenFreeNote: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    columnGap: '0.5rem',
     marginBottom: '1rem',
-    color: shellColors.offCardText,
+    padding: '0.9rem 1rem',
+    borderRadius: tokens.borderRadiusXLarge,
+    backgroundColor: glutenBg,
+    color: glutenFg,
+  },
+  glutenFreeNoteIcon: {
+    flexShrink: 0,
+    marginTop: '0.2rem',
   },
   source: {
     marginBottom: '1rem',

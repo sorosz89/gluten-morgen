@@ -25,12 +25,16 @@ and names the ACs it serves.
     (placement-only block + margin); Catalog's card body got a new
     `chipSpacing` key for the same reason.
 
-- [ ] T3 – Amber `glutenFreeNote` callout, distinct from `tip` (AC4)
+- [x] T3 – Amber `glutenFreeNote` callout, distinct from `tip` (AC4)
   - Test first: add a `RecipeDetailPage.test.tsx` assertion that the `tip` and
     `glutenFreeNote` paragraphs render with different classes (regression guard).
   - Done when: `glutenFreeNote` renders boxed in `glutenBg`/`glutenFg` with a
     `Warning16Filled` icon; `tip` is unchanged; gulyásleves shows both, visually
     distinct, note never lower-emphasis; `npm run check` green.
+  - Note: test also asserts the warning icon's `<svg>` is present inside the
+    note paragraph and absent from the tip paragraph, so the red step actually
+    failed before the icon/box were added (plain class-name difference alone
+    was already true beforehand).
 
 - [ ] T4 – AC7 regression test: no empty sections for a recipe missing optional fields
   - Test first: new test rendering `mezes-mustaros-sult-oldalas`, asserting no tip

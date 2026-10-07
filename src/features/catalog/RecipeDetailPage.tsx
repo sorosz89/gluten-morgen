@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { Warning16Filled } from '@fluentui/react-icons'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
@@ -124,7 +125,12 @@ function RecipeDetailPage() {
           </ul>
         )}
 
-        {recipe.glutenFreeNote && <p className={fluentStyles.glutenFreeNote}>{recipe.glutenFreeNote}</p>}
+        {recipe.glutenFreeNote && (
+          <p className={fluentStyles.glutenFreeNote}>
+            <Warning16Filled className={fluentStyles.glutenFreeNoteIcon} aria-hidden="true" />
+            {recipe.glutenFreeNote}
+          </p>
+        )}
 
         {recipe.source && <p className={fluentStyles.source}>Forrás: {recipe.source}</p>}
       </div>
