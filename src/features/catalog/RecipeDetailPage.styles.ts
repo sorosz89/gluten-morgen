@@ -249,12 +249,29 @@ export const useRecipeDetailStyles = makeStyles({
     marginBottom: '1rem',
     color: shellColors.offCardTextMuted,
   },
-  // Macros are reference info, not a second shopping list — a plain-text
-  // caption plus unbordered rows (no card shape) keeps them visually
-  // distinct from the ingredient list's bordered, shop-from-this card.
+  // The macros widget sits in a white card (top-right of the header row, by
+  // the title) rather than on the dark backdrop — in-card neutral tokens,
+  // not the off-card shell palette the rest of this page's loose text uses.
+  headerRow: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    columnGap: '2rem',
+    rowGap: '0.5rem',
+  },
+  headerStack: {
+    flex: '0 1 auto',
+  },
+  macrosCard: {
+    flex: '1 1 320px',
+    alignSelf: 'flex-start',
+    backgroundColor: tokens.colorNeutralBackground1,
+    borderRadius: tokens.borderRadiusXLarge,
+    boxShadow: tokens.shadow4,
+    padding: '0.9rem 1rem 1.1rem',
+  },
   macrosCaption: {
     marginBottom: '0.4rem',
-    color: shellColors.offCardTextMuted,
+    color: tokens.colorNeutralForeground3,
     fontSize: tokens.fontSizeBase200,
     fontWeight: tokens.fontWeightSemibold,
     textTransform: 'uppercase',
@@ -262,11 +279,24 @@ export const useRecipeDetailStyles = makeStyles({
   },
   macrosList: {
     listStyleType: 'none',
-    margin: '0 0 1rem',
+    margin: 0,
     padding: 0,
+    display: 'grid',
+    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    columnGap: '1rem',
+    rowGap: '0.7rem',
   },
   macrosListItem: {
-    padding: '0.3rem 0',
-    color: shellColors.offCardText,
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  macrosValue: {
+    fontWeight: tokens.fontWeightBold,
+    fontSize: tokens.fontSizeBase400,
+    color: tokens.colorNeutralForeground1,
+  },
+  macrosLabel: {
+    fontSize: tokens.fontSizeBase200,
+    color: tokens.colorNeutralForeground3,
   },
 })

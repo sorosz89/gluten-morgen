@@ -108,36 +108,69 @@ function RecipeDetailPage() {
     </p>
   ) : null
 
+  const macrosEntries = recipe.macros
+    ? [
+        { value: `${recipe.macros.kcal}`, label: 'kcal' },
+        { value: `${recipe.macros.proteinG} g`, label: 'fehérje' },
+        { value: `${recipe.macros.carbsG} g`, label: 'szénhidrát' },
+        { value: `${recipe.macros.saltMg} mg`, label: 'só' },
+        { value: `${recipe.macros.fatG} g`, label: 'zsír' },
+        { value: `${recipe.macros.fiberG} g`, label: 'rost' },
+      ]
+    : null
+
+  const headerStack = (
+    <>
+      <h1 className={fluentStyles.title}>{recipe.title}</h1>
+      <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
+      <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
+
+      <div className={fluentStyles.portionControl}>
+        <button
+          type="button"
+          className={fluentStyles.portionButton}
+          onClick={() => updateCount(count - 1)}
+          disabled={count <= MIN_PORTION_COUNT}
+          aria-label="Adag csökkentése"
+        >
+          −
+        </button>
+        <span className={fluentStyles.portionCount}>{count} adag</span>
+        <button
+          type="button"
+          className={fluentStyles.portionButton}
+          onClick={() => updateCount(count + 1)}
+          disabled={count >= MAX_PORTION_COUNT}
+          aria-label="Adag növelése"
+        >
+          +
+        </button>
+      </div>
+    </>
+  )
+
   return (
     <div className={backdropStyles.backdrop}>
       <div className={styles.page}>
         <Link to="/" className={fluentStyles.backLink}>
           Vissza a receptekhez
         </Link>
-        <h1 className={fluentStyles.title}>{recipe.title}</h1>
-        <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
-        <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
 
-        <div className={fluentStyles.portionControl}>
-          <button
-            type="button"
-            className={fluentStyles.portionButton}
-            onClick={() => updateCount(count - 1)}
-            disabled={count <= MIN_PORTION_COUNT}
-            aria-label="Adag csökkentése"
-          >
-            −
-          </button>
-          <span className={fluentStyles.portionCount}>{count} adag</span>
-          <button
-            type="button"
-            className={fluentStyles.portionButton}
-            onClick={() => updateCount(count + 1)}
-            disabled={count >= MAX_PORTION_COUNT}
-            aria-label="Adag növelése"
-          >
-            +
-          </button>
+        <div className={fluentStyles.headerRow}>
+          <div className={fluentStyles.headerStack}>{headerStack}</div>
+          {macrosEntries && (
+            <div className={fluentStyles.macrosCard}>
+              <p className={fluentStyles.macrosCaption}>Tápérték (adagonként)</p>
+              <ul className={fluentStyles.macrosList} aria-label="Makrók">
+                {macrosEntries.map((entry) => (
+                  <li key={entry.label} className={fluentStyles.macrosListItem}>
+                    <span className={fluentStyles.macrosValue}>{entry.value}</span>
+                    <span className={fluentStyles.macrosLabel}>{entry.label}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
 
         <div className={fluentStyles.twoColumn}>
@@ -197,20 +230,6 @@ function RecipeDetailPage() {
         </div>
 
         {recipe.tip && <p className={fluentStyles.tip}>{recipe.tip}</p>}
-
-        {recipe.macros && (
-          <>
-            <p className={fluentStyles.macrosCaption}>Tápérték (adagonként)</p>
-            <ul className={fluentStyles.macrosList} aria-label="Makrók">
-              <li className={fluentStyles.macrosListItem}>{recipe.macros.kcal} kcal</li>
-              <li className={fluentStyles.macrosListItem}>{recipe.macros.proteinG} g fehérje</li>
-              <li className={fluentStyles.macrosListItem}>{recipe.macros.carbsG} g szénhidrát</li>
-              <li className={fluentStyles.macrosListItem}>{recipe.macros.saltMg} mg só</li>
-              <li className={fluentStyles.macrosListItem}>{recipe.macros.fatG} g zsír</li>
-              <li className={fluentStyles.macrosListItem}>{recipe.macros.fiberG} g rost</li>
-            </ul>
-          </>
-        )}
 
         {recipe.source && <p className={fluentStyles.source}>Forrás: {recipe.source}</p>}
 

@@ -21,20 +21,25 @@ function increaseButton() {
   return screen.getByRole('button', { name: 'Adag növelése' })
 }
 
-// The ingredient amount renders in its own <span>, separate from the name's
-// bare text node, so an "amount + name" string no longer lives on one node —
-// match against the <li>'s full text instead.
-function ingredientLineMatcher(expected: string) {
+// Ingredient amounts and macro values each render in their own <span>,
+// separate from the sibling text/label node, so a combined string no longer
+// lives on one node — match against the enclosing <li>'s full text instead.
+function listItemTextMatcher(expected: string) {
   return (_content: string, element: Element | null) =>
     element?.tagName.toLowerCase() === 'li' && (element.textContent ?? '').includes(expected)
 }
 
 function getIngredientLine(expected: string) {
-  return screen.getByText(ingredientLineMatcher(expected))
+  return screen.getByText(listItemTextMatcher(expected))
 }
 
 function queryIngredientLine(expected: string) {
-  return screen.queryByText(ingredientLineMatcher(expected))
+  return screen.queryByText(listItemTextMatcher(expected))
+}
+
+function getMacroLine(expected: string) {
+  const macrosList = screen.getByRole('list', { name: 'Makrók' })
+  return within(macrosList).getByText(listItemTextMatcher(expected))
 }
 
 beforeEach(() => {
@@ -62,12 +67,18 @@ describe('RecipeDetailPage', () => {
 
     expect(screen.getByText(/A fűszerpaprikát mindig lángról levéve keverd a levesbe/)).toBeInTheDocument()
 
-    expect(screen.getByText('822 kcal')).toBeInTheDocument()
-    expect(screen.getByText('65 g fehérje')).toBeInTheDocument()
-    expect(screen.getByText('77 g szénhidrát')).toBeInTheDocument()
-    expect(screen.getByText('670 mg só')).toBeInTheDocument()
-    expect(screen.getByText('28 g zsír')).toBeInTheDocument()
-    expect(screen.getByText('12 g rost')).toBeInTheDocument()
+    expect(getMacroLine('822')).toBeInTheDocument()
+    expect(getMacroLine('kcal')).toBeInTheDocument()
+    expect(getMacroLine('65 g')).toBeInTheDocument()
+    expect(getMacroLine('fehérje')).toBeInTheDocument()
+    expect(getMacroLine('77 g')).toBeInTheDocument()
+    expect(getMacroLine('szénhidrát')).toBeInTheDocument()
+    expect(getMacroLine('670 mg')).toBeInTheDocument()
+    expect(getMacroLine('só')).toBeInTheDocument()
+    expect(getMacroLine('28 g')).toBeInTheDocument()
+    expect(getMacroLine('zsír')).toBeInTheDocument()
+    expect(getMacroLine('12 g')).toBeInTheDocument()
+    expect(getMacroLine('rost')).toBeInTheDocument()
 
     expect(screen.getByText(/Csak a levesbetét kenyerét kell cserélni/)).toBeInTheDocument()
   })
