@@ -134,25 +134,61 @@ export const useRecipeDetailStyles = makeStyles({
   badgeSpacing: {
     marginLeft: '0.5rem',
   },
+  // Weight-only differentiation so the quantity reads distinctly from the
+  // ingredient name without a layout change to the existing flowing list.
+  ingredientAmount: {
+    fontWeight: tokens.fontWeightBold,
+  },
+  // Muted and smaller so a prep instruction ("NE sima", "megmosva...") reads
+  // as a secondary annotation, not part of the ingredient's own name.
+  ingredientNote: {
+    color: tokens.colorNeutralForeground3,
+    fontSize: tokens.fontSizeBase200,
+  },
   stepHeading: {
     marginBottom: '0.5rem',
   },
+  // `listStyleType: none` drops the browser's own decimal markers — paired
+  // with the numbered `stepNumberBadge` circle below, native numerals and
+  // the step's own indicator used to compete for the same meaning.
   stepList: {
     margin: 0,
-    paddingLeft: '1.25rem',
+    padding: 0,
+    listStyleType: 'none',
   },
   stepListItem: {
     marginBottom: '0.3rem',
   },
+  // Single marker for "which step, done or not": shows the step number until
+  // checked off, then yields to `stepCheckIconDone`'s filled checkmark.
+  // No `marginTop` — the badge and the step text are both exactly one line
+  // tall and share the same flex-start origin, so an added offset (like the
+  // check icons' own 0.15rem nudge) misaligns this badge instead of centering it.
+  stepNumberBadge: {
+    flexShrink: 0,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '22px',
+    height: '22px',
+    borderRadius: tokens.borderRadiusCircular,
+    fontSize: '12px',
+    fontWeight: tokens.fontWeightBold,
+    lineHeight: 1,
+    color: tokens.colorNeutralForeground3,
+    border: `1.5px solid ${tokens.colorNeutralStroke1}`,
+  },
   // Each step is a real tappable button (44px tall, full-width) so marking
   // it done works one-handed while cooking — not a decorative checkbox.
+  // `alignItems: center` centers the number/check badge against the full
+  // height of the step text, including steps that wrap to two lines.
   stepButton: {
     display: 'flex',
-    alignItems: 'flex-start',
+    alignItems: 'center',
     columnGap: '0.6rem',
     width: '100%',
     minHeight: '44px',
-    padding: '0.3rem 0.4rem',
+    padding: '0.45rem 0.4rem',
     borderRadius: tokens.borderRadiusMedium,
     border: 'none',
     backgroundColor: 'transparent',

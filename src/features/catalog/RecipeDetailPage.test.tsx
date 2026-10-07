@@ -21,6 +21,22 @@ function increaseButton() {
   return screen.getByRole('button', { name: 'Adag növelése' })
 }
 
+// The ingredient amount renders in its own <span>, separate from the name's
+// bare text node, so an "amount + name" string no longer lives on one node —
+// match against the <li>'s full text instead.
+function ingredientLineMatcher(expected: string) {
+  return (_content: string, element: Element | null) =>
+    element?.tagName.toLowerCase() === 'li' && (element.textContent ?? '').includes(expected)
+}
+
+function getIngredientLine(expected: string) {
+  return screen.getByText(ingredientLineMatcher(expected))
+}
+
+function queryIngredientLine(expected: string) {
+  return screen.queryByText(ingredientLineMatcher(expected))
+}
+
 beforeEach(() => {
   localStorage.clear()
 })
@@ -80,15 +96,17 @@ describe('RecipeDetailPage', () => {
     expect(screen.queryByText('kcal', { exact: false })).not.toBeInTheDocument()
   })
 
-  it('places glutenFreeNote above the portion stepper and ingredient list, not after them', () => {
+  it('places glutenFreeNote at the very end of the page, after the source line', () => {
     renderAt('gf-ebed-gulyasleves')
 
     const note = screen.getByText(/Csak a levesbetét kenyerét kell cserélni/)
     const stepper = screen.getByRole('button', { name: 'Adag növelése' })
     const ingredientList = screen.getByRole('list', { name: 'Hozzávalók' })
+    const source = screen.getByText(/Forrás:/)
 
-    expect(note.compareDocumentPosition(stepper) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
-    expect(note.compareDocumentPosition(ingredientList) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(stepper.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(ingredientList.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(source.compareDocumentPosition(note) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
   })
 
   it('labels the macros list with a per-serving caption, distinct from the ingredient list styling', () => {
@@ -122,8 +140,8 @@ describe('Portion stepper', () => {
     renderAt('gf-ebed-gulyasleves')
 
     expect(screen.getByText('4 adag')).toBeInTheDocument()
-    expect(screen.getByText(/1000 g pörköltnek való sovány hús/)).toBeInTheDocument()
-    expect(screen.getByText(/500 g burgonya/)).toBeInTheDocument()
+    expect(getIngredientLine('1000 g pörköltnek való sovány hús')).toBeInTheDocument()
+    expect(getIngredientLine('500 g burgonya')).toBeInTheDocument()
   })
 
   it('AC3: pressing + recalculates amounts immediately', () => {
@@ -132,8 +150,8 @@ describe('Portion stepper', () => {
     fireEvent.click(increaseButton())
 
     expect(screen.getByText('5 adag')).toBeInTheDocument()
-    expect(screen.getByText(/1250 g pörköltnek való sovány hús/)).toBeInTheDocument()
-    expect(screen.getByText(/625 g burgonya/)).toBeInTheDocument()
+    expect(getIngredientLine('1250 g pörköltnek való sovány hús')).toBeInTheDocument()
+    expect(getIngredientLine('625 g burgonya')).toBeInTheDocument()
   })
 
   it('AC3: pressing - recalculates amounts immediately', () => {
@@ -142,8 +160,8 @@ describe('Portion stepper', () => {
     fireEvent.click(decreaseButton())
 
     expect(screen.getByText('3 adag')).toBeInTheDocument()
-    expect(screen.getByText(/750 g pörköltnek való sovány hús/)).toBeInTheDocument()
-    expect(screen.getByText(/375 g burgonya/)).toBeInTheDocument()
+    expect(getIngredientLine('750 g pörköltnek való sovány hús')).toBeInTheDocument()
+    expect(getIngredientLine('375 g burgonya')).toBeInTheDocument()
   })
 
   it('AC4: - disables at the minimum of 1 and does not go lower', () => {
@@ -249,8 +267,8 @@ describe('Scaled ingredient edge cases', () => {
     renderAt('gf-reggeli-proteines-zabkasa')
 
     expect(screen.getByText('4 adag')).toBeInTheDocument()
-    expect(screen.getByText(/280 g gluténmentes \(GM\) zabpehely/)).toBeInTheDocument()
-    expect(screen.queryByText(/70 g gluténmentes \(GM\) zabpehely/)).not.toBeInTheDocument()
+    expect(getIngredientLine('280 g gluténmentes (GM) zabpehely')).toBeInTheDocument()
+    expect(queryIngredientLine('70 g gluténmentes (GM) zabpehely')).not.toBeInTheDocument()
   })
 
   it('AC5: a to-taste ingredient (amount: null) stays unchanged at any portion count', () => {
@@ -268,14 +286,14 @@ describe('Scaled ingredient edge cases', () => {
     renderAt('mezes-mustaros-sult-oldalas')
 
     expect(screen.getByText('4 adag')).toBeInTheDocument()
-    expect(screen.getByText(/3-4 evőkanál méz/)).toBeInTheDocument()
+    expect(getIngredientLine('3-4 evőkanál méz')).toBeInTheDocument()
 
     fireEvent.click(increaseButton())
     fireEvent.click(increaseButton())
     expect(screen.getByText('6 adag')).toBeInTheDocument()
 
-    expect(screen.queryByText(/3-4 evőkanál méz/)).not.toBeInTheDocument()
-    expect(screen.getByText(/5 evőkanál méz/)).toBeInTheDocument()
+    expect(queryIngredientLine('3-4 evőkanál méz')).not.toBeInTheDocument()
+    expect(getIngredientLine('5 evőkanál méz')).toBeInTheDocument()
   })
 
   it('AC9: the gluten-free badge keeps rendering once amounts are scaled', () => {

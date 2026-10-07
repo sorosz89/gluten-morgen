@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { CheckmarkCircle20Filled, Circle20Regular, Warning16Filled } from '@fluentui/react-icons'
+import { CheckmarkCircle20Filled, Warning16Filled } from '@fluentui/react-icons'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
@@ -17,13 +17,12 @@ import { usePageBackdropStyles } from '../../styles/shell.ts'
 import { useRecipeDetailStyles } from './RecipeDetailPage.styles.ts'
 import styles from '../../styles/page.module.css'
 
-function formatIngredientLine(ingredient: Ingredient): string {
+function formatIngredientAmount(ingredient: Ingredient): string | null {
   const amountLabel = ingredient.amountText ?? ingredient.amount
-  const parts = [amountLabel, ingredient.unit, ingredient.name].filter(
+  const parts = [amountLabel, ingredient.unit].filter(
     (part): part is string | number => part !== null && part !== undefined,
   )
-  const line = parts.join(' ')
-  return ingredient.note ? `${line} (${ingredient.note})` : line
+  return parts.length > 0 ? parts.join(' ') : null
 }
 
 function RecipeDetailPage() {
@@ -102,6 +101,13 @@ function RecipeDetailPage() {
   const factor = count / parseBaseCount(recipe.servingsLabel)
   const scaledIngredients = recipe.ingredients.map((ingredient) => scaleIngredient(ingredient, factor))
 
+  const noteElement = recipe.glutenFreeNote ? (
+    <p className={fluentStyles.glutenFreeNote}>
+      <Warning16Filled className={fluentStyles.glutenFreeNoteIcon} aria-hidden="true" />
+      {recipe.glutenFreeNote}
+    </p>
+  ) : null
+
   return (
     <div className={backdropStyles.backdrop}>
       <div className={styles.page}>
@@ -111,13 +117,6 @@ function RecipeDetailPage() {
         <h1 className={fluentStyles.title}>{recipe.title}</h1>
         <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
         <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
-
-        {recipe.glutenFreeNote && (
-          <p className={fluentStyles.glutenFreeNote}>
-            <Warning16Filled className={fluentStyles.glutenFreeNoteIcon} aria-hidden="true" />
-            {recipe.glutenFreeNote}
-          </p>
-        )}
 
         <div className={fluentStyles.portionControl}>
           <button
@@ -146,7 +145,15 @@ function RecipeDetailPage() {
             <ul className={fluentStyles.list} aria-label="Hozzávalók">
               {scaledIngredients.map((ingredient, index) => (
                 <li key={index} className={fluentStyles.listItem}>
-                  {formatIngredientLine(ingredient)}
+                  {formatIngredientAmount(ingredient) && (
+                    <span className={fluentStyles.ingredientAmount}>
+                      {formatIngredientAmount(ingredient)}
+                    </span>
+                  )}{' '}
+                  {ingredient.name}
+                  {ingredient.note && (
+                    <span className={fluentStyles.ingredientNote}> ({ingredient.note})</span>
+                  )}
                   {ingredient.mustBeGlutenFree && (
                     <GlutenRiskBadge className={fluentStyles.badgeSpacing} />
                   )}
@@ -174,7 +181,9 @@ function RecipeDetailPage() {
                           {isDone ? (
                             <CheckmarkCircle20Filled className={fluentStyles.stepCheckIconDone} />
                           ) : (
-                            <Circle20Regular className={fluentStyles.stepCheckIcon} />
+                            <span className={fluentStyles.stepNumberBadge} aria-hidden="true">
+                              {stepIndex + 1}
+                            </span>
                           )}
                           <span className={isDone ? fluentStyles.stepTextDone : undefined}>{step}</span>
                         </button>
@@ -204,6 +213,8 @@ function RecipeDetailPage() {
         )}
 
         {recipe.source && <p className={fluentStyles.source}>Forrás: {recipe.source}</p>}
+
+        {noteElement}
       </div>
     </div>
   )
