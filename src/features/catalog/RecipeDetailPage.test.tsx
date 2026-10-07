@@ -72,6 +72,14 @@ describe('RecipeDetailPage', () => {
     expect(tipContainer?.querySelector('svg')).toBeNull()
   })
 
+  it('012-AC7: renders no empty tip/macros/glutenFreeNote sections when none are set', () => {
+    renderAt('mezes-mustaros-sult-oldalas')
+
+    expect(screen.queryByText(/A fűszerpaprikát/)).not.toBeInTheDocument()
+    expect(screen.queryByRole('list', { name: 'Makrók' })).not.toBeInTheDocument()
+    expect(screen.queryByText('kcal', { exact: false })).not.toBeInTheDocument()
+  })
+
   it('AC7: flags only the gluténmentes kenyér ingredient line', () => {
     renderAt('gf-ebed-gulyasleves')
 

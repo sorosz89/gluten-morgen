@@ -36,11 +36,14 @@ and names the ACs it serves.
     failed before the icon/box were added (plain class-name difference alone
     was already true beforehand).
 
-- [ ] T4 – AC7 regression test: no empty sections for a recipe missing optional fields
+- [x] T4 – AC7 regression test: no empty sections for a recipe missing optional fields
   - Test first: new test rendering `mezes-mustaros-sult-oldalas`, asserting no tip
     paragraph, no macros list, no glutenFreeNote paragraph appear.
   - Done when: test passes against current conditional-render logic; `npm run check`
     green.
+  - Note: test passed immediately (no red step) since the conditional rendering
+    already existed; added as `012-AC7` in `RecipeDetailPage.test.tsx` to avoid
+    colliding with an existing unrelated test already named `AC7`.
 
 - [ ] T5 – Constitution change log entry (required by Principle 7 + spec scope)
   - Test first: n/a (docs-only).
