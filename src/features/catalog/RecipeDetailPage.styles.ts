@@ -1,5 +1,4 @@
 import { makeStyles, tokens } from '@fluentui/react-components'
-import { glutenBg, glutenFg } from '../../styles/colors.ts'
 import { shellColors } from '../../styles/shellColors.ts'
 import { bpXLarge } from '../../styles/breakpoints.ts'
 
@@ -125,15 +124,10 @@ export const useRecipeDetailStyles = makeStyles({
       borderBottomWidth: 0,
     },
   },
-  badge: {
-    display: 'inline-block',
+  // Color/shape for the gluten-risk signal now live in the shared
+  // `GlutenRiskBadge` component — this page only places it.
+  badgeSpacing: {
     marginLeft: '0.5rem',
-    padding: '0.15rem 0.6rem',
-    borderRadius: tokens.borderRadiusCircular,
-    backgroundColor: glutenBg,
-    color: glutenFg,
-    fontSize: tokens.fontSizeBase200,
-    fontWeight: tokens.fontWeightSemibold,
   },
   stepHeading: {
     marginBottom: '0.5rem',

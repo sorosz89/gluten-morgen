@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
 import { recipes } from '../../data/recipes.ts'
 import { mealTypeLabel } from '../../domain/catalog.ts'
@@ -87,7 +88,7 @@ function RecipeDetailPage() {
                 <li key={index} className={fluentStyles.listItem}>
                   {formatIngredientLine(ingredient)}
                   {ingredient.mustBeGlutenFree && (
-                    <span className={fluentStyles.badge}>Gluténmentes termék szükséges</span>
+                    <GlutenRiskBadge className={fluentStyles.badgeSpacing} />
                   )}
                 </li>
               ))}

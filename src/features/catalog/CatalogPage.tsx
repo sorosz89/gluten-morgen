@@ -1,6 +1,7 @@
 import { mergeClasses } from '@fluentui/react-components'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import { recipes } from '../../data/recipes.ts'
 import {
   groupRecipesByMealType,
@@ -49,7 +50,7 @@ function CatalogPage() {
                       <p className={fluentStyles.cardTitle}>{recipe.title}</p>
                       <p className={fluentStyles.servings}>{recipe.servingsLabel}</p>
                       {recipeHasGlutenRiskIngredient(recipe) && (
-                        <span className={fluentStyles.badge}>Gluténmentes termék szükséges</span>
+                        <GlutenRiskBadge className={fluentStyles.badgeSpacing} />
                       )}
                     </div>
                   </Link>
