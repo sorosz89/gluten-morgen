@@ -1,7 +1,9 @@
-import { Badge, Button, Caption1, Field, Input, Subtitle1, Text } from '@fluentui/react-components'
+import { Button, Caption1, Field, Input, Subtitle1, Text } from '@fluentui/react-components'
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
+import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
+import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { anchorRepository } from '../../data/anchorRepository.ts'
 import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { recipes } from '../../data/recipes.ts'
@@ -121,14 +123,6 @@ function TodayMeals({ anchorIso, today }: { anchorIso: string; today: Date }) {
     extra: fluentStyles.railLunch,
   }
 
-  const chipClassByType: Record<MealType, string> = {
-    breakfast: fluentStyles.mealChipBreakfast,
-    lunch: fluentStyles.mealChipLunch,
-    dinner: fluentStyles.mealChipDinner,
-    alternative: fluentStyles.mealChipLunch,
-    extra: fluentStyles.mealChipLunch,
-  }
-
   return (
     <>
       <Subtitle1 as="p" block className={fluentStyles.cookStatus}>
@@ -147,15 +141,9 @@ function TodayMeals({ anchorIso, today }: { anchorIso: string; today: Date }) {
             >
               <div className={mergeClasses(fluentStyles.mealCardRail, railClassByType[mealType])} />
               <div className={fluentStyles.mealCardBody}>
-                <span className={mergeClasses(fluentStyles.mealChip, chipClassByType[mealType])}>
-                  {mealTypeLabel(mealType)}
-                </span>
+                <MealTypeChip mealType={mealType} className={fluentStyles.mealChipSpacing} />
                 <p className={fluentStyles.mealCardTitle}>{recipe.title}</p>
-                {recipeHasGlutenRiskIngredient(recipe) && (
-                  <Badge appearance="tint" shape="rounded" className={fluentStyles.glutenBadge}>
-                    Gluténmentes termék szükséges
-                  </Badge>
-                )}
+                {recipeHasGlutenRiskIngredient(recipe) && <GlutenRiskBadge />}
               </div>
             </Link>
           ) : (

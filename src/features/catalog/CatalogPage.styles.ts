@@ -90,8 +90,10 @@ export const useCatalogStyles = makeStyles({
     padding: '0.9rem 1rem 1.1rem',
     flex: '1 1 auto',
   },
+  // `MealTypeChip`'s own `chip` style is `inline-block` (shrink-to-content);
+  // only margin is added here — a `display` override would stretch it to
+  // the card body's full width, since a block-level span's width is auto.
   chipSpacing: {
-    display: 'block',
     marginBottom: '0.5rem',
   },
   cardTitle: {

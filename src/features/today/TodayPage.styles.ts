@@ -1,5 +1,5 @@
 import { makeStyles, mergeClasses, tokens } from '@fluentui/react-components'
-import { glutenBg, glutenFg, mealColors } from '../../styles/colors.ts'
+import { mealColors } from '../../styles/colors.ts'
 import { shellColors } from '../../styles/shellColors.ts'
 import { bpXLarge } from '../../styles/breakpoints.ts'
 
@@ -71,35 +71,18 @@ export const useTodayStyles = makeStyles({
     minHeight: '44px',
     flex: '1 1 auto',
   },
-  mealChip: {
-    display: 'inline-block',
+  // Color/shape for the meal-type chip and the gluten-risk badge now live in
+  // their shared components (`MealTypeChip`, `GlutenRiskBadge`) — this page
+  // only places them. No `display` override here: the shared chip's own
+  // `inline-block` must not be clobbered to `block`, which would stretch it
+  // to the card body's full width (the bug spec 012 introduced on Catalog
+  // and Recipe Detail, fixed in the same polish pass that unified Today).
+  mealChipSpacing: {
     marginBottom: '0.5rem',
-    padding: '0.15rem 0.6rem',
-    borderRadius: tokens.borderRadiusCircular,
-    fontSize: tokens.fontSizeBase200,
-    fontWeight: tokens.fontWeightBold,
-    textTransform: 'uppercase',
-    letterSpacing: '0.03em',
-  },
-  mealChipBreakfast: {
-    backgroundColor: mealColors.breakfast.bg,
-    color: mealColors.breakfast.fg,
-  },
-  mealChipLunch: {
-    backgroundColor: mealColors.lunch.bg,
-    color: mealColors.lunch.fg,
-  },
-  mealChipDinner: {
-    backgroundColor: mealColors.dinner.bg,
-    color: mealColors.dinner.fg,
   },
   mealCardTitle: {
     fontWeight: tokens.fontWeightSemibold,
     marginBottom: '0.6rem',
-  },
-  glutenBadge: {
-    backgroundColor: glutenBg,
-    color: glutenFg,
   },
   mealError: {
     display: 'flex',

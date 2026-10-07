@@ -32,8 +32,10 @@ export const useRecipeDetailStyles = makeStyles({
     marginBottom: '0.25rem',
     color: shellColors.offCardText,
   },
+  // `MealTypeChip`'s own `chip` style is `inline-block` (shrink-to-content);
+  // only margin is added here — a `display` override would stretch it to
+  // the page's full width, since a block-level span's width is auto.
   mealTypeChipSpacing: {
-    display: 'block',
     marginBottom: '0.4rem',
   },
   servings: {
