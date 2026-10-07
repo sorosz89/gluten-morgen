@@ -35,7 +35,10 @@ export const useRecipeDetailStyles = makeStyles({
   // `MealTypeChip`'s own `chip` style is `inline-block` (shrink-to-content);
   // only margin is added here — a `display` override would stretch it to
   // the page's full width, since a block-level span's width is auto.
+  // `marginTop` separates it from the title above — the title's own
+  // `marginBottom` (0.25rem) alone read as too tight against the chip.
   mealTypeChipSpacing: {
+    marginTop: '0.75rem',
     marginBottom: '0.4rem',
   },
   servings: {
