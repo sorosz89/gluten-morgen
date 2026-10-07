@@ -1,6 +1,7 @@
 import { mergeClasses } from '@fluentui/react-components'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import GlutenCheckTag from '../../components/GlutenCheckTag.tsx'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { recipes } from '../../data/recipes.ts'
@@ -8,6 +9,7 @@ import {
   groupRecipesByMealType,
   recipeHasGlutenRiskIngredient,
   recipeMatchesQuery,
+  recipeNeedsLabelCheck,
 } from '../../domain/catalog.ts'
 import { usePageBackdropStyles } from '../../styles/shell.ts'
 import { useCatalogStyles } from './CatalogPage.styles.ts'
@@ -53,6 +55,9 @@ function CatalogPage() {
                       <p className={fluentStyles.servings}>{recipe.servingsLabel}</p>
                       {recipeHasGlutenRiskIngredient(recipe) && (
                         <GlutenRiskBadge className={fluentStyles.badgeSpacing} />
+                      )}
+                      {recipeNeedsLabelCheck(recipe) && (
+                        <GlutenCheckTag className={fluentStyles.badgeSpacing} />
                       )}
                     </div>
                   </Link>

@@ -139,7 +139,47 @@ export const useRecipeDetailStyles = makeStyles({
     paddingLeft: '1.25rem',
   },
   stepListItem: {
-    marginBottom: '0.5rem',
+    marginBottom: '0.3rem',
+  },
+  // Each step is a real tappable button (44px tall, full-width) so marking
+  // it done works one-handed while cooking — not a decorative checkbox.
+  stepButton: {
+    display: 'flex',
+    alignItems: 'flex-start',
+    columnGap: '0.6rem',
+    width: '100%',
+    minHeight: '44px',
+    padding: '0.3rem 0.4rem',
+    borderRadius: tokens.borderRadiusMedium,
+    border: 'none',
+    backgroundColor: 'transparent',
+    textAlign: 'left',
+    color: 'inherit',
+    font: 'inherit',
+    cursor: 'pointer',
+    ':hover': {
+      backgroundColor: tokens.colorNeutralBackground2,
+    },
+    ':focus-visible': {
+      outlineStyle: 'solid',
+      outlineWidth: '2px',
+      outlineColor: tokens.colorBrandStroke1,
+      outlineOffset: '1px',
+    },
+  },
+  stepCheckIcon: {
+    flexShrink: 0,
+    marginTop: '0.15rem',
+    color: tokens.colorNeutralStroke1,
+  },
+  stepCheckIconDone: {
+    flexShrink: 0,
+    marginTop: '0.15rem',
+    color: tokens.colorPaletteGreenForeground1,
+  },
+  stepTextDone: {
+    color: tokens.colorNeutralForeground3,
+    textDecorationLine: 'line-through',
   },
   // "tip" already carries its own light surface (colorNeutralBackground2) —
   // unchanged, needs no off-card color treatment.
@@ -169,5 +209,25 @@ export const useRecipeDetailStyles = makeStyles({
   source: {
     marginBottom: '1rem',
     color: shellColors.offCardTextMuted,
+  },
+  // Macros are reference info, not a second shopping list — a plain-text
+  // caption plus unbordered rows (no card shape) keeps them visually
+  // distinct from the ingredient list's bordered, shop-from-this card.
+  macrosCaption: {
+    marginBottom: '0.4rem',
+    color: shellColors.offCardTextMuted,
+    fontSize: tokens.fontSizeBase200,
+    fontWeight: tokens.fontWeightSemibold,
+    textTransform: 'uppercase',
+    letterSpacing: '0.02em',
+  },
+  macrosList: {
+    listStyleType: 'none',
+    margin: '0 0 1rem',
+    padding: 0,
+  },
+  macrosListItem: {
+    padding: '0.3rem 0',
+    color: shellColors.offCardText,
   },
 })

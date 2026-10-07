@@ -2,12 +2,13 @@ import { Button, Caption1, Field, Input, Subtitle1, Text } from '@fluentui/react
 import { useState } from 'react'
 import type { FormEvent } from 'react'
 import { Link } from 'react-router-dom'
+import GlutenCheckTag from '../../components/GlutenCheckTag.tsx'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { anchorRepository } from '../../data/anchorRepository.ts'
 import { lunchSwapRepository } from '../../data/lunchSwapRepository.ts'
 import { recipes } from '../../data/recipes.ts'
-import { mealTypeLabel, recipeHasGlutenRiskIngredient } from '../../domain/catalog.ts'
+import { mealTypeLabel, recipeHasGlutenRiskIngredient, recipeNeedsLabelCheck } from '../../domain/catalog.ts'
 import { getActiveLunchId } from '../../domain/lunchSwap.ts'
 import type { MealType } from '../../domain/recipe.ts'
 import { formatIsoDate, getBlockRecipeIds, getRotationDay, isSunday, parseIsoDate } from '../../domain/rotation.ts'
@@ -144,6 +145,7 @@ function TodayMeals({ anchorIso, today }: { anchorIso: string; today: Date }) {
                 <MealTypeChip mealType={mealType} className={fluentStyles.mealChipSpacing} />
                 <p className={fluentStyles.mealCardTitle}>{recipe.title}</p>
                 {recipeHasGlutenRiskIngredient(recipe) && <GlutenRiskBadge />}
+                {recipeNeedsLabelCheck(recipe) && <GlutenCheckTag />}
               </div>
             </Link>
           ) : (

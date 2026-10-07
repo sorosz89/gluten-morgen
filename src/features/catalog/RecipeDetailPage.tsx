@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
-import { Warning16Filled } from '@fluentui/react-icons'
+import { CheckmarkCircle20Filled, Circle20Regular, Warning16Filled } from '@fluentui/react-icons'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
@@ -34,6 +34,46 @@ function RecipeDetailPage() {
   const [count, setCount] = useState<number>(
     () => recipePortionsRepository.getPortions(id ?? '') ?? DEFAULT_PORTION_COUNT,
   )
+  const [checkedSteps, setCheckedSteps] = useState<Set<string>>(() => new Set())
+  // A new recipe id (navigating from one detail page straight to another)
+  // must start with a clean checklist rather than carrying over the
+  // previous recipe's checked steps — adjusted during render on a tracked
+  // "previous id", the same pattern App.tsx uses for its compact-viewport
+  // reset, to avoid an extra effect-driven commit.
+  const [checklistId, setChecklistId] = useState(id)
+  if (id !== checklistId) {
+    setChecklistId(id)
+    setCheckedSteps(new Set())
+  }
+
+  // Keep the screen awake while a recipe is open — the product's own stated
+  // context is cooking with wet/busy hands, where the screen timing out
+  // mid-step is a real interruption. Best-effort: silently does nothing on
+  // browsers without the Wake Lock API (including jsdom in tests).
+  useEffect(() => {
+    if (!recipe || !('wakeLock' in navigator)) return
+
+    let sentinel: WakeLockSentinel | undefined
+    let cancelled = false
+
+    navigator.wakeLock
+      .request('screen')
+      .then((lock) => {
+        if (cancelled) {
+          lock.release()
+          return
+        }
+        sentinel = lock
+      })
+      .catch(() => {
+        // Permission denied or unsupported in this context — no-op.
+      })
+
+    return () => {
+      cancelled = true
+      sentinel?.release()
+    }
+  }, [recipe])
 
   if (!recipe) {
     return <Navigate to="/" replace />
@@ -45,6 +85,18 @@ function RecipeDetailPage() {
     const clamped = Math.min(MAX_PORTION_COUNT, Math.max(MIN_PORTION_COUNT, next))
     setCount(clamped)
     recipePortionsRepository.setPortions(recipeId, clamped)
+  }
+
+  function toggleStep(stepKey: string) {
+    setCheckedSteps((previous) => {
+      const next = new Set(previous)
+      if (next.has(stepKey)) {
+        next.delete(stepKey)
+      } else {
+        next.add(stepKey)
+      }
+      return next
+    })
   }
 
   const factor = count / parseBaseCount(recipe.servingsLabel)
@@ -59,6 +111,13 @@ function RecipeDetailPage() {
         <h1 className={fluentStyles.title}>{recipe.title}</h1>
         <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
         <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
+
+        {recipe.glutenFreeNote && (
+          <p className={fluentStyles.glutenFreeNote}>
+            <Warning16Filled className={fluentStyles.glutenFreeNoteIcon} aria-hidden="true" />
+            {recipe.glutenFreeNote}
+          </p>
+        )}
 
         <div className={fluentStyles.portionControl}>
           <button
@@ -97,15 +156,31 @@ function RecipeDetailPage() {
           </div>
 
           <div className={fluentStyles.stepsColumn}>
-            {recipe.stepGroups.map((stepGroup, index) => (
-              <section key={index} className={fluentStyles.stepCard}>
+            {recipe.stepGroups.map((stepGroup, groupIndex) => (
+              <section key={groupIndex} className={fluentStyles.stepCard}>
                 <h2 className={fluentStyles.stepHeading}>{stepGroup.heading}</h2>
                 <ol className={fluentStyles.stepList}>
-                  {stepGroup.steps.map((step, stepIndex) => (
-                    <li key={stepIndex} className={fluentStyles.stepListItem}>
-                      {step}
-                    </li>
-                  ))}
+                  {stepGroup.steps.map((step, stepIndex) => {
+                    const stepKey = `${groupIndex}-${stepIndex}`
+                    const isDone = checkedSteps.has(stepKey)
+                    return (
+                      <li key={stepIndex} className={fluentStyles.stepListItem}>
+                        <button
+                          type="button"
+                          className={fluentStyles.stepButton}
+                          aria-pressed={isDone}
+                          onClick={() => toggleStep(stepKey)}
+                        >
+                          {isDone ? (
+                            <CheckmarkCircle20Filled className={fluentStyles.stepCheckIconDone} />
+                          ) : (
+                            <Circle20Regular className={fluentStyles.stepCheckIcon} />
+                          )}
+                          <span className={isDone ? fluentStyles.stepTextDone : undefined}>{step}</span>
+                        </button>
+                      </li>
+                    )
+                  })}
                 </ol>
               </section>
             ))}
@@ -115,21 +190,17 @@ function RecipeDetailPage() {
         {recipe.tip && <p className={fluentStyles.tip}>{recipe.tip}</p>}
 
         {recipe.macros && (
-          <ul className={fluentStyles.list} aria-label="Makrók">
-            <li className={fluentStyles.listItem}>{recipe.macros.kcal} kcal</li>
-            <li className={fluentStyles.listItem}>{recipe.macros.proteinG} g fehérje</li>
-            <li className={fluentStyles.listItem}>{recipe.macros.carbsG} g szénhidrát</li>
-            <li className={fluentStyles.listItem}>{recipe.macros.saltMg} mg só</li>
-            <li className={fluentStyles.listItem}>{recipe.macros.fatG} g zsír</li>
-            <li className={fluentStyles.listItem}>{recipe.macros.fiberG} g rost</li>
-          </ul>
-        )}
-
-        {recipe.glutenFreeNote && (
-          <p className={fluentStyles.glutenFreeNote}>
-            <Warning16Filled className={fluentStyles.glutenFreeNoteIcon} aria-hidden="true" />
-            {recipe.glutenFreeNote}
-          </p>
+          <>
+            <p className={fluentStyles.macrosCaption}>Tápérték (adagonként)</p>
+            <ul className={fluentStyles.macrosList} aria-label="Makrók">
+              <li className={fluentStyles.macrosListItem}>{recipe.macros.kcal} kcal</li>
+              <li className={fluentStyles.macrosListItem}>{recipe.macros.proteinG} g fehérje</li>
+              <li className={fluentStyles.macrosListItem}>{recipe.macros.carbsG} g szénhidrát</li>
+              <li className={fluentStyles.macrosListItem}>{recipe.macros.saltMg} mg só</li>
+              <li className={fluentStyles.macrosListItem}>{recipe.macros.fatG} g zsír</li>
+              <li className={fluentStyles.macrosListItem}>{recipe.macros.fiberG} g rost</li>
+            </ul>
+          </>
         )}
 
         {recipe.source && <p className={fluentStyles.source}>Forrás: {recipe.source}</p>}

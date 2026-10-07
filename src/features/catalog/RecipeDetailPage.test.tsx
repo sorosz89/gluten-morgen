@@ -80,6 +80,26 @@ describe('RecipeDetailPage', () => {
     expect(screen.queryByText('kcal', { exact: false })).not.toBeInTheDocument()
   })
 
+  it('places glutenFreeNote above the portion stepper and ingredient list, not after them', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    const note = screen.getByText(/Csak a levesbetét kenyerét kell cserélni/)
+    const stepper = screen.getByRole('button', { name: 'Adag növelése' })
+    const ingredientList = screen.getByRole('list', { name: 'Hozzávalók' })
+
+    expect(note.compareDocumentPosition(stepper) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+    expect(note.compareDocumentPosition(ingredientList) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy()
+  })
+
+  it('labels the macros list with a per-serving caption, distinct from the ingredient list styling', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    expect(screen.getByText('Tápérték (adagonként)')).toBeInTheDocument()
+    const macrosList = screen.getByRole('list', { name: 'Makrók' })
+    const ingredientList = screen.getByRole('list', { name: 'Hozzávalók' })
+    expect(macrosList.className).not.toBe(ingredientList.className)
+  })
+
   it('AC7: flags only the gluténmentes kenyér ingredient line', () => {
     renderAt('gf-ebed-gulyasleves')
 
@@ -185,6 +205,42 @@ describe('Portion stepper', () => {
 
     renderAt('gf-reggeli-proteines-zabkasa')
     expect(screen.getByText('4 adag')).toBeInTheDocument()
+  })
+})
+
+describe('Step check-off', () => {
+  it('toggles a step to done and back on click, without affecting other steps', () => {
+    renderAt('gf-ebed-gulyasleves')
+
+    const firstStepButton = screen.getByText(/Egy nagy fazékban hevítsd fel a zsírt/).closest('button')
+    const secondStepButton = screen.getByText(/Add hozzá az apróra vágott hagymát/).closest('button')
+    expect(firstStepButton).not.toBeNull()
+    expect(secondStepButton).not.toBeNull()
+
+    expect(firstStepButton).toHaveAttribute('aria-pressed', 'false')
+    fireEvent.click(firstStepButton!)
+    expect(firstStepButton).toHaveAttribute('aria-pressed', 'true')
+    expect(secondStepButton).toHaveAttribute('aria-pressed', 'false')
+
+    fireEvent.click(firstStepButton!)
+    expect(firstStepButton).toHaveAttribute('aria-pressed', 'false')
+  })
+
+  it('starts a different recipe with a clean checklist', () => {
+    const { unmount } = render(
+      <MemoryRouter initialEntries={['/recipes/gf-ebed-gulyasleves']}>
+        <Routes>
+          <Route path="/recipes/:id" element={<RecipeDetailPage />} />
+        </Routes>
+      </MemoryRouter>,
+    )
+    fireEvent.click(screen.getByText(/Egy nagy fazékban hevítsd fel a zsírt/).closest('button')!)
+    unmount()
+
+    renderAt('gf-reggeli-proteines-zabkasa')
+    const buttons = screen.getAllByRole('button', { pressed: false })
+    expect(buttons.length).toBeGreaterThan(0)
+    expect(screen.queryByRole('button', { pressed: true })).not.toBeInTheDocument()
   })
 })
 

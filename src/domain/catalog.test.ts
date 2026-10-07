@@ -7,6 +7,7 @@ import {
   mealTypeLabel,
   recipeHasGlutenRiskIngredient,
   recipeMatchesQuery,
+  recipeNeedsLabelCheck,
 } from './catalog.ts'
 
 function makeRecipe(overrides: Partial<Recipe>): Recipe {
@@ -79,6 +80,26 @@ describe('recipeHasGlutenRiskIngredient', () => {
     const riceDish = recipes.find((recipe) => recipe.id === 'gf-alternativ-csirkes-rizses-egytal')
     expect(riceDish).toBeDefined()
     expect(recipeHasGlutenRiskIngredient(riceDish!)).toBe(false)
+  })
+})
+
+describe('recipeNeedsLabelCheck', () => {
+  it('returns true for a recipe with a glutenFreeNote but no flagged ingredient', () => {
+    const riceDish = recipes.find((recipe) => recipe.id === 'gf-alternativ-csirkes-rizses-egytal')
+    expect(riceDish).toBeDefined()
+    expect(riceDish!.glutenFreeNote).toBeTruthy()
+    expect(recipeHasGlutenRiskIngredient(riceDish!)).toBe(false)
+    expect(recipeNeedsLabelCheck(riceDish!)).toBe(true)
+  })
+
+  it('returns false for a recipe with a flagged ingredient, even if it also has a glutenFreeNote', () => {
+    const melegszendvics = recipes.find((recipe) => recipe.id === 'gf-vacsora-melegszendvics')
+    expect(melegszendvics).toBeDefined()
+    expect(recipeNeedsLabelCheck(melegszendvics!)).toBe(false)
+  })
+
+  it('returns false for a recipe with neither a glutenFreeNote nor a flagged ingredient', () => {
+    expect(recipeNeedsLabelCheck(makeRecipe({ glutenFreeNote: undefined }))).toBe(false)
   })
 })
 

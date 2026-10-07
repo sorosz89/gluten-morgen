@@ -32,6 +32,15 @@ export function recipeHasGlutenRiskIngredient(recipe: Recipe): boolean {
   return recipe.ingredients.some((ingredient) => ingredient.mustBeGlutenFree)
 }
 
+// A recipe can carry gluten-safety guidance (e.g. a cross-contamination or
+// check-the-label note) without any single ingredient being flagged
+// `mustBeGlutenFree` — Catalog/Today must still signal that, distinctly from
+// the stronger ingredient-level badge, so the caution isn't invisible at the
+// list level (spec: recipe-detail critique, P1).
+export function recipeNeedsLabelCheck(recipe: Recipe): boolean {
+  return Boolean(recipe.glutenFreeNote) && !recipeHasGlutenRiskIngredient(recipe)
+}
+
 export function recipeMatchesQuery(recipe: Recipe, query: string): boolean {
   const normalizedQuery = query.trim().toLowerCase()
   if (normalizedQuery === '') return true

@@ -60,6 +60,22 @@ describe('CatalogPage', () => {
     expect(within(card!).queryByText('Gluténmentes termék szükséges')).not.toBeInTheDocument()
   })
 
+  it('shows a check-the-label tag (not the risk badge) on a recipe with a note but no flagged ingredient', () => {
+    renderCatalog()
+
+    const card = screen.getByText('[Alternatíva] Csirkés rizses egytálétel zöldségekkel').closest('li')
+    expect(card).not.toBeNull()
+    expect(within(card!).getByText('Ellenőrizd a címkét')).toBeInTheDocument()
+  })
+
+  it('shows no check-the-label tag on the Melegszendvics card (already carries the stronger risk badge)', () => {
+    renderCatalog()
+
+    const card = screen.getByText('Melegszendvics').closest('li')
+    expect(card).not.toBeNull()
+    expect(within(card!).queryByText('Ellenőrizd a címkét')).not.toBeInTheDocument()
+  })
+
   it('AC4: filters to matching recipes and hides empty sections when searching "sonka"', () => {
     renderCatalog()
 
