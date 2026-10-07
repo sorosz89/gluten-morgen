@@ -68,3 +68,10 @@ per person, AI features.
   component library stays subordinate to gluten-safety flagging, mobile tap-target
   size, and deliberate recorded decisions rather than silently inherited from the
   library's defaults.
+- 2026-10-07 – extended the Fluent UI v9 pilot (Principle 7) from the Today page to
+  the Recipe catalog and Recipe detail pages (spec 012), via two new shared
+  components in `src/components/`: `GlutenRiskBadge` (the gluten-risk signal, now
+  identical on both pages) and `MealTypeChip` (the meal-type pill, matching Today's
+  chip pattern). The Recipe detail page's `glutenFreeNote` callout was also boxed in
+  the same Caution Amber pair as the badge, plus a warning icon, so the gluten-safety
+  note is never the lower-emphasis one next to the `tip` callout.

@@ -45,7 +45,7 @@ and names the ACs it serves.
     already existed; added as `012-AC7` in `RecipeDetailPage.test.tsx` to avoid
     colliding with an existing unrelated test already named `AC7`.
 
-- [ ] T5 – Constitution change log entry (required by Principle 7 + spec scope)
+- [x] T5 – Constitution change log entry (required by Principle 7 + spec scope)
   - Test first: n/a (docs-only).
   - Done when: `specs/constitution.md` change log has an entry recording the pilot's
     extension to Catalog & Detail and naming the two new shared components.
