@@ -56,6 +56,10 @@ export const useAppStyles = makeStyles({
   },
   navItem: {
     minHeight: '44px',
+    // NavItem's own base style is `width: 100%` (border-box). Adding inline
+    // margin on top of that overflows the drawer body by the margin amount
+    // and triggers a horizontal scrollbar — compensate the width to match.
+    width: 'calc(100% - 1rem)',
     marginInline: '0.5rem',
     borderRadius: tokens.borderRadiusMedium,
     backgroundColor: 'transparent',

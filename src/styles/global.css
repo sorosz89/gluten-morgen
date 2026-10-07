@@ -1,0 +1,64 @@
+/* App-wide reset. Fluent's FluentProvider does not reset the document, so the
+   browser's default 8px body margin and the un-themed scrollbar must be
+   handled here — the one place for both, same discipline as colors.ts. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scrollbar-gutter: stable;
+  /* The NavDrawer's inline↔overlay switch is driven by a matchMedia listener,
+     one React tick behind the native resize/layout pass. For that one tick
+     the inline-mode drawer can still occupy its full width at the new,
+     narrower viewport and push content off-screen (critique 2026-10-07,
+     P1: 123px overflow at 360px). Clip it here rather than chase every
+     transient width mismatch a JS-driven breakpoint can produce. */
+  overflow-x: hidden;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  /* Mirrors shellColors.backdropBase — CSS can't import the TS constant, see
+     the same literal-sync note in page.module.css. */
+  background-color: #1b1430;
+}
+
+#root {
+  min-height: 100dvh;
+}
+
+/* Theme the browser scrollbar from the shell palette instead of leaving the
+   OS default — it rides over the dark backdrop on every page. Colors mirror
+   shellColors.navLinkDefault (#b9aed6). */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(185, 174, 214, 0.45) rgba(255, 255, 255, 0.06);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(185, 174, 214, 0.45);
+  border-radius: 10000px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(185, 174, 214, 0.7);
+}
