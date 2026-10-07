@@ -3,34 +3,31 @@ import { shellColors } from './styles/shellColors.ts'
 
 export { mergeClasses }
 
-// Fluent 2's own left-pane Nav pattern: an always-on-top-level flex row with
-// the NavDrawer as one child and the routed page as the other. The dark/
-// purple shell palette carries over unchanged from the old two-tier top bar
-// (utilityBarBg for the brand/header row, headerBarBg for the link list) —
-// only the orientation and the component primitives changed.
+// A horizontal top nav bar spanning the full width, with the routed page
+// below it. Replaces the earlier collapsible left-pane NavDrawer; the dark/
+// purple shell palette carries over unchanged (utilityBarBg for the bar
+// itself, the same nav-link color tiers for default/active items).
 export const useAppStyles = makeStyles({
   appShell: {
     display: 'flex',
+    flexDirection: 'column',
     minHeight: '100dvh',
     backgroundColor: shellColors.backdropBase,
   },
-  navDrawer: {
-    backgroundColor: shellColors.headerBarBg,
-    borderRightStyle: 'none',
-  },
-  navHeader: {
+  navBar: {
     display: 'flex',
     alignItems: 'center',
-    columnGap: '0.6rem',
-    padding: '0.6rem 0.9rem',
+    justifyContent: 'space-between',
+    padding: '0.6rem 1rem',
     backgroundColor: shellColors.utilityBarBg,
     borderBottomStyle: 'solid',
     borderBottomWidth: '1px',
     borderBottomColor: 'rgba(255, 255, 255, 0.08)',
   },
-  navBody: {
-    paddingTop: '0.5rem',
-    rowGap: '0.15rem',
+  navBarItems: {
+    display: 'flex',
+    alignItems: 'center',
+    columnGap: '0.25rem',
   },
   brand: {
     color: shellColors.navLinkDefault,
@@ -39,66 +36,36 @@ export const useAppStyles = makeStyles({
     letterSpacing: '0.03em',
     whiteSpace: 'nowrap',
   },
-  hamburger: {
-    flexShrink: 0,
-    color: shellColors.navLinkDefault,
-    ':hover': {
-      color: shellColors.navLinkActive,
-      backgroundColor: 'rgba(255, 255, 255, 0.08)',
-    },
-    ':hover:active': {
-      color: shellColors.navLinkActive,
-      backgroundColor: 'rgba(255, 255, 255, 0.12)',
-    },
-    ':focus-visible': {
-      color: shellColors.navLinkActive,
-    },
-  },
-  navItem: {
+  // Icon-only tap targets (labels dropped to keep the bar to one row down to
+  // 360px — a visible label row would wrap or require horizontal scroll).
+  navBarItem: {
+    display: 'inline-flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minWidth: '44px',
     minHeight: '44px',
-    // NavItem's own base style is `width: 100%` (border-box). Adding inline
-    // margin on top of that overflows the drawer body by the margin amount
-    // and triggers a horizontal scrollbar — compensate the width to match.
-    width: 'calc(100% - 1rem)',
-    marginInline: '0.5rem',
-    borderRadius: tokens.borderRadiusMedium,
-    backgroundColor: 'transparent',
     color: shellColors.navLinkDefault,
-    fontWeight: tokens.fontWeightSemibold,
+    textDecorationLine: 'none',
+    borderBottomStyle: 'solid',
+    borderBottomWidth: '3px',
+    borderBottomColor: 'transparent',
     ':hover': {
       color: shellColors.navLinkActive,
-      backgroundColor: 'rgba(255, 255, 255, 0.06)',
-    },
-    ':hover:active': {
-      color: shellColors.navLinkActive,
-      backgroundColor: 'rgba(255, 255, 255, 0.1)',
     },
     ':focus-visible': {
       color: shellColors.navLinkActive,
+      outlineColor: shellColors.navLinkActive,
     },
   },
-  navItemActive: {
+  navBarItemActive: {
     color: shellColors.navLinkActive,
-    backgroundColor: 'rgba(255, 255, 255, 0.1)',
-    boxShadow: `inset 3px 0 0 0 ${shellColors.navLinkActive}`,
+    borderBottomColor: shellColors.navLinkActive,
   },
   content: {
     display: 'flex',
     flexDirection: 'column',
     flex: '1',
     minWidth: 0,
-  },
-  collapsedTopBar: {
-    position: 'sticky',
-    top: 0,
-    zIndex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    columnGap: '0.6rem',
-    padding: '0.5rem 0.9rem',
-    backgroundColor: shellColors.utilityBarBg,
-    borderBottomStyle: 'solid',
-    borderBottomWidth: '1px',
-    borderBottomColor: 'rgba(255, 255, 255, 0.08)',
   },
 })
