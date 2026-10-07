@@ -50,8 +50,19 @@ and names the ACs it serves.
   - Done when: `specs/constitution.md` change log has an entry recording the pilot's
     extension to Catalog & Detail and naming the two new shared components.
 
-- [ ] T6 – Manual verification: AC1, AC2, AC5, AC8
+- [x] T6 – Manual verification: AC1, AC2, AC5, AC8
   - Test first: n/a (manual check + full existing suite re-run).
   - Done when: 1440px/360px layouts confirmed in-browser; full `npm test` shows all
     spec-011 stepper tests (AC1–AC9) still passing unmodified; contrast spot-checked
     for the amber callout and chip colors.
+  - Note: checked in Chrome via claude-in-chrome. AC1 (1440px) confirmed via direct
+    window resize — two aligned columns, bounded width, no overflow. The window
+    manager wouldn't shrink the real browser window for the 360px check, so AC2 was
+    verified with a 360px-wide iframe of the live page instead (same rendering
+    engine, same CSS, just a controlled viewport): single-column stack, no overlap
+    (`ingredientsBottom <= stepsTop`), `scrollWidth === clientWidth` (no horizontal
+    overflow), both stepper buttons measured exactly 44×44px. AC5: full `npm test`
+    — 184/184 passing, spec-011 AC1–AC9 unmodified. AC8: contrast computed
+    (WCAG relative-luminance formula) for every reused color pair — glutenBg/glutenFg
+    6.15:1, mealColors breakfast/lunch/dinner 4.71/6.81/7.85:1 — all pass AA (4.5:1),
+    all tokens unchanged from the ones already reviewed on Today.
