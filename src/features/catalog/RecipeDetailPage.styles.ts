@@ -157,7 +157,16 @@ export const useRecipeDetailStyles = makeStyles({
     margin: 0,
     padding: 0,
   },
+  // `display: flex` + `columnGap` spaces the amount/name/note/badge run
+  // uniformly (impeccable /live, accepted "inline, compact badge" direction)
+  // instead of a manual `marginLeft` hack on the badge alone; `flexWrap`
+  // lets the badge drop to its own line on narrow viewports rather than
+  // overflowing the row.
   listItem: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'baseline',
+    columnGap: '0.5rem',
     padding: '0.55rem 0',
     color: shellColors.offCardText,
     borderBottomStyle: 'solid',
@@ -176,9 +185,14 @@ export const useRecipeDetailStyles = makeStyles({
   // `glutenFreeNote` below, are the one deliberate exception to "no filled
   // background": the Always-Flagged Rule (constitution Principle 7) keeps
   // the safety signal boxed and unmissable regardless of the surrounding
-  // page's own cardless treatment.
-  badgeSpacing: {
-    marginLeft: '0.5rem',
+  // page's own cardless treatment. Scaled down (not hidden, not shrunk in
+  // text or color — those are pinned on the shared component) so it reads
+  // as a lighter inline annotation rather than a second, equally-loud label
+  // stacked under the ingredient text.
+  badgeScale: {
+    display: 'inline-flex',
+    transform: 'scale(0.85)',
+    transformOrigin: 'left center',
   },
   stepsColumn: {
     display: 'flex',

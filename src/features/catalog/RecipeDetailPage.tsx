@@ -170,7 +170,11 @@ function RecipeDetailPage() {
       )}{' '}
       {ingredient.name}
       {ingredient.note && <span className={fluentStyles.ingredientNote}> ({ingredient.note})</span>}
-      {ingredient.mustBeGlutenFree && <GlutenRiskBadge className={fluentStyles.badgeSpacing} />}
+      {ingredient.mustBeGlutenFree && (
+        <span className={fluentStyles.badgeScale}>
+          <GlutenRiskBadge />
+        </span>
+      )}
     </li>
   ))
 
@@ -231,12 +235,14 @@ function RecipeDetailPage() {
         )}
 
         <div className={fluentStyles.twoColumn}>
-          <ul
-            className={mergeClasses(fluentStyles.list, fluentStyles.ingredientsColumn, fluentStyles.accent, accentClass)}
-            aria-label="Hozzávalók"
-          >
-            {ingredientItems}
-          </ul>
+          <div className={mergeClasses(fluentStyles.ingredientsColumn, fluentStyles.accent, accentClass)}>
+            <h2 id="ingredients-heading" className={fluentStyles.stepHeading}>
+              Hozzávalók
+            </h2>
+            <ul className={fluentStyles.list} aria-labelledby="ingredients-heading">
+              {ingredientItems}
+            </ul>
+          </div>
           <div className={mergeClasses(fluentStyles.stepsColumn, fluentStyles.accent, accentClass)}>
             {stepsSections}
           </div>
