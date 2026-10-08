@@ -69,11 +69,16 @@ function App() {
     </Routes>
   )
 
+  const currentPageLabel = NAV_LINKS.find((link) => link.to === pathname)?.label
+
   return (
     <div className={styles.appShell}>
       <nav className={styles.navBar}>
-        <span className={styles.brand}>Zero Gluten</span>
-        <div className={styles.navBarItems}>
+        <div className={styles.navRow1}>
+          <span className={styles.brand}>Zero Gluten</span>
+          {currentPageLabel && <span className={styles.navPageTitle}>{currentPageLabel}</span>}
+        </div>
+        <div className={styles.navRow2}>
           {NAV_LINKS.map(({ to, label, Icon }) => {
             const isActive = pathname === to
             return (
@@ -81,10 +86,11 @@ function App() {
                 key={to}
                 href={to}
                 onClick={(event) => handleNavClick(event, navigate, to)}
-                aria-label={label}
+                aria-current={isActive ? 'page' : undefined}
                 className={mergeClasses(styles.navBarItem, isActive && styles.navBarItemActive)}
               >
                 <Icon filled={isActive} />
+                <span className={styles.navLabel}>{label}</span>
               </a>
             )
           })}
