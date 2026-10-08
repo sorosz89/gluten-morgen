@@ -190,7 +190,11 @@ containing the inner `.page` div (padding/max-width centering) — unaffected by
 ### Secondary — the gluten-risk signal
 - **Gluten Risk** (`#fbe0cc` background / `#8a3b00` text): the one safety signal in the system. The
   badge keeps its own filled background on every page, Recipe Detail included, so chrome, nav, or
-  card-vs-cardless changes never affect its contrast or its unmissability.
+  card-vs-cardless changes never affect its contrast or its unmissability. On Recipe Detail's
+  ingredient rows specifically, the badge is scaled down (`transform: scale(0.85)`, flowing inline
+  after the ingredient text via `display: flex` instead of a manual `marginLeft`) so it reads as a
+  lighter annotation rather than a second, equally-loud label — the hex, text, and the signal itself
+  are untouched; only its size and position soften.
 
 ### Tertiary — meal-type data series
 - **Breakfast** (`#fbefd9` bg / `#8a6416` text / `#d9a33e` strip)
@@ -248,8 +252,10 @@ vs. on-card content.
   the "igen" word in the off-card accent green rather than the in-card brand green.
 - **Title** (`Title2`/`h1`, 600/20px): recipe titles — off-card on Recipe Detail, white text.
 - **Section headings** (`h2`/`h3`): Catalog's meal-type sections (off-card, white), Shopping's trip
-  and category headings, Schedule's day headers (on-card), Recipe Detail's step-group headings
-  (off-card) — kept as real semantic headings throughout; `getByRole('heading', {level})` is
+  and category headings, Schedule's day headers (on-card), Recipe Detail's "Hozzávalók" and
+  step-group ("Elkészítés") headings (off-card, sharing one `stepHeading` style so the ingredients
+  list stopped relying on an invisible `aria-label` and now points at its own visible heading via
+  `aria-labelledby`) — kept as real semantic headings throughout; `getByRole('heading', {level})` is
   load-bearing in several test suites.
 - **Body** (`Body1`/`Text`, 400/14px): ingredient lines, step text, item names — on-card everywhere
   except Recipe Detail, where the same type role renders off-card in the light palette.
@@ -302,7 +308,10 @@ never a new wrapper, never an actual card border.
 
 ### Badges / Chips
 - **Gluten-risk badge**, **meal-type chip**, **"Utolsó nap" tag**: unchanged in hex, shape, and
-  meaning regardless of the surrounding chrome or whether the page around them has a card.
+  meaning regardless of the surrounding chrome or whether the page around them has a card. Recipe
+  Detail's ingredient rows use a scaled-down (`0.85`), inline-flowing variant of the gluten-risk
+  badge specifically — a sizing/position override on the wrapper only, never on the badge's own
+  color or text.
 
 ### Cards
 - **Recipe card** (Catalog): a left-edge rail + title + servings + optional gluten badge

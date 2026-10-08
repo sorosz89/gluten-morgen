@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-08T12:15:00Z",
+  "generatedAt": "2026-10-08T13:00:00Z",
   "title": "Design System: Zero Gluten",
   "extensions": {
     "colorMeta": {
@@ -128,7 +128,7 @@
       "name": "Gluten-Risk Badge",
       "kind": "chip",
       "refersTo": "badge-gluten",
-      "description": "Flags a recipe, shopping-list, or meal-card item that needs a verified gluten-free product. Appears on every page that can show one. Hex pinned explicitly, sourced from src/styles/colors.ts — never Fluent's own color=\"warning\" token. Always renders on a white card body, so chrome/nav changes don't affect its contrast.",
+      "description": "Flags a recipe, shopping-list, or meal-card item that needs a verified gluten-free product. Appears on every page that can show one. Hex pinned explicitly, sourced from src/styles/colors.ts — never Fluent's own color=\"warning\" token. Renders at full size on a white card body everywhere except Recipe Detail's cardless ingredient rows, where a wrapper-only `scale(0.85)` + inline flex flow shrinks it to a lighter annotation without touching its color or text.",
       "html": "<span class=\"ds-badge-gluten\">Gluténmentes termék szükséges</span>",
       "css": ".ds-badge-gluten { display: inline-block; background: #fbe0cc; color: #8a3b00; border-radius: 10000px; padding: 0.15rem 0.6rem; font-size: 12px; font-weight: 600; }"
     },
@@ -152,9 +152,9 @@
       "name": "Cardless Accent Section (Recipe Detail)",
       "kind": "custom",
       "refersTo": "card",
-      "description": "Recipe Detail has no cards. Its header, macros, ingredients, and step sections sit directly on the dark backdrop in the off-card light palette, each carrying a 6px meal-type-colored border-left in place of the card edge every other page uses. Replaced an earlier pass that boxed this same content in white (and, briefly, translucent glass) cards — neither survived; see DESIGN.md's Do's and Don'ts.",
-      "html": "<section class=\"ds-accent-section\" style=\"border-left-color:#2f8c82\"><h2 class=\"ds-accent-section__heading\">Elkészítés</h2><ol class=\"ds-accent-section__list\"><li>Egy nagy fazékban hevítsd fel a zsírt…</li></ol></section>",
-      "css": ".ds-accent-section { border-left-style: solid; border-left-width: 6px; padding-left: 1rem; } .ds-accent-section__heading { margin: 0 0 0.5rem; color: #e3dcf2; font-size: 1rem; } .ds-accent-section__list { margin: 0; padding: 0; list-style: none; color: #e3dcf2; }"
+      "description": "Recipe Detail has no cards. Its header, macros, ingredients, and step sections sit directly on the dark backdrop in the off-card light palette, each carrying a 6px meal-type-colored border-left in place of the card edge every other page uses. Both the ingredients list (\"Hozzávalók\") and the step groups (\"Elkészítés\") now sit under their own visible heading, sharing one heading style, so the ingredients list points at its heading via aria-labelledby instead of an invisible aria-label. Replaced an earlier pass that boxed this same content in white (and, briefly, translucent glass) cards — neither survived; see DESIGN.md's Do's and Don'ts.",
+      "html": "<section class=\"ds-accent-section\" style=\"border-left-color:#2f8c82\"><h2 class=\"ds-accent-section__heading\">Hozzávalók</h2><ul class=\"ds-accent-section__list\"><li class=\"ds-accent-section__item\">500 g sertéscomb<span class=\"ds-badge-gluten ds-badge-gluten--inline\">Gluténmentes termék szükséges</span></li></ul></section>",
+      "css": ".ds-accent-section { border-left-style: solid; border-left-width: 6px; padding-left: 1rem; } .ds-accent-section__heading { margin: 0 0 0.5rem; color: #e3dcf2; font-size: 1rem; } .ds-accent-section__list { margin: 0; padding: 0; list-style: none; color: #e3dcf2; } .ds-accent-section__item { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 0.5rem; padding: 0.55rem 0; border-bottom: 1px solid rgba(255,255,255,.1); } .ds-badge-gluten { display: inline-block; background: #fbe0cc; color: #8a3b00; border-radius: 10000px; padding: 0.15rem 0.6rem; font-size: 12px; font-weight: 600; } .ds-badge-gluten--inline { display: inline-flex; transform: scale(0.85); transform-origin: left center; }"
     },
     {
       "name": "Trip Card",
@@ -192,7 +192,7 @@
       "name": "Page Backdrop",
       "kind": "custom",
       "refersTo": "backdrop",
-      "description": "The full-bleed dark/purple gradient every page's outer wrapper applies via the shared usePageBackdropStyles hook (src/styles/shell.ts) — one hook, one place, not re-declared per page. min-height: 100dvh ensures it fills the content column's height even on short pages; the column is now narrower than the viewport whenever the nav pane is open, which the gradient's percentage-based positions absorb with no per-page change.",
+      "description": "The full-bleed dark/purple gradient every page's outer wrapper applies via the shared usePageBackdropStyles hook (src/styles/shell.ts) — one hook, one place, not re-declared per page. min-height: 100dvh ensures it fills the content column's height even on short pages. The column is full-viewport width at every breakpoint now that the nav is a fixed horizontal bar rather than a collapsible side pane; the gradient's percentage-based positions need no per-page adjustment.",
       "html": "<div class=\"ds-page-backdrop\"><div class=\"ds-page-content\">…</div></div>",
       "css": ".ds-page-backdrop { min-height: 100dvh; background-color: #1b1430; background-image: radial-gradient(ellipse 900px 700px at 8% 95%, #5b21b6 0%, #312e81 45%, transparent 72%), radial-gradient(ellipse 800px 650px at 95% 2%, #9333ea 0%, #241a3f 50%, transparent 75%); background-repeat: no-repeat; }"
     }
