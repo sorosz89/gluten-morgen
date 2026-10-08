@@ -17,3 +17,6 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 010 | Custom meal planner | build/save an alternate plan beyond the fixed 2-week rotation |
 | 011 | Recipe portion scaling | implemented |
 | 012 | Recipe detail & catalog visual consistency | approved — extends the Today component pilot (constitution Principle 7) to Recipe detail + Catalog |
+| 013 | Saved-state repository consistency | approved — internal refactor, from codebase-design review: one shared read/fall-back/recovery behavior for lunch swaps, portion counts, label checklist, shopping-list checked items |
+| 014 | Recipe import section-splitting consistency | approved — internal refactor, from codebase-design review: share one markdown section-splitter between the recipe and shopping-list imports |
+| 015 | Meal-type color-family consistency | approved — internal refactor, from codebase-design review: one shared decision for which color family a meal type (incl. alternative/extra) maps to |
