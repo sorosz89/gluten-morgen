@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
+import { mergeClasses } from '@fluentui/react-components'
 import { CheckmarkCircle20Filled, Warning16Filled } from '@fluentui/react-icons'
 import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
@@ -119,11 +120,17 @@ function RecipeDetailPage() {
       ]
     : null
 
-  const headerStack = (
+  // The title/portion widget and the macros widget are merged into one
+  // glass panel with an internal split, so the two can never drift out of
+  // sync in size — they're one widget now. Their text uses the same dark
+  // in-card tokens the glass surface elsewhere on this page already uses,
+  // not the off-card light palette (this panel is light/translucent, not
+  // the dark backdrop).
+  const widgetHeaderContent = (
     <>
-      <h1 className={fluentStyles.title}>{recipe.title}</h1>
+      <h1 className={fluentStyles.widgetTitle}>{recipe.title}</h1>
       <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
-      <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
+      <span className={fluentStyles.widgetServings}>{recipe.servingsLabel}</span>
 
       <div className={fluentStyles.portionControl}>
         <button
@@ -135,7 +142,7 @@ function RecipeDetailPage() {
         >
           −
         </button>
-        <span className={fluentStyles.portionCount}>{count} adag</span>
+        <span className={fluentStyles.widgetPortionCount}>{count} adag</span>
         <button
           type="button"
           className={fluentStyles.portionButton}
@@ -149,6 +156,48 @@ function RecipeDetailPage() {
     </>
   )
 
+  const ingredientItems = scaledIngredients.map((ingredient, index) => (
+    <li key={index} className={fluentStyles.listItem}>
+      {formatIngredientAmount(ingredient) && (
+        <span className={fluentStyles.ingredientAmount}>{formatIngredientAmount(ingredient)}</span>
+      )}{' '}
+      {ingredient.name}
+      {ingredient.note && <span className={fluentStyles.ingredientNote}> ({ingredient.note})</span>}
+      {ingredient.mustBeGlutenFree && <GlutenRiskBadge className={fluentStyles.badgeSpacing} />}
+    </li>
+  ))
+
+  const stepsSections = recipe.stepGroups.map((stepGroup, groupIndex) => (
+    <section key={groupIndex} className={fluentStyles.stepCard}>
+      <h2 className={fluentStyles.stepHeading}>{stepGroup.heading}</h2>
+      <ol className={fluentStyles.stepList}>
+        {stepGroup.steps.map((step, stepIndex) => {
+          const stepKey = `${groupIndex}-${stepIndex}`
+          const isDone = checkedSteps.has(stepKey)
+          return (
+            <li key={stepIndex} className={fluentStyles.stepListItem}>
+              <button
+                type="button"
+                className={fluentStyles.stepButton}
+                aria-pressed={isDone}
+                onClick={() => toggleStep(stepKey)}
+              >
+                {isDone ? (
+                  <CheckmarkCircle20Filled className={fluentStyles.stepCheckIconDone} />
+                ) : (
+                  <span className={fluentStyles.stepNumberBadge} aria-hidden="true">
+                    {stepIndex + 1}
+                  </span>
+                )}
+                <span className={isDone ? fluentStyles.stepTextDone : undefined}>{step}</span>
+              </button>
+            </li>
+          )
+        })}
+      </ol>
+    </section>
+  ))
+
   return (
     <div className={backdropStyles.backdrop}>
       <div className={styles.page}>
@@ -156,10 +205,12 @@ function RecipeDetailPage() {
           Vissza a receptekhez
         </Link>
 
-        <div className={fluentStyles.headerRow}>
-          <div className={fluentStyles.headerStack}>{headerStack}</div>
+        <div className={fluentStyles.headerWidgetPanel}>
+          <div className={mergeClasses(fluentStyles.headerWidgetZone, fluentStyles.headerWidgetZoneDivider)}>
+            {widgetHeaderContent}
+          </div>
           {macrosEntries && (
-            <div className={fluentStyles.macrosCard}>
+            <div className={fluentStyles.headerWidgetZone}>
               <p className={fluentStyles.macrosCaption}>Tápérték (adagonként)</p>
               <ul className={fluentStyles.macrosList} aria-label="Makrók">
                 {macrosEntries.map((entry) => (
@@ -176,60 +227,18 @@ function RecipeDetailPage() {
         <div className={fluentStyles.twoColumn}>
           <div className={fluentStyles.ingredientsColumn}>
             <ul className={fluentStyles.list} aria-label="Hozzávalók">
-              {scaledIngredients.map((ingredient, index) => (
-                <li key={index} className={fluentStyles.listItem}>
-                  {formatIngredientAmount(ingredient) && (
-                    <span className={fluentStyles.ingredientAmount}>
-                      {formatIngredientAmount(ingredient)}
-                    </span>
-                  )}{' '}
-                  {ingredient.name}
-                  {ingredient.note && (
-                    <span className={fluentStyles.ingredientNote}> ({ingredient.note})</span>
-                  )}
-                  {ingredient.mustBeGlutenFree && (
-                    <GlutenRiskBadge className={fluentStyles.badgeSpacing} />
-                  )}
-                </li>
-              ))}
+              {ingredientItems}
             </ul>
           </div>
-
-          <div className={fluentStyles.stepsColumn}>
-            {recipe.stepGroups.map((stepGroup, groupIndex) => (
-              <section key={groupIndex} className={fluentStyles.stepCard}>
-                <h2 className={fluentStyles.stepHeading}>{stepGroup.heading}</h2>
-                <ol className={fluentStyles.stepList}>
-                  {stepGroup.steps.map((step, stepIndex) => {
-                    const stepKey = `${groupIndex}-${stepIndex}`
-                    const isDone = checkedSteps.has(stepKey)
-                    return (
-                      <li key={stepIndex} className={fluentStyles.stepListItem}>
-                        <button
-                          type="button"
-                          className={fluentStyles.stepButton}
-                          aria-pressed={isDone}
-                          onClick={() => toggleStep(stepKey)}
-                        >
-                          {isDone ? (
-                            <CheckmarkCircle20Filled className={fluentStyles.stepCheckIconDone} />
-                          ) : (
-                            <span className={fluentStyles.stepNumberBadge} aria-hidden="true">
-                              {stepIndex + 1}
-                            </span>
-                          )}
-                          <span className={isDone ? fluentStyles.stepTextDone : undefined}>{step}</span>
-                        </button>
-                      </li>
-                    )
-                  })}
-                </ol>
-              </section>
-            ))}
-          </div>
+          <div className={fluentStyles.stepsColumn}>{stepsSections}</div>
         </div>
 
-        {recipe.tip && <p className={fluentStyles.tip}>{recipe.tip}</p>}
+        {recipe.tip && (
+          <p className={fluentStyles.tip}>
+            <span className={fluentStyles.tipLabel}>Tipp</span>
+            {recipe.tip}
+          </p>
+        )}
 
         {recipe.source && <p className={fluentStyles.source}>Forrás: {recipe.source}</p>}
 

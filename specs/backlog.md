@@ -16,3 +16,4 @@ Rough order. Each item becomes a spec with `/spec` when it's next.
 | 009 | E2E tests | Playwright happy paths for Today, Recipe, Shopping |
 | 010 | Custom meal planner | build/save an alternate plan beyond the fixed 2-week rotation |
 | 011 | Recipe portion scaling | implemented |
+| 012 | Recipe detail & catalog visual consistency | approved — extends the Today component pilot (constitution Principle 7) to Recipe detail + Catalog |

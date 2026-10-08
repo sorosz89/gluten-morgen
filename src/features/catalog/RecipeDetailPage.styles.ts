@@ -28,24 +28,18 @@ export const useRecipeDetailStyles = makeStyles({
       outlineOffset: '1px',
     },
   },
-  title: {
-    marginBottom: '0.25rem',
-    color: shellColors.offCardText,
-  },
   // `MealTypeChip`'s own `chip` style is `inline-block` (shrink-to-content);
   // only margin is added here — a `display` override would stretch it to
   // the page's full width, since a block-level span's width is auto.
   // `marginTop` separates it from the title above — the title's own
   // `marginBottom` (0.25rem) alone read as too tight against the chip.
+  // `alignSelf: flex-start` opts it out of the header widget zone's default
+  // flex `stretch`, which would otherwise widen the pill to the full column
+  // the same way a `display` override would.
   mealTypeChipSpacing: {
     marginTop: '0.75rem',
     marginBottom: '0.4rem',
-  },
-  servings: {
-    display: 'block',
-    fontWeight: tokens.fontWeightSemibold,
-    marginBottom: '0.5rem',
-    color: shellColors.offCardText,
+    alignSelf: 'flex-start',
   },
   portionControl: {
     display: 'flex',
@@ -74,24 +68,27 @@ export const useRecipeDetailStyles = makeStyles({
       backgroundColor: tokens.colorNeutralBackground1Hover,
     },
   },
-  portionCount: {
-    minWidth: '4.5rem',
-    textAlign: 'center',
-    fontWeight: tokens.fontWeightSemibold,
-    color: shellColors.offCardText,
-  },
+  // `alignItems: stretch` at desktop widths so the ingredients and steps
+  // columns match each other's height — the ingredients list is almost
+  // always shorter, and left short it reads as misaligned against the
+  // steps card beside it.
   twoColumn: {
     display: 'flex',
     flexDirection: 'column',
     rowGap: '1.5rem',
     [`@media (min-width: ${bpXLarge}px)`]: {
       flexDirection: 'row',
-      alignItems: 'flex-start',
+      alignItems: 'stretch',
       columnGap: '2.5rem',
     },
   },
+  // `display: flex` + `flexDirection: column` lets the ingredients `<ul>`
+  // grow to fill the stretched column height via `flex: 1` on the list
+  // itself, instead of staying at its own content size.
   ingredientsColumn: {
     [`@media (min-width: ${bpXLarge}px)`]: {
+      display: 'flex',
+      flexDirection: 'column',
       flex: '0 0 320px',
     },
   },
@@ -103,6 +100,9 @@ export const useRecipeDetailStyles = makeStyles({
   },
   // Each step group is its own card — the steps are dense, real content that
   // needs a light surface, not individually-recolored text on the backdrop.
+  // Plain opaque card, same recipe as every other card in the app
+  // (Today's meal card, Catalog's recipe card): no reason for this page's
+  // cards to carry their own bespoke glass treatment.
   stepCard: {
     borderRadius: tokens.borderRadiusXLarge,
     border: `1px solid ${tokens.colorNeutralStroke2}`,
@@ -110,6 +110,7 @@ export const useRecipeDetailStyles = makeStyles({
     boxShadow: tokens.shadow4,
     padding: '1rem 1.25rem 1.1rem',
   },
+  // Same plain card as `stepCard` — see its comment.
   list: {
     listStyleType: 'none',
     margin: '0 0 1rem',
@@ -119,6 +120,16 @@ export const useRecipeDetailStyles = makeStyles({
     backgroundColor: tokens.colorNeutralBackground1,
     boxShadow: tokens.shadow4,
     overflow: 'hidden',
+    // Fills the stretched `ingredientsColumn` height (desktop only, where
+    // `twoColumn` applies `alignItems: stretch`) and spaces its rows evenly
+    // across that height instead of leaving empty space at the bottom.
+    [`@media (min-width: ${bpXLarge}px)`]: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'space-between',
+      flex: 1,
+      marginBottom: 0,
+    },
   },
   listItem: {
     padding: '0.6rem 1rem',
@@ -228,6 +239,18 @@ export const useRecipeDetailStyles = makeStyles({
     borderRadius: tokens.borderRadiusXLarge,
     backgroundColor: tokens.colorNeutralBackground2,
   },
+  // Small uppercase eyebrow so a tip reads as advice, not a stray paragraph —
+  // distinct from `glutenFreeNote`'s icon treatment, which is reserved for
+  // the safety signal.
+  tipLabel: {
+    display: 'block',
+    marginBottom: '0.3rem',
+    fontSize: tokens.fontSizeBase200,
+    fontWeight: tokens.fontWeightBold,
+    textTransform: 'uppercase',
+    letterSpacing: '0.02em',
+    color: tokens.colorNeutralForeground3,
+  },
   // Boxed in the same amber pair as the gluten-risk badge, plus a warning
   // icon, so the safety note is unambiguously higher-emphasis than the
   // neutral `tip` box above (spec 012, AC4 — never the lower-emphasis one).
@@ -249,25 +272,58 @@ export const useRecipeDetailStyles = makeStyles({
     marginBottom: '1rem',
     color: shellColors.offCardTextMuted,
   },
-  // The macros widget sits in a white card (top-right of the header row, by
-  // the title) rather than on the dark backdrop — in-card neutral tokens,
-  // not the off-card shell palette the rest of this page's loose text uses.
-  headerRow: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    columnGap: '2rem',
-    rowGap: '0.5rem',
-  },
-  headerStack: {
-    flex: '0 1 auto',
-  },
-  macrosCard: {
-    flex: '1 1 320px',
-    alignSelf: 'flex-start',
+  // The header widget panel merges the title/portion-control widget and the
+  // macros widget into one plain card (same recipe as `stepCard`/`list`
+  // above) with an internal split, rather than on the dark backdrop —
+  // in-card neutral tokens, not the off-card shell palette the rest of this
+  // page's loose text uses. One widget can't drift out of sync with itself,
+  // which is the point: the two used to be a bare-backdrop text stack beside
+  // a separate card of a different size.
+  headerWidgetPanel: {
+    display: 'grid',
+    gridTemplateColumns: '1fr',
+    rowGap: '1.75rem',
+    padding: '1.1rem 1.25rem 1.25rem',
     backgroundColor: tokens.colorNeutralBackground1,
+    border: `1px solid ${tokens.colorNeutralStroke2}`,
     borderRadius: tokens.borderRadiusXLarge,
     boxShadow: tokens.shadow4,
-    padding: '0.9rem 1rem 1.1rem',
+    [`@media (min-width: ${bpXLarge}px)`]: {
+      gridTemplateColumns: '1fr 1fr',
+      columnGap: '1.75rem',
+    },
+  },
+  headerWidgetZone: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    minWidth: 0,
+  },
+  // Hairline (not a colored accent) separating the two zones at desktop
+  // width only, where they sit side by side.
+  headerWidgetZoneDivider: {
+    [`@media (min-width: ${bpXLarge}px)`]: {
+      borderInlineEndWidth: '1px',
+      borderInlineEndStyle: 'solid',
+      borderInlineEndColor: tokens.colorNeutralStroke2,
+      paddingInlineEnd: '1.75rem',
+    },
+  },
+  widgetTitle: {
+    marginBottom: '0.25rem',
+    color: tokens.colorNeutralForeground1,
+  },
+  widgetServings: {
+    display: 'block',
+    fontWeight: tokens.fontWeightSemibold,
+    marginBottom: '0.5rem',
+    color: tokens.colorNeutralForeground1,
+  },
+  widgetPortionCount: {
+    minWidth: '4.5rem',
+    textAlign: 'center',
+    fontWeight: tokens.fontWeightSemibold,
+    color: tokens.colorNeutralForeground1,
   },
   macrosCaption: {
     marginBottom: '0.4rem',
@@ -277,14 +333,19 @@ export const useRecipeDetailStyles = makeStyles({
     textTransform: 'uppercase',
     letterSpacing: '0.02em',
   },
+  // Two columns by default — three is too tight for longer labels
+  // ("szénhidrát") once the card itself has shrunk to a 360px viewport.
   macrosList: {
     listStyleType: 'none',
     margin: 0,
     padding: 0,
     display: 'grid',
-    gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
     columnGap: '1rem',
     rowGap: '0.7rem',
+    [`@media (min-width: ${bpXLarge}px)`]: {
+      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
+    },
   },
   macrosListItem: {
     display: 'flex',
