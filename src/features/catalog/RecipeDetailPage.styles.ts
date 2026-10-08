@@ -1,20 +1,23 @@
 import { makeStyles, tokens } from '@fluentui/react-components'
 import { shellColors } from '../../styles/shellColors.ts'
-import { glutenBg, glutenFg } from '../../styles/colors.ts'
+import { glutenBg, glutenFg, mealColors } from '../../styles/colors.ts'
 import { bpXLarge } from '../../styles/breakpoints.ts'
 
+// This page is a flowing, cardless document now (impeccable /generate demo,
+// accepted variant "consolidated"): nothing but the gluten-risk badge and
+// the glutenFreeNote callout carries a filled background — every other
+// element sits directly on the dark/purple backdrop, using the shell's
+// off-card light palette instead of the in-card neutral tokens the rest of
+// the app's white cards use. A 6px meal-type accent (the same hue family as
+// Catalog's/Today's left-edge card rail, the stripe width DESIGN.md's Shapes
+// section documents) stands in for the removed card boundary on each major
+// section, so the page keeps a sense of structure without a filled surface.
 export const useRecipeDetailStyles = makeStyles({
-  // This page is mostly a flowing document, not a card grid — several
-  // elements sit directly on the dark/purple backdrop (not surveyed as such
-  // in the initial plan; fixed here after checking the actual rendered page,
-  // not assumed from the plan's table). Dense content (the step-by-step
-  // instructions) gets boxed in its own card instead, since recoloring many
-  // nested list items individually would be more error-prone than boxing.
   backLink: {
     display: 'inline-flex',
     alignItems: 'center',
     minHeight: '44px',
-    marginBottom: '0.5rem',
+    marginBottom: '1rem',
     color: shellColors.offCardTextMuted,
     textDecorationLine: 'none',
     ':hover': {
@@ -28,24 +31,46 @@ export const useRecipeDetailStyles = makeStyles({
       outlineOffset: '1px',
     },
   },
-  // `MealTypeChip`'s own `chip` style is `inline-block` (shrink-to-content);
-  // only margin is added here — a `display` override would stretch it to
-  // the page's full width, since a block-level span's width is auto.
-  // `marginTop` separates it from the title above — the title's own
-  // `marginBottom` (0.25rem) alone read as too tight against the chip.
-  // `alignSelf: flex-start` opts it out of the header widget zone's default
-  // flex `stretch`, which would otherwise widen the pill to the full column
-  // the same way a `display` override would.
-  mealTypeChipSpacing: {
-    marginTop: '0.75rem',
-    marginBottom: '0.4rem',
-    alignSelf: 'flex-start',
+  // Shared accent treatment: a meal-type-colored left rule in place of a
+  // card edge. `accentBreakfast`/`accentLunch`/`accentDinner` supply only
+  // the color, merged alongside this on whichever wrapper needs it.
+  accent: {
+    borderLeftStyle: 'solid',
+    borderLeftWidth: '6px',
+    paddingLeft: '1rem',
   },
-  portionControl: {
+  accentBreakfast: { borderLeftColor: mealColors.breakfast.strip },
+  accentLunch: { borderLeftColor: mealColors.lunch.strip },
+  accentDinner: { borderLeftColor: mealColors.dinner.strip },
+  header: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'baseline',
+    columnGap: '1rem',
+    rowGap: '0.5rem',
+    marginBottom: '1.5rem',
+  },
+  title: {
+    flex: '1 1 100%',
+    margin: 0,
+    fontSize: '1.6rem',
+    fontWeight: tokens.fontWeightBold,
+    color: shellColors.offCardText,
+  },
+  // `MealTypeChip`'s own `chip` style is `inline-block` (shrink-to-content);
+  // no extra margin needed here since `header`'s own `columnGap`/`rowGap`
+  // already space it from the title and the servings label beside it.
+  chip: {
+    display: 'inline-block',
+  },
+  servings: {
+    color: shellColors.offCardTextMuted,
+  },
+  portion: {
     display: 'flex',
     alignItems: 'center',
-    columnGap: '0.75rem',
-    marginBottom: '1.25rem',
+    columnGap: '0.6rem',
+    marginLeft: 'auto',
   },
   portionButton: {
     display: 'inline-flex',
@@ -54,206 +79,188 @@ export const useRecipeDetailStyles = makeStyles({
     minWidth: '44px',
     minHeight: '44px',
     borderRadius: tokens.borderRadiusCircular,
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    color: tokens.colorNeutralForeground1,
+    border: '1px solid rgba(255, 255, 255, 0.35)',
+    backgroundColor: 'transparent',
+    color: shellColors.offCardText,
     fontSize: tokens.fontSizeBase400,
     fontWeight: tokens.fontWeightSemibold,
     cursor: 'pointer',
     ':disabled': {
-      opacity: 0.4,
+      opacity: 0.35,
       cursor: 'not-allowed',
     },
     ':hover:not(:disabled)': {
-      backgroundColor: tokens.colorNeutralBackground1Hover,
+      backgroundColor: 'rgba(255, 255, 255, 0.08)',
     },
   },
-  // `alignItems: stretch` at desktop widths so the ingredients and steps
-  // columns match each other's height — the ingredients list is almost
-  // always shorter, and left short it reads as misaligned against the
-  // steps card beside it.
+  portionCount: {
+    minWidth: '4rem',
+    textAlign: 'center',
+    color: shellColors.offCardText,
+    fontWeight: tokens.fontWeightSemibold,
+  },
+  macros: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    columnGap: '1.5rem',
+    rowGap: '0.4rem',
+    marginBottom: '2rem',
+  },
+  macrosCaption: {
+    flex: '1 1 100%',
+    margin: '0 0 0.2rem',
+    fontSize: tokens.fontSizeBase200,
+    fontWeight: tokens.fontWeightBold,
+    textTransform: 'uppercase',
+    letterSpacing: '0.03em',
+    color: shellColors.offCardTextMuted,
+  },
+  macrosList: {
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
+    display: 'flex',
+    flexWrap: 'wrap',
+    columnGap: '1.4rem',
+    rowGap: '0.3rem',
+  },
+  macrosListItem: {
+    display: 'flex',
+    alignItems: 'baseline',
+    columnGap: '0.3rem',
+  },
+  macrosValue: {
+    fontWeight: tokens.fontWeightBold,
+    color: shellColors.offCardText,
+  },
+  macrosLabel: {
+    fontSize: '0.76rem',
+    color: shellColors.offCardTextMuted,
+  },
   twoColumn: {
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '1.5rem',
+    rowGap: '2.25rem',
     [`@media (min-width: ${bpXLarge}px)`]: {
       flexDirection: 'row',
-      alignItems: 'stretch',
-      columnGap: '2.5rem',
+      alignItems: 'flex-start',
+      columnGap: '3rem',
     },
   },
-  // `display: flex` + `flexDirection: column` lets the ingredients `<ul>`
-  // grow to fill the stretched column height via `flex: 1` on the list
-  // itself, instead of staying at its own content size.
   ingredientsColumn: {
     [`@media (min-width: ${bpXLarge}px)`]: {
-      display: 'flex',
-      flexDirection: 'column',
-      flex: '0 0 320px',
+      flex: '0 0 300px',
     },
+  },
+  list: {
+    listStyleType: 'none',
+    margin: 0,
+    padding: 0,
+  },
+  listItem: {
+    padding: '0.55rem 0',
+    color: shellColors.offCardText,
+    borderBottomStyle: 'solid',
+    borderBottomWidth: '1px',
+    borderBottomColor: 'rgba(255, 255, 255, 0.1)',
+  },
+  ingredientAmount: {
+    fontWeight: tokens.fontWeightBold,
+  },
+  ingredientNote: {
+    color: shellColors.offCardTextMuted,
+    fontSize: '0.85em',
+  },
+  // Color/shape for the gluten-risk signal lives in the shared
+  // `GlutenRiskBadge` component — this page only places it. It, and
+  // `glutenFreeNote` below, are the one deliberate exception to "no filled
+  // background": the Always-Flagged Rule (constitution Principle 7) keeps
+  // the safety signal boxed and unmissable regardless of the surrounding
+  // page's own cardless treatment.
+  badgeSpacing: {
+    marginLeft: '0.5rem',
   },
   stepsColumn: {
     display: 'flex',
     flexDirection: 'column',
-    rowGap: '1.25rem',
+    rowGap: '1.5rem',
     flex: '1 1 auto',
   },
-  // Each step group is its own card — the steps are dense, real content that
-  // needs a light surface, not individually-recolored text on the backdrop.
-  // Plain opaque card, same recipe as every other card in the app
-  // (Today's meal card, Catalog's recipe card): no reason for this page's
-  // cards to carry their own bespoke glass treatment.
-  stepCard: {
-    borderRadius: tokens.borderRadiusXLarge,
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    boxShadow: tokens.shadow4,
-    padding: '1rem 1.25rem 1.1rem',
-  },
-  // Same plain card as `stepCard` — see its comment.
-  list: {
-    listStyleType: 'none',
-    margin: '0 0 1rem',
-    padding: 0,
-    borderRadius: tokens.borderRadiusXLarge,
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
-    backgroundColor: tokens.colorNeutralBackground1,
-    boxShadow: tokens.shadow4,
-    overflow: 'hidden',
-    // Fills the stretched `ingredientsColumn` height (desktop only, where
-    // `twoColumn` applies `alignItems: stretch`) and spaces its rows evenly
-    // across that height instead of leaving empty space at the bottom.
-    [`@media (min-width: ${bpXLarge}px)`]: {
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'space-between',
-      flex: 1,
-      marginBottom: 0,
-    },
-  },
-  listItem: {
-    padding: '0.6rem 1rem',
-    borderBottomStyle: 'solid',
-    borderBottomWidth: '1px',
-    borderBottomColor: tokens.colorNeutralStroke2,
-    ':last-child': {
-      borderBottomWidth: 0,
-    },
-  },
-  // Color/shape for the gluten-risk signal now live in the shared
-  // `GlutenRiskBadge` component — this page only places it.
-  badgeSpacing: {
-    marginLeft: '0.5rem',
-  },
-  // Weight-only differentiation so the quantity reads distinctly from the
-  // ingredient name without a layout change to the existing flowing list.
-  ingredientAmount: {
-    fontWeight: tokens.fontWeightBold,
-  },
-  // Muted and smaller so a prep instruction ("NE sima", "megmosva...") reads
-  // as a secondary annotation, not part of the ingredient's own name.
-  ingredientNote: {
-    color: tokens.colorNeutralForeground3,
-    fontSize: tokens.fontSizeBase200,
-  },
   stepHeading: {
-    marginBottom: '0.5rem',
+    margin: '0 0 0.5rem',
+    color: shellColors.offCardText,
+    fontSize: '1rem',
   },
-  // `listStyleType: none` drops the browser's own decimal markers — paired
-  // with the numbered `stepNumberBadge` circle below, native numerals and
-  // the step's own indicator used to compete for the same meaning.
   stepList: {
     margin: 0,
     padding: 0,
     listStyleType: 'none',
   },
   stepListItem: {
-    marginBottom: '0.3rem',
+    marginBottom: '0.25rem',
   },
-  // Single marker for "which step, done or not": shows the step number until
-  // checked off, then yields to `stepCheckIconDone`'s filled checkmark.
-  // No `marginTop` — the badge and the step text are both exactly one line
-  // tall and share the same flex-start origin, so an added offset (like the
-  // check icons' own 0.15rem nudge) misaligns this badge instead of centering it.
-  stepNumberBadge: {
-    flexShrink: 0,
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: '22px',
-    height: '22px',
-    borderRadius: tokens.borderRadiusCircular,
-    fontSize: '12px',
-    fontWeight: tokens.fontWeightBold,
-    lineHeight: 1,
-    color: tokens.colorNeutralForeground3,
-    border: `1.5px solid ${tokens.colorNeutralStroke1}`,
-  },
-  // Each step is a real tappable button (44px tall, full-width) so marking
-  // it done works one-handed while cooking — not a decorative checkbox.
-  // `alignItems: center` centers the number/check badge against the full
-  // height of the step text, including steps that wrap to two lines.
   stepButton: {
     display: 'flex',
     alignItems: 'center',
     columnGap: '0.6rem',
     width: '100%',
     minHeight: '44px',
-    padding: '0.45rem 0.4rem',
+    padding: '0.4rem 0.25rem',
     borderRadius: tokens.borderRadiusMedium,
     border: 'none',
     backgroundColor: 'transparent',
     textAlign: 'left',
-    color: 'inherit',
+    color: shellColors.offCardText,
     font: 'inherit',
     cursor: 'pointer',
     ':hover': {
-      backgroundColor: tokens.colorNeutralBackground2,
+      backgroundColor: 'rgba(255, 255, 255, 0.06)',
     },
     ':focus-visible': {
       outlineStyle: 'solid',
       outlineWidth: '2px',
-      outlineColor: tokens.colorBrandStroke1,
+      outlineColor: shellColors.offCardAccentGreen,
       outlineOffset: '1px',
     },
   },
-  stepCheckIcon: {
+  stepNumberBadge: {
     flexShrink: 0,
-    marginTop: '0.15rem',
-    color: tokens.colorNeutralStroke1,
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '20px',
+    height: '20px',
+    borderRadius: tokens.borderRadiusCircular,
+    fontSize: '11px',
+    fontWeight: tokens.fontWeightBold,
+    lineHeight: 1,
+    color: shellColors.offCardTextMuted,
+    border: '1.5px solid rgba(255, 255, 255, 0.35)',
   },
   stepCheckIconDone: {
     flexShrink: 0,
-    marginTop: '0.15rem',
-    color: tokens.colorPaletteGreenForeground1,
+    color: shellColors.offCardAccentGreen,
   },
   stepTextDone: {
-    color: tokens.colorNeutralForeground3,
+    color: shellColors.offCardTextMuted,
     textDecorationLine: 'line-through',
   },
-  // "tip" already carries its own light surface (colorNeutralBackground2) —
-  // unchanged, needs no off-card color treatment.
   tip: {
-    marginBottom: '1rem',
-    padding: '0.9rem 1rem',
-    borderRadius: tokens.borderRadiusXLarge,
-    backgroundColor: tokens.colorNeutralBackground2,
+    margin: '1.75rem 0 1rem',
+    color: shellColors.offCardText,
   },
-  // Small uppercase eyebrow so a tip reads as advice, not a stray paragraph —
-  // distinct from `glutenFreeNote`'s icon treatment, which is reserved for
-  // the safety signal.
   tipLabel: {
     display: 'block',
     marginBottom: '0.3rem',
-    fontSize: tokens.fontSizeBase200,
+    fontSize: '0.76rem',
     fontWeight: tokens.fontWeightBold,
     textTransform: 'uppercase',
     letterSpacing: '0.02em',
-    color: tokens.colorNeutralForeground3,
+    color: shellColors.offCardTextMuted,
   },
   // Boxed in the same amber pair as the gluten-risk badge, plus a warning
   // icon, so the safety note is unambiguously higher-emphasis than the
-  // neutral `tip` box above (spec 012, AC4 — never the lower-emphasis one).
+  // neutral `tip` text above (spec 012, AC4 — never the lower-emphasis one).
   glutenFreeNote: {
     display: 'flex',
     alignItems: 'flex-start',
@@ -271,93 +278,5 @@ export const useRecipeDetailStyles = makeStyles({
   source: {
     marginBottom: '1rem',
     color: shellColors.offCardTextMuted,
-  },
-  // The header widget panel merges the title/portion-control widget and the
-  // macros widget into one plain card (same recipe as `stepCard`/`list`
-  // above) with an internal split, rather than on the dark backdrop —
-  // in-card neutral tokens, not the off-card shell palette the rest of this
-  // page's loose text uses. One widget can't drift out of sync with itself,
-  // which is the point: the two used to be a bare-backdrop text stack beside
-  // a separate card of a different size.
-  headerWidgetPanel: {
-    display: 'grid',
-    gridTemplateColumns: '1fr',
-    rowGap: '1.75rem',
-    padding: '1.1rem 1.25rem 1.25rem',
-    backgroundColor: tokens.colorNeutralBackground1,
-    border: `1px solid ${tokens.colorNeutralStroke2}`,
-    borderRadius: tokens.borderRadiusXLarge,
-    boxShadow: tokens.shadow4,
-    [`@media (min-width: ${bpXLarge}px)`]: {
-      gridTemplateColumns: '1fr 1fr',
-      columnGap: '1.75rem',
-    },
-  },
-  headerWidgetZone: {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    minWidth: 0,
-  },
-  // Hairline (not a colored accent) separating the two zones at desktop
-  // width only, where they sit side by side.
-  headerWidgetZoneDivider: {
-    [`@media (min-width: ${bpXLarge}px)`]: {
-      borderInlineEndWidth: '1px',
-      borderInlineEndStyle: 'solid',
-      borderInlineEndColor: tokens.colorNeutralStroke2,
-      paddingInlineEnd: '1.75rem',
-    },
-  },
-  widgetTitle: {
-    marginBottom: '0.25rem',
-    color: tokens.colorNeutralForeground1,
-  },
-  widgetServings: {
-    display: 'block',
-    fontWeight: tokens.fontWeightSemibold,
-    marginBottom: '0.5rem',
-    color: tokens.colorNeutralForeground1,
-  },
-  widgetPortionCount: {
-    minWidth: '4.5rem',
-    textAlign: 'center',
-    fontWeight: tokens.fontWeightSemibold,
-    color: tokens.colorNeutralForeground1,
-  },
-  macrosCaption: {
-    marginBottom: '0.4rem',
-    color: tokens.colorNeutralForeground3,
-    fontSize: tokens.fontSizeBase200,
-    fontWeight: tokens.fontWeightSemibold,
-    textTransform: 'uppercase',
-    letterSpacing: '0.02em',
-  },
-  // Two columns by default — three is too tight for longer labels
-  // ("szénhidrát") once the card itself has shrunk to a 360px viewport.
-  macrosList: {
-    listStyleType: 'none',
-    margin: 0,
-    padding: 0,
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, minmax(0, 1fr))',
-    columnGap: '1rem',
-    rowGap: '0.7rem',
-    [`@media (min-width: ${bpXLarge}px)`]: {
-      gridTemplateColumns: 'repeat(3, minmax(0, 1fr))',
-    },
-  },
-  macrosListItem: {
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  macrosValue: {
-    fontWeight: tokens.fontWeightBold,
-    fontSize: tokens.fontSizeBase400,
-    color: tokens.colorNeutralForeground1,
-  },
-  macrosLabel: {
-    fontSize: tokens.fontSizeBase200,
-    color: tokens.colorNeutralForeground3,
   },
 })

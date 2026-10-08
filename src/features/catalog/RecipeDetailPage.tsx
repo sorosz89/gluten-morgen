@@ -6,7 +6,7 @@ import GlutenRiskBadge from '../../components/GlutenRiskBadge.tsx'
 import MealTypeChip from '../../components/MealTypeChip.tsx'
 import { recipePortionsRepository } from '../../data/recipePortionsRepository.ts'
 import { recipes } from '../../data/recipes.ts'
-import type { Ingredient } from '../../domain/recipe.ts'
+import type { Ingredient, MealType } from '../../domain/recipe.ts'
 import {
   DEFAULT_PORTION_COUNT,
   MAX_PORTION_COUNT,
@@ -24,6 +24,16 @@ function formatIngredientAmount(ingredient: Ingredient): string | null {
     (part): part is string | number => part !== null && part !== undefined,
   )
   return parts.length > 0 ? parts.join(' ') : null
+}
+
+// `alternative`/`extra` have no color family of their own — they fall back
+// to the `lunch` tint, the same fallback `MealTypeChip` already uses.
+const ACCENT_STYLE_KEY: Record<MealType, 'accentBreakfast' | 'accentLunch' | 'accentDinner'> = {
+  breakfast: 'accentBreakfast',
+  lunch: 'accentLunch',
+  dinner: 'accentDinner',
+  alternative: 'accentLunch',
+  extra: 'accentLunch',
 }
 
 function RecipeDetailPage() {
@@ -120,19 +130,16 @@ function RecipeDetailPage() {
       ]
     : null
 
-  // The title/portion widget and the macros widget are merged into one
-  // glass panel with an internal split, so the two can never drift out of
-  // sync in size — they're one widget now. Their text uses the same dark
-  // in-card tokens the glass surface elsewhere on this page already uses,
-  // not the off-card light palette (this panel is light/translucent, not
-  // the dark backdrop).
-  const widgetHeaderContent = (
-    <>
-      <h1 className={fluentStyles.widgetTitle}>{recipe.title}</h1>
-      <MealTypeChip mealType={recipe.mealType} className={fluentStyles.mealTypeChipSpacing} />
-      <span className={fluentStyles.widgetServings}>{recipe.servingsLabel}</span>
+  const accentClass = fluentStyles[ACCENT_STYLE_KEY[recipe.mealType]]
 
-      <div className={fluentStyles.portionControl}>
+  const headerContent = (
+    <>
+      <h1 className={fluentStyles.title}>{recipe.title}</h1>
+      <span className={fluentStyles.chip}>
+        <MealTypeChip mealType={recipe.mealType} />
+      </span>
+      <span className={fluentStyles.servings}>{recipe.servingsLabel}</span>
+      <div className={fluentStyles.portion}>
         <button
           type="button"
           className={fluentStyles.portionButton}
@@ -142,7 +149,7 @@ function RecipeDetailPage() {
         >
           −
         </button>
-        <span className={fluentStyles.widgetPortionCount}>{count} adag</span>
+        <span className={fluentStyles.portionCount}>{count} adag</span>
         <button
           type="button"
           className={fluentStyles.portionButton}
@@ -168,7 +175,7 @@ function RecipeDetailPage() {
   ))
 
   const stepsSections = recipe.stepGroups.map((stepGroup, groupIndex) => (
-    <section key={groupIndex} className={fluentStyles.stepCard}>
+    <section key={groupIndex}>
       <h2 className={fluentStyles.stepHeading}>{stepGroup.heading}</h2>
       <ol className={fluentStyles.stepList}>
         {stepGroup.steps.map((step, stepIndex) => {
@@ -205,32 +212,34 @@ function RecipeDetailPage() {
           Vissza a receptekhez
         </Link>
 
-        <div className={fluentStyles.headerWidgetPanel}>
-          <div className={mergeClasses(fluentStyles.headerWidgetZone, fluentStyles.headerWidgetZoneDivider)}>
-            {widgetHeaderContent}
-          </div>
-          {macrosEntries && (
-            <div className={fluentStyles.headerWidgetZone}>
-              <p className={fluentStyles.macrosCaption}>Tápérték (adagonként)</p>
-              <ul className={fluentStyles.macrosList} aria-label="Makrók">
-                {macrosEntries.map((entry) => (
-                  <li key={entry.label} className={fluentStyles.macrosListItem}>
-                    <span className={fluentStyles.macrosValue}>{entry.value}</span>
-                    <span className={fluentStyles.macrosLabel}>{entry.label}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
+        <header className={mergeClasses(fluentStyles.header, fluentStyles.accent, accentClass)}>
+          {headerContent}
+        </header>
 
-        <div className={fluentStyles.twoColumn}>
-          <div className={fluentStyles.ingredientsColumn}>
-            <ul className={fluentStyles.list} aria-label="Hozzávalók">
-              {ingredientItems}
+        {macrosEntries && (
+          <div className={mergeClasses(fluentStyles.macros, fluentStyles.accent, accentClass)}>
+            <p className={fluentStyles.macrosCaption}>Tápérték (adagonként)</p>
+            <ul className={fluentStyles.macrosList} aria-label="Makrók">
+              {macrosEntries.map((entry) => (
+                <li key={entry.label} className={fluentStyles.macrosListItem}>
+                  <span className={fluentStyles.macrosValue}>{entry.value}</span>
+                  <span className={fluentStyles.macrosLabel}>{entry.label}</span>
+                </li>
+              ))}
             </ul>
           </div>
-          <div className={fluentStyles.stepsColumn}>{stepsSections}</div>
+        )}
+
+        <div className={fluentStyles.twoColumn}>
+          <ul
+            className={mergeClasses(fluentStyles.list, fluentStyles.ingredientsColumn, fluentStyles.accent, accentClass)}
+            aria-label="Hozzávalók"
+          >
+            {ingredientItems}
+          </ul>
+          <div className={mergeClasses(fluentStyles.stepsColumn, fluentStyles.accent, accentClass)}>
+            {stepsSections}
+          </div>
         </div>
 
         {recipe.tip && (
