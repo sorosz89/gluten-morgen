@@ -1,6 +1,6 @@
 ---
 name: Zero Gluten
-description: A colorful dark/purple app shell with a collapsible left-pane nav, wrapping white, left-striped kitchen content for a gluten-free family's 2-week meal rotation.
+description: A colorful dark/purple app shell with a two-row segmented nav bar, wrapping white left-striped card-grid pages and a cardless, accent-stripe Recipe Detail page, for a gluten-free family's 2-week meal rotation.
 colors:
   utility-bar-bg: "#120f1c"
   header-bar-bg: "#241a3f"
@@ -76,16 +76,14 @@ components:
     backgroundColor: "transparent"
     textColor: "{colors.neutral-text-secondary}"
     rounded: "{rounded.pill}"
-  nav-pane:
-    backgroundColor: "{colors.header-bar-bg}"
-    width: "320px"
-  nav-item:
+  nav-bar-item:
     textColor: "{colors.nav-link-default}"
-    rounded: "{rounded.medium}"
+    rounded: "10px"
     height: "44px"
-  nav-item-active:
-    textColor: "{colors.nav-link-active}"
-    backgroundColor: "rgba(255, 255, 255, 0.1)"
+  nav-bar-item-active:
+    textColor: "#ffffff"
+    backgroundColor: "rgba(255, 255, 255, 0.14)"
+    rounded: "10px"
 ---
 
 # Design System: Zero Gluten
@@ -96,19 +94,24 @@ components:
 
 Zero Gluten runs inside a dark navy/indigo chrome over a purple gradient backdrop — a register
 borrowed, user-pinned, from an unrelated enterprise dashboard reference. The product itself hasn't
-changed across either shell pass: it's still a plain-spoken kitchen companion, read one-handed,
-sometimes in a dim kitchen or a shop. Every real task — ingredient lists, shopping checkboxes, the
-cook-today answer — still lives on the same white, elevated cards this system built before any of
+changed across any shell or page pass: it's still a plain-spoken kitchen companion, read one-handed,
+sometimes in a dim kitchen or a shop. Most real tasks — ingredient checklists, shopping checkboxes,
+the cook-today answer — still live on the same white, elevated cards this system built before any of
 the dark chrome existed; only the chrome and the page background around those cards went dark and
-colorful. Meal-type color lives as a left-edge stripe on card-grid pages, a deliberate reversal of
-an earlier top-strip rule (see Named Rules below).
+colorful. Recipe Detail is the one deliberate exception (see Key Characteristics and Cards below):
+its content now sits directly on the backdrop, cardless, in the off-card light palette. Meal-type
+color lives as a left-edge stripe on card-grid pages, a deliberate reversal of an earlier top-strip
+rule (see Named Rules below).
 
-This pass rebuilt the chrome itself: the nav moved from a two-tier top bar (a slim brand strip over
-a link row) to a collapsible left pane, built on Fluent 2's own `NavDrawer` primitives rather than
-hand-rolled links. The visual identity carries over unchanged — same hex, same two-tier brand/link
-split, just rotated from horizontal to vertical — but the nav is now a distinct, Fluent-native
-component: real keyboard navigation, a native selected-state treatment, and a built-in responsive
-collapse to an overlay on narrow viewports, none of which the old `<nav>` of plain links had.
+The nav has been rebuilt three times since this system's first pass: a two-tier top bar (brand strip
+over a link row) → a collapsible Fluent 2 `NavDrawer` left pane → a single horizontal icon-only bar →
+its current shape, a two-row bar (brand + current-page title, then a segmented icon-and-label control)
+spanning the full width, content routed below it. The dark/purple shell palette carried over unchanged
+across every rebuild; only the structure and the underlying markup changed. Visible labels returned in
+this pass (`impeccable /live`, explicit "redesign... mobile-first" request): a quick glance beats
+guessing an icon's meaning one-handed with wet or busy hands, and the active route now fills its whole
+segment with a background rather than relying on a thin bottom border — a stronger, easier-to-spot
+signal at a glance.
 
 This is the **current, fully-shipped state** across all six pages (Today, Recipe catalog, Recipe
 detail, Shopping list, Schedule, Label checklist, Lunch swap) plus the app shell itself. Two things
@@ -120,58 +123,65 @@ Principle 7.
 - **Theme architecture is deliberately split.** Fluent's `FluentProvider` theme stays the light
   `zeroGlutenTheme` — every card, input, and button keeps the exact contrast already proven. The
   dark/purple treatment is hand-pinned hex (`src/styles/shellColors.ts`), applied only to the
-  nav/shell and each page's outer background — never inside a card. No `createDarkTheme` switch;
-  re-verifying every component's contrast for a full dark theme would buy nothing, since cards stay
-  white either way.
-- **The left nav is a real Fluent 2 component, not a styled list of links.** `NavDrawer` /
-  `NavDrawerHeader` / `NavDrawerBody` / `NavItem` / `Hamburger` from `@fluentui/react-components`
-  replace the old hand-rolled `<nav>` + `<Link>` markup. It inherits the shell's dark/purple palette
-  via per-slot `className` overrides, not Fluent's own (light-theme) default styling — see the
-  Named Rules below for the contrast bug that habit caused.
+  nav/shell, each page's outer background, and (on Recipe Detail only) the page's own loose text —
+  never inside a card elsewhere. No `createDarkTheme` switch; re-verifying every component's contrast
+  for a full dark theme would buy nothing, since most real tasks still render on a white card.
+- **The nav is a hand-rolled two-row bar, not a Fluent navigation primitive.** A plain `<nav>` of
+  `<a>` tags (`src/App.tsx`), client-side routing wired by hand on click: a top row (brand + the
+  current page's own label) over a segmented row of icon+label links, each segment a full-width flex
+  item. No responsive collapse, no overlay, no keyboard-nav primitive to inherit from `NavDrawer` —
+  traded deliberately for a bar that never needs to hide and reads at a glance.
 - **Purple/indigo is the chrome/world color; rosemary green is demoted, not removed.** Green keeps
   its prior meaning exactly — primary actions, checkbox accent, link color, all *inside* a white
-  card. Purple/indigo owns only the outer chrome, the nav pane, and the page backdrop.
-- **Left-edge status stripes**, not top strips — Catalog and Today's cards specifically.
+  card. Purple/indigo owns the outer chrome, the page backdrop, and — uniquely on Recipe Detail —
+  the page's own body text via the off-card palette.
+- **Left-edge status stripes**, not top strips — Catalog and Today's cards, and (at 6px, the same
+  width and hue family, but as a `border-left` rather than a separate flex rail) Recipe Detail's
+  cardless sections.
+- **Recipe Detail is cardless by design, not by omission.** Its header, macros, ingredients, and
+  steps sit directly on the dark backdrop in the off-card light palette, with a meal-type-colored
+  left accent standing in for the card edge every other page still uses. The gluten-risk badge and
+  the `glutenFreeNote` callout are the sole exceptions — see the Always-Flagged Rule.
 - **Off-card text is a first-class concern.** Several elements across the app sit directly on the
   dark backdrop rather than inside a card (page headings, date lines, empty-state prompts, the nav
-  pane's own brand label and links). Each was individually checked against the actual rendered page,
-  not assumed safe from a written plan.
+  bar's own brand label and links, and — in full now — Recipe Detail's entire body). Each was
+  individually checked against the actual rendered page, not assumed safe from a written plan.
 
 ## Theme Architecture
 
 `src/main.tsx` mounts `FluentProvider` on `zeroGlutenTheme` (unchanged, light, from `src/theme.ts`)
-— this is the single most consequential decision in this system, and it held across the move from a
-top bar to a left pane. Switching to `createDarkTheme` would force re-verifying every already-proven
-component's contrast for zero visible benefit, since every real task still renders on a white card.
+— this is the single most consequential decision in this system, and it has held across every nav
+rebuild and the Recipe Detail cardless pass. Switching to `createDarkTheme` would force re-verifying
+every already-proven component's contrast for little benefit, since most real tasks still render on
+a white card.
 
 Dark/purple styling lives in `src/styles/shellColors.ts` (hand-pinned hex, deliberately outside the
 Fluent theme) and `src/styles/shell.ts` (`usePageBackdropStyles`, a single shared Griffel hook every
-page's outer wrapper applies). The app root (`src/App.tsx`) is a flex row: the `NavDrawer` pane as
-one child, a flex-column content area as the other. Each routed page's own JSX root is still a
-two-level wrapper inside that content area — an outer `backdropStyles.backdrop` div (full-bleed
-gradient, `min-height: 100dvh`) containing the inner `.page` div (padding/max-width centering) —
-unaffected by where the nav now lives.
+page's outer wrapper applies). The app root (`src/App.tsx`) is a flex **column**: the horizontal
+`<nav>` bar as one child, a flex-column content area as the other, each routed page stacking below
+the bar at every viewport. Each routed page's own JSX root is still a two-level wrapper inside that
+content area — an outer `backdropStyles.backdrop` div (full-bleed gradient, `min-height: 100dvh`)
+containing the inner `.page` div (padding/max-width centering) — unaffected by nav shape.
 
 ## Colors
 
 ### Shell
-- **Utility bar** (`#120f1c`): the nav pane's own header row (brand label + collapse toggle), and
-  the matching top bar that appears in the content area whenever the pane is collapsed (any
-  viewport) so there's always a way to reopen it.
-- **Header bar** (`#241a3f`): the nav pane's body — the six-link list sits on this fill, replacing
-  its prior job as the horizontal link row's background.
+- **Utility bar** (`#120f1c`): the nav bar's own fill — now the *only* bar (no second tier); a
+  1px `rgba(255,255,255,0.08)` bottom hairline separates it from the content below.
+- **Header bar** (`#241a3f`): no longer a nav surface — it now appears only as a gradient stop in
+  the page backdrop's top-right `radial-gradient` (see Backdrop gradient below).
 - **Nav link default / active** (`#b9aed6` / `#ffffff`): link color tiers — default for unselected
-  items (icon + label), active (white) plus a bold weight and an inset left accent bar for the
-  current route. Both contrast-checked against the header bar (7.8:1, 16.2:1). The prior third tier,
-  a lighter violet "tint" marking two secondary routes (Lista, Csere), was dropped with the top bar —
-  it was a top-bar-specific highlight with no meaning that survived the move to a vertical list; see
-  Named Rules.
+  icons, active (white) plus the segment filling with `rgba(255,255,255,0.14)` for the current route
+  (a background fill, not a border — stronger at a glance than the prior bottom-border tiers). Both
+  contrast-checked against the utility bar (7.8:1, 16.2:1). The prior third tier, a lighter violet
+  "tint" marking two secondary routes, was dropped with the first nav rebuild and has not returned.
 - **Backdrop gradient**: two CSS `radial-gradient`s (violet→indigo bottom-left, magenta→header-bar
   top-right) over a `#1b1430` base fill — pure CSS, no images. An abstract decorative gradient,
   distinct from the "no fabricated food photography" constraint in PRODUCT.md, which is about real
   photos specifically.
 - **Off-card text** (`#e3dcf2` / `#cdbfe8` muted / `#9fd9b9` accent-green): the palette for the
-  handful of real content elements that sit directly on the backdrop rather than inside a card.
+  handful of real content elements that sit directly on the backdrop rather than inside a card —
+  now including the whole of Recipe Detail's body text, not just its loose headings and labels.
 
 ### Primary (in-card)
 - **Rozmaring 80** (`#2d7652`): primary actions, checkbox accent, link color — always inside a
@@ -179,100 +189,107 @@ unaffected by where the nav now lives.
 
 ### Secondary — the gluten-risk signal
 - **Gluten Risk** (`#fbe0cc` background / `#8a3b00` text): the one safety signal in the system. The
-  badge always renders on a white card body, so chrome/nav changes never affect its contrast.
+  badge keeps its own filled background on every page, Recipe Detail included, so chrome, nav, or
+  card-vs-cardless changes never affect its contrast or its unmissability.
 
 ### Tertiary — meal-type data series
 - **Breakfast** (`#fbefd9` bg / `#8a6416` text / `#d9a33e` strip)
 - **Lunch** (`#e1f1ef` bg / `#1f5a54` text / `#2f8c82` strip)
 - **Dinner** (`#f1e7f1` bg / `#5c3a5e` text / `#8b5a8c` strip)
 
-Applied as a **left-edge rail** on Catalog's and Today's cards, plus the pill chip on Schedule's
-meal rows. Shopping's trip cards and Schedule's day cards deliberately do **not** take a stripe —
-Shopping groups by trip, not meal type, and a 6px rail doesn't fit an inline pill.
+The `strip` value is applied as a **left-edge rail** on Catalog's and Today's cards (a dedicated
+6px flex-item bar) and as a 6px `border-left` on Recipe Detail's cardless header/macros/ingredients/
+steps sections — same width and hue family, implemented against a border instead of a card edge
+since there is no card there to rail. The pill chip on Schedule's meal rows reuses the `bg`/`text`
+pair. Shopping's trip cards and Schedule's day cards deliberately do **not** take a stripe — Shopping
+groups by trip, not meal type, and a 6px rail doesn't fit an inline pill.
 
 ### Neutral (in-card)
-- **Neutral Background 1** (`#ffffff`): card/surface background.
+- **Neutral Background 1** (`#ffffff`): card/surface background, everywhere a card still exists.
 - **Neutral Stroke** (`#e0e0e0`-family): card borders, hairline dividers.
 - **Neutral Text Secondary** (`#616161`-family): servings, captions — *inside* a card only; the
-  same gray would under-contrast directly on the dark backdrop, which is why off-card text uses the
-  separate shell palette instead.
+  same gray would under-contrast directly on the dark backdrop, which is why off-card text (and all
+  of Recipe Detail) uses the separate shell palette instead.
 
 ### Named Rules
 **The Always-Flagged Rule.** The gluten-risk-ingredient signal is reserved exclusively for that one
-meaning, on every page, regardless of color or backdrop. Codified in `specs/constitution.md`
-Principle 7.
+meaning, on every page, regardless of color, backdrop, or whether the surrounding content sits in a
+card. Recipe Detail's gluten-risk badge and `glutenFreeNote` callout keep their filled backgrounds
+even though the rest of that page went cardless — this is the one deliberate exception to "no filled
+background," never the other way around. Codified in `specs/constitution.md` Principle 7.
 
 **The One Hex, One Place Rule.** In-card colors stay in `src/styles/colors.ts`, shell/backdrop
 colors in `src/styles/shellColors.ts`, each imported everywhere needed, never re-declared locally.
 
 **The Left-Border Reversal.** Left/right decorative card borders are a standing craft-floor ban in
-general, but meal-type color deliberately renders as a left-edge stripe on Catalog and Today cards,
-adopted from the user-pinned dark dashboard reference. The nest-cards-inside-cards ban is unaffected
-— stripes replace a color's *position*, they never become their own nested card. The nav's own
-selected-item indicator (a 3px inset `box-shadow`, not a `border`) follows the same earned exception
-for the same reason: it's the real Fluent 2 selected-state treatment, re-pinned to the shell palette
-instead of Fluent's brand green.
+general, but meal-type color deliberately renders as a left-edge stripe or `border-left` — Catalog
+and Today's card rail, Recipe Detail's cardless-section accent — adopted from the user-pinned dark
+dashboard reference. The nest-cards-inside-cards ban is unaffected: stripes replace a color's
+*position*, they never become their own nested card, and Recipe Detail's accent replaces a card
+*edge* it no longer has, not a new card.
 
-**The Check-The-Component's-Own-Defaults Rule.** A library component (`NavItem`) carries its own
-default background from the active Fluent theme (`#f0f0f0`, light-neutral) regardless of what
-backdrop it's dropped onto — composing it inside a hand-pinned dark surface requires explicitly
-overriding that default, not just adding new color on top. Caught only by reading the rendered page's
-computed styles, not by reasoning about the className override in isolation.
+**The Check-The-Component's-Own-Defaults Rule.** A library component carries its own default
+styling from the active Fluent theme regardless of what backdrop it's dropped onto — composing one
+inside a hand-pinned dark surface requires explicitly overriding that default, not just adding new
+color on top. First caught on the (now-retired) `NavDrawer`'s light-neutral background, by reading
+the rendered page's computed styles, not by reasoning about a className override in isolation; the
+same discipline applies to any Fluent primitive used off-theme going forward.
 
 ## Typography
 
 Fluent's own type ramp via the theme's default font stack (`Segoe UI` leading a system fallback, no
-self-hosted font). Off-card text — including the nav pane's brand label and link list — uses the
-same type roles (`Caption1`, `Subtitle1`, plain `Text`/`h1`/`h2`) with only their *color* swapped to
-the shell palette, never a different typeface or scale for off-card vs. on-card content.
+self-hosted font). Off-card text — including the nav bar's brand label, and now all of Recipe
+Detail's body text — uses the same type roles (`Caption1`, `Subtitle1`, plain `Text`/`h1`/`h2`) with
+only their *color* swapped to the shell palette, never a different typeface or scale for off-card
+vs. on-card content.
 
 ### Hierarchy
 - **Status** (`Subtitle1`, 600/20px): Today's "Kell főzni ma?" line — off-card, white text, with
   the "igen" word in the off-card accent green rather than the in-card brand green.
 - **Title** (`Title2`/`h1`, 600/20px): recipe titles — off-card on Recipe Detail, white text.
 - **Section headings** (`h2`/`h3`): Catalog's meal-type sections (off-card, white), Shopping's trip
-  and category headings, Schedule's day headers (on-card) — kept as real semantic headings
-  throughout; `getByRole('heading', {level})` is load-bearing in several test suites.
-- **Body** (`Body1`/`Text`, 400/14px): ingredient lines, step text, item names — always on-card.
+  and category headings, Schedule's day headers (on-card), Recipe Detail's step-group headings
+  (off-card) — kept as real semantic headings throughout; `getByRole('heading', {level})` is
+  load-bearing in several test suites.
+- **Body** (`Body1`/`Text`, 400/14px): ingredient lines, step text, item names — on-card everywhere
+  except Recipe Detail, where the same type role renders off-card in the light palette.
 - **Caption** (`Caption1`, 400/12px): date lines (off-card, muted shell color), servings.
 - **Chip label** (12px/700, uppercase): meal-type chips, category headings, badge text.
-- **Nav link** (`fontWeightSemibold`/14px): nav item labels, semibold at rest, white at the active
-  route — not a distinct type role, but called out because it's the one place link text and page
-  body text now share a visual column.
+- **Nav label** (600/0.6rem, under each icon): visible again — a quick glance beats guessing an
+  icon's meaning one-handed in the kitchen. **Nav page title** (600/0.78rem, white, top-right of the
+  bar's first row): names the current route next to the brand mark.
 
 ## Layout
 
-Unchanged page breakpoints (480/640/1024/1366px, `src/styles/breakpoints.ts`). New this pass: the
-app root (`src/App.tsx`) is a flex row — the `NavDrawer` as one child, a flex-column content area as
-the other — rather than every page stacking below a full-width top bar.
-
-**Responsive nav collapse.** At 1024px and above (`bpXLarge`) the nav renders `type="inline"`: a
-persistent 320px pane that pushes the content column, open by default. Below 1024px it renders
-`type="overlay"`: closed by default, floating above the content on open, with its own scrim. A
-`window.matchMedia` listener drives the switch automatically on resize; a `Hamburger` toggle (in the
-nav pane's own header when open, in a matching top bar in the content area when closed) lets the
-user override either state manually at any width. Selecting a nav item while in overlay mode closes
-it, standard overlay-dismiss-on-navigate behavior.
+Unchanged page breakpoints (480/640/1024/1366px, `src/styles/breakpoints.ts`), plus `bpLarge` (640px)
+now referenced directly by the nav bar's own second row. The app root (`src/App.tsx`) is a flex
+**column** — the two-row nav bar on top, the routed content below — the same stacking at every
+viewport, no responsive collapse or overlay logic. Mobile-first: the bar's segmented row is built to
+work at 360px first (full-width equal segments), then simply caps its own width and centers
+(`max-width: 480px; margin: 0 auto`) at `bpLarge` and up rather than restructuring.
 
 Each page's own root is still the full-bleed backdrop wrapper (`min-height: 100dvh`) around the
-centered `.page` content wrapper, now simply narrower when the pane is open rather than full-viewport
-— the gradient's percentage-based `radial-gradient` positions adapt to the column width with no
-per-page change needed.
+centered `.page` content wrapper, full-viewport width at every breakpoint now that nothing pushes it
+from the side.
+
+**Recipe Detail's two-column split** (ingredients | steps, `twoColumn` in its styles) still switches
+to a single stacked column below `bpXLarge` (1024px) and side-by-side above it — unaffected by the
+cardless pass; only the columns' own content (and the 6px accent `border-left` on each) changed.
 
 ## Elevation & Depth
 
 Cards rest at `tokens.shadow4` (`0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14)`), lift to
-`tokens.shadow8` (`0 0 2px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.14)`) on hover/focus. The nav pane
-stays flat when inline (no shadow) — depth is still reserved for cards, not the shell. In its
-overlay form (narrow viewports), the pane floats above the content with Fluent's own built-in drawer
-shadow and scrim — a library default left untouched, not a custom elevation added for this system.
+`tokens.shadow8` (`0 0 2px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.14)`) on hover/focus. The nav bar
+is flat (no shadow, just the 1px bottom hairline) — depth is still reserved for cards, not the shell.
+Recipe Detail, having no cards, carries no shadow at all outside its gluten-risk badge and
+`glutenFreeNote` callout, which keep their own filled, bordered treatment regardless.
 
 ## Shapes
 
 `rounded.xlarge` for cards, `rounded.medium` for buttons, inputs, and nav items, `rounded.pill` for
-badges/chips. The meal-type stripe and the nav's selected-item indicator are both a 6px/3px
-`align-self: stretch` bar styled in place on the existing element — never a new wrapper, never an
-actual `border`.
+badges/chips. The meal-type stripe is a 6px bar: a separate `align-self: stretch` flex item on
+Catalog/Today's cards, or a `border-left` of the same width on Recipe Detail's cardless sections —
+never a new wrapper, never an actual card border.
 
 ## Components
 
@@ -281,75 +298,86 @@ actual `border`.
   collapsed "subtle" edit-affordance on Today is the one non-nav button that sits off-card (below
   the meal cards, directly on the backdrop) and carries an explicit color override
   (`editButtonOffCard`) since Fluent's default subtle-button gray would under-contrast there — the
-  same class of fix the nav itself needed (see Named Rules).
+  same class of fix the nav and Recipe Detail's own portion-stepper buttons needed.
 
 ### Badges / Chips
 - **Gluten-risk badge**, **meal-type chip**, **"Utolsó nap" tag**: unchanged in hex, shape, and
-  meaning regardless of the surrounding chrome.
+  meaning regardless of the surrounding chrome or whether the page around them has a card.
 
 ### Cards
 - **Recipe card** (Catalog): a left-edge rail + title + servings + optional gluten badge
   (`display: flex` card, rail as the first flex child).
 - **Meal card** (Today): a left-edge rail; the meal-type label lives as a small chip inside the
   card body.
-- **Step card** (Recipe Detail): each step group is its own white card, since recoloring many
-  nested list items individually against the dark backdrop would be more error-prone than boxing.
 - **Anchor-edit form card** (Today): the expanded rotation-anchor form is boxed in its own white
   card, so Fluent's `Field`/`Input`/`Button` keep their already-proven light-surface contrast with
   zero per-component dark overrides needed.
 - **Day card, Trip card, Shell card**: unchanged in structure.
+- **Recipe Detail has no cards.** Its header widget, macros, ingredients, and step sections render
+  directly on the backdrop in the off-card palette, each with a 6px meal-type `border-left` instead
+  of a card edge (see Colors → Tertiary and the Left-Border Reversal). The gluten-risk badge and the
+  `glutenFreeNote` callout are the only filled, boxed surfaces left on this page — see the
+  Always-Flagged Rule. This replaced an earlier pass where the same content was boxed in white
+  (and, briefly, translucent "glass") cards; neither survived — see Do's and Don'ts.
 
 ### Inputs / Fields
 Same `Field`+`Input` slot-override pattern, same deliberately-kept native `<select>` on Lunch swap,
 same native checkboxes elsewhere.
 
 ### Navigation
-A Fluent 2 `NavDrawer` left pane — `NavDrawerHeader` (brand label + `Hamburger` collapse toggle,
-`#120f1c` fill) above `NavDrawerBody` (six `NavItem`s, `#241a3f` fill), responsive per Layout above.
-Each item carries a matching icon (`@fluentui/react-icons`, `bundleIcon`'d so the glyph itself swaps
-from outline to filled on the active route, not just its color) plus the Hungarian label. Selection
-state is Fluent's own native treatment — bold white text, a tinted background
-(`rgba(255,255,255,.1)`), and a 3px inset left accent bar — re-pinned to the shell palette rather
-than Fluent's brand green, since brand green is reserved exclusively for in-card content (see
-Colors). This replaces the prior two-tier top bar (a slim brand strip over a flat link row, plain
-`<Link>`s with a manual underline for the active route); the brand/link two-tier split and all six
-routes carried over unchanged, only the orientation and the underlying components did not.
+A plain two-row `<nav>` (`src/App.tsx`), hand-rolled, not a Fluent navigation primitive. Row one:
+the brand label, and — right-aligned — the current page's own name (derived from the matching
+`NAV_LINKS` entry), so the bar always names where you are. Row two: six links laid out as an
+equal-width segmented control (`flex: 1 1 0` each), each a `@fluentui/react-icons` icon
+(`bundleIcon`'d so the glyph swaps outline-to-filled on the active route) over a visible Hungarian
+label, 44px tall. Client-side routing is wired by hand on click (a plain left-click is intercepted
+and handed to the router; modified clicks keep native anchor behavior); the active link also carries
+`aria-current="page"`. Selection state is the whole segment filling with `rgba(255,255,255,0.14)`
+and the icon/label going full white — no border, no inset accent bar. This replaced a single
+icon-only row (`aria-label`-only, no visible text), which had replaced the `NavDrawer` left pane,
+which had replaced the original two-tier top bar; the brand label and all six routes carried over
+across every rebuild, only the structure, the underlying components, and the label visibility did
+not.
 
 ### Off-Card Text
-A handful of elements sit directly on the backdrop rather than inside a card: the nav pane's own
-brand label and item labels; the collapsed-state top bar's brand label; Today's date line,
-cook-status line, setup prompt, and collapsed edit button; Catalog's section headings and "no
-results" text; Recipe Detail's back-link, title, meal-type, servings, gluten-free note, and source
-line; Shopping's family-size label; Schedule's empty-state prompt and anchor-link; Label checklist's
-summary line. Each uses the shell's off-card text/muted/accent-green colors, never the in-card
-neutral-gray tokens, which would under-contrast on the dark backdrop.
+A handful of elements sit directly on the backdrop rather than inside a card: the nav bar's own
+brand label; Today's date line, cook-status line, setup prompt, and collapsed edit button;
+Catalog's section headings and "no results" text; Shopping's family-size label; Schedule's
+empty-state prompt and anchor-link; Label checklist's summary line; and, in full now, Recipe
+Detail's back-link, title, meal-type chip surroundings, servings, portion stepper, macros,
+ingredient list, step instructions, tip, and source line. Each uses the shell's off-card
+text/muted/accent-green colors, never the in-card neutral-gray tokens, which would under-contrast
+on the dark backdrop.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** keep `FluentProvider` on the light theme — dark/purple styling is chrome-only, hand-pinned
-  hex, never a theme-level switch. This is the architecture decision everything else depends on.
+- **Do** keep `FluentProvider` on the light theme — dark/purple styling is chrome-only (or, on
+  Recipe Detail, page-body-only) hand-pinned hex, never a theme-level switch. This is the
+  architecture decision everything else depends on.
 - **Do** check every page's actual rendered output — including a library component's own computed
-  styles, not just the className you added — before trusting a written plan's survey. The nav's
-  default light-neutral background only surfaced by reading the live DOM.
-- **Do** reach for Fluent's own primitives (`NavDrawer`, `NavItem`, `Hamburger`) over hand-rolled
-  nav markup when the library ships one — real keyboard nav, focus management, and responsive
-  overlay behavior come for free; only the color layer needs re-pinning to the shell palette.
+  styles, not just the className you added — before trusting a written plan's survey.
 - **Do** keep the gluten-risk color and the three meal-type hues sourced from their one shared
-  module each, regardless of position or backdrop.
-- **Do** box genuinely dense content (Recipe Detail's step instructions, Today's expanded form) in
-  its own white card rather than recoloring many individual text nodes — fewer failure points.
+  module each, regardless of position, backdrop, or card-vs-cardless treatment.
+- **Do** box genuinely dense content (Today's expanded anchor-edit form) in its own white card
+  rather than recoloring many individual text nodes, when a card is the chosen treatment for that
+  surface — fewer failure points.
+- **Do** keep the gluten-risk badge and `glutenFreeNote` boxed and filled even on a page that has
+  otherwise gone cardless — the Always-Flagged Rule outranks any surface's own direction.
 
 ### Don't:
 - **Don't** assume a page — or a drop-in component — has no contrast problem because nothing in the
   diff touched color; verify the real render.
 - **Don't** map the gluten-risk signal or any data-series hue to a UI framework's own semantic
   color token — pin every one explicitly.
-- **Don't** carry forward a decorative distinction (the old nav's "tint" on two routes) into a new
-  structure just because it existed before — it was dropped here precisely because nothing about the
-  left-pane layout gave it a meaning to preserve.
+- **Don't** carry forward a decorative distinction (the old nav's violet "tint" on two routes) into
+  a new structure just because it existed before — it was dropped once already and has not earned
+  its way back across three further nav rebuilds.
 - **Don't** give every list card treatment by default — Label checklist's flat list is still the
-  deliberate exception.
-- **Don't** treat this file as a snapshot of a transition — the left-pane-nav, dark-shell system is
-  the one and only shipped state across all six pages plus the app shell. Re-run
+  deliberate exception, and Recipe Detail's cardless body is now a second one.
+- **Don't** reach for decorative `backdrop-filter`/glass treatments on a card — Recipe Detail briefly
+  carried a translucent, blurred "glass" surface on its header/ingredients/step boxes; it matched no
+  other page in the system and was removed in the same pass that made the page fully cardless.
+- **Don't** treat this file as a snapshot of a transition — the current nav bar and Recipe Detail's
+  cardless treatment are each the one and only shipped state for their surface. Re-run
   `/impeccable document` the next time the visual system changes meaningfully.

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-05T10:30:00Z",
+  "generatedAt": "2026-10-08T12:15:00Z",
   "title": "Design System: Zero Gluten",
   "extensions": {
     "colorMeta": {
@@ -114,8 +114,7 @@
     ],
     "motion": [
       { "name": "settings-handoff", "value": "duration var(--durationNormal), curve var(--curveEasyEase)", "purpose": "Today's rotation-anchor edit affordance collapse/expand — the one authored motion moment on that page." },
-      { "name": "card-hover", "value": "duration var(--durationFast), curve var(--curveEasyEase), properties: box-shadow, transform", "purpose": "Card lift on hover/focus across Today, Catalog, and Recipe cards." },
-      { "name": "nav-overlay", "value": "Fluent's own built-in drawer open/close motion, not overridden", "purpose": "NavDrawer's overlay slide-in/out on narrow viewports." }
+      { "name": "card-hover", "value": "duration var(--durationFast), curve var(--curveEasyEase), properties: box-shadow, transform", "purpose": "Card lift on hover/focus across Today and Catalog cards." }
     ],
     "breakpoints": [
       { "name": "medium", "value": "480px" },
@@ -150,12 +149,12 @@
       "css": ".ds-recipe-card { display: flex; text-decoration: none; color: inherit; border-radius: 8px; overflow: hidden; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); border: 1px solid #e0e0e0; background: #ffffff; transition: box-shadow .15s ease, transform .15s ease; } .ds-recipe-card:hover, .ds-recipe-card:focus-visible { box-shadow: 0 0 2px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.14); transform: translateY(-2px); } .ds-recipe-card__rail { width: 6px; flex: none; align-self: stretch; } .ds-recipe-card__body { padding: 0.9rem 1rem 1.1rem; flex: 1 1 auto; } .ds-recipe-card__title { font-weight: 600; margin: 0 0 0.3rem; } .ds-recipe-card__meta { color: #616161; font-size: 12px; margin: 0 0 0.5rem; }"
     },
     {
-      "name": "Step Card (Recipe Detail)",
-      "kind": "card",
+      "name": "Cardless Accent Section (Recipe Detail)",
+      "kind": "custom",
       "refersTo": "card",
-      "description": "Each recipe step group is its own white card rather than plain text on the backdrop, since recoloring many nested list items individually would be more error-prone than boxing.",
-      "html": "<section class=\"ds-step-card\"><h2>Elkészítés</h2><ol><li>Egy nagy fazékban hevítsd fel a zsírt…</li></ol></section>",
-      "css": ".ds-step-card { border-radius: 8px; border: 1px solid #e0e0e0; background: #ffffff; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); padding: 1rem 1.25rem 1.1rem; }"
+      "description": "Recipe Detail has no cards. Its header, macros, ingredients, and step sections sit directly on the dark backdrop in the off-card light palette, each carrying a 6px meal-type-colored border-left in place of the card edge every other page uses. Replaced an earlier pass that boxed this same content in white (and, briefly, translucent glass) cards — neither survived; see DESIGN.md's Do's and Don'ts.",
+      "html": "<section class=\"ds-accent-section\" style=\"border-left-color:#2f8c82\"><h2 class=\"ds-accent-section__heading\">Elkészítés</h2><ol class=\"ds-accent-section__list\"><li>Egy nagy fazékban hevítsd fel a zsírt…</li></ol></section>",
+      "css": ".ds-accent-section { border-left-style: solid; border-left-width: 6px; padding-left: 1rem; } .ds-accent-section__heading { margin: 0 0 0.5rem; color: #e3dcf2; font-size: 1rem; } .ds-accent-section__list { margin: 0; padding: 0; list-style: none; color: #e3dcf2; }"
     },
     {
       "name": "Trip Card",
@@ -182,12 +181,12 @@
       "css": ".ds-shell-card { background: #ffffff; border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 0 2px rgba(0,0,0,.12), 0 2px 4px rgba(0,0,0,.14); overflow: hidden; } .ds-shell-card__row { display: flex; align-items: center; column-gap: 0.5rem; min-height: 44px; padding: 0.3rem 1rem; border-bottom: 1px solid #e0e0e0; }"
     },
     {
-      "name": "Left Nav Pane",
+      "name": "Nav Bar",
       "kind": "nav",
-      "refersTo": "nav-pane",
-      "description": "Rebuilt this pass on Fluent 2's own NavDrawer/NavDrawerHeader/NavDrawerBody/NavItem/Hamburger primitives, replacing the prior hand-rolled two-tier top bar (a plain <nav> of <Link>s under a brand strip). Inline (persistent, 320px) at 1024px and up; overlay (closed by default, floats above content) below it, switched by a window.matchMedia listener. Each item carries a bundleIcon'd Fluent icon that swaps outline-to-filled on the active route, plus the Hungarian label. Selected state is Fluent's native treatment (bold white text, tinted background, inset left accent bar) re-pinned to the shell palette instead of Fluent's brand green. The prior per-item 'tint' marking two secondary routes was dropped — a top-bar-specific highlight with no meaning once items are full-width vertical rows.",
-      "html": "<nav class=\"ds-nav-pane\"><div class=\"ds-nav-pane__header\"><button class=\"ds-hamburger\" aria-label=\"Menü összecsukása\">☰</button><span class=\"ds-nav-pane__brand\">Zero Gluten</span></div><div class=\"ds-nav-pane__body\"><a class=\"ds-nav-item ds-nav-item--active\" href=\"#\">🏠 Ma</a><a class=\"ds-nav-item\" href=\"#\">🛒 Lista</a></div></nav>",
-      "css": ".ds-nav-pane { width: 320px; background: #241a3f; display: flex; flex-direction: column; } .ds-nav-pane__header { display: flex; align-items: center; column-gap: 0.6rem; padding: 0.6rem 0.9rem; background: #120f1c; border-bottom: 1px solid rgba(255,255,255,.08); } .ds-nav-pane__brand { color: #b9aed6; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; } .ds-nav-item { display: flex; align-items: center; column-gap: 0.6rem; min-height: 44px; margin-inline: 0.5rem; border-radius: 4px; padding-inline: 0.75rem; color: #b9aed6; font-weight: 600; text-decoration: none; background: transparent; } .ds-nav-item:hover { color: #ffffff; background: rgba(255,255,255,.06); } .ds-nav-item--active { color: #ffffff; background: rgba(255,255,255,.1); box-shadow: inset 3px 0 0 0 #ffffff; }"
+      "refersTo": "nav-bar-item",
+      "description": "A plain hand-rolled two-row <nav> (src/App.tsx), not a Fluent navigation primitive. Row one: brand label plus the current page's own name, right-aligned. Row two: six links as an equal-width segmented control, each an icon over a visible Hungarian label, 44px tall. Client-side routing wired by hand on click; the active link carries aria-current=\"page\". Selected state fills the whole segment with rgba(255,255,255,.14) and turns the icon/label full white — no border, no inset accent bar. Mobile-first: full-width segments at 360px, caps at max-width 480px and centers from bpLarge (640px) up.",
+      "html": "<nav class=\"ds-nav-bar\"><div class=\"ds-nav-bar__row1\"><span class=\"ds-nav-bar__brand\">Zero Gluten</span><span class=\"ds-nav-bar__title\">Ma</span></div><div class=\"ds-nav-bar__row2\"><a class=\"ds-nav-bar-item ds-nav-bar-item--active\" href=\"#\" aria-current=\"page\"><span>🏠</span><span class=\"ds-nav-bar-item__label\">Ma</span></a><a class=\"ds-nav-bar-item\" href=\"#\"><span>🛒</span><span class=\"ds-nav-bar-item__label\">Lista</span></a></div></nav>",
+      "css": ".ds-nav-bar { display: flex; flex-direction: column; background: #120f1c; border-bottom: 1px solid rgba(255,255,255,.08); } .ds-nav-bar__row1 { display: flex; align-items: center; justify-content: space-between; padding: 0.5rem 1rem 0.3rem; } .ds-nav-bar__brand { color: #b9aed6; font-size: 12px; font-weight: 600; letter-spacing: 0.03em; } .ds-nav-bar__title { color: #ffffff; font-size: 0.78rem; font-weight: 600; } .ds-nav-bar__row2 { display: flex; padding: 0 0.5rem 0.5rem; column-gap: 0.25rem; } .ds-nav-bar-item { flex: 1 1 0; display: flex; flex-direction: column; align-items: center; justify-content: center; row-gap: 0.15rem; min-height: 44px; padding: 0.3rem 0.2rem; border-radius: 10px; color: #b9aed6; text-decoration: none; } .ds-nav-bar-item__label { font-size: 0.6rem; font-weight: 600; } .ds-nav-bar-item:hover { color: #ffffff; } .ds-nav-bar-item--active { color: #ffffff; background: rgba(255,255,255,.14); }"
     },
     {
       "name": "Page Backdrop",
@@ -200,34 +199,35 @@
   ],
   "narrative": {
     "northStar": "The Violet Shift",
-    "overview": "Zero Gluten runs inside a dark navy/indigo chrome over a purple gradient backdrop — a register borrowed, user-pinned, from an unrelated enterprise dashboard reference. The product itself hasn't changed across either shell pass: it's still a plain-spoken kitchen companion, read one-handed, sometimes in a dim kitchen or a shop. Every real task — ingredient lists, shopping checkboxes, the cook-today answer — still lives on the same white, elevated cards this system built before any of the dark chrome existed; only the chrome and the page background around those cards went dark and colorful. This pass rebuilt the chrome itself: the nav moved from a two-tier top bar to a collapsible left pane, built on Fluent 2's own NavDrawer primitives rather than hand-rolled links. The visual identity carries over unchanged — same hex, same two-tier brand/link split, just rotated from horizontal to vertical — but the nav is now a distinct, Fluent-native component: real keyboard navigation, a native selected-state treatment, and a built-in responsive collapse to an overlay on narrow viewports. The theme architecture itself stayed light (FluentProvider on zeroGlutenTheme, unchanged): the dark/purple treatment is hand-pinned hex applied only to chrome and page backgrounds, never inside a card, so every already-proven component — including the new nav, once its own default theme-driven background was overridden — kept its exact in-card contrast with zero re-verification needed.",
+    "overview": "Zero Gluten runs inside a dark navy/indigo chrome over a purple gradient backdrop — a register borrowed, user-pinned, from an unrelated enterprise dashboard reference. The product itself hasn't changed across any shell or page pass: it's still a plain-spoken kitchen companion, read one-handed, sometimes in a dim kitchen or a shop. Most real tasks — ingredient checklists, shopping checkboxes, the cook-today answer — still live on the same white, elevated cards this system built before any of the dark chrome existed; only the chrome and the page background around those cards went dark and colorful. Recipe Detail is the one deliberate exception: its content now sits directly on the backdrop, cardless, in the off-card light palette, with a meal-type-colored left accent standing in for the card edge every other page still uses. The nav has been rebuilt three times since this system's first pass: a two-tier top bar (brand strip over a link row) to a collapsible Fluent 2 NavDrawer left pane to a single horizontal icon-only bar to its current shape, a two-row bar (brand + current-page title, then a segmented icon-and-label control) spanning the full width, content routed below it. The dark/purple shell palette carried over unchanged across every rebuild; only the structure and the underlying markup changed. Visible labels returned in this pass (impeccable /live, an explicit \"redesign... mobile-first\" request), and the active route now fills its whole segment with a background rather than a thin border. The theme architecture itself stayed light (FluentProvider on zeroGlutenTheme, unchanged): the dark/purple treatment is hand-pinned hex applied only to chrome, page backgrounds, and — uniquely on Recipe Detail — the page's own body text, never inside a card elsewhere.",
     "keyCharacteristics": [
-      "Theme architecture is deliberately split: Fluent stays on the light theme; dark/purple is hand-pinned hex on chrome and backdrop only, never inside a card.",
-      "The left nav is a real Fluent 2 component (NavDrawer/NavItem/Hamburger), not a styled list of links — it inherits the shell palette via per-slot className overrides, not Fluent's own default theme-driven styling.",
+      "Theme architecture is deliberately split: Fluent stays on the light theme; dark/purple is hand-pinned hex on chrome and backdrop, and (on Recipe Detail only) the page's own loose text, never inside a card elsewhere.",
+      "The nav is a hand-rolled two-row bar, not a Fluent navigation primitive — brand + current-page title on top, a segmented icon-and-label control below, client-side routing wired by hand on click. No responsive collapse, no overlay, traded deliberately for a bar that never needs to hide and reads at a glance.",
       "Purple/indigo is the chrome/world color; rosemary green is demoted, not removed — it keeps its prior meaning inside cards.",
-      "Left-edge status stripes, not top strips, on Catalog and Today's cards.",
-      "Off-card text is a first-class concern: several real content elements, including the nav's own brand label and links, sit directly on the dark backdrop and are individually checked against the rendered page, not assumed safe.",
-      "Bundle size unaffected — no new dependency beyond the already-installed Fluent package; pure hex constants and CSS gradients."
+      "Left-edge status stripes, not top strips — Catalog and Today's cards, and (at 6px, same width and hue family, as a border-left) Recipe Detail's cardless sections.",
+      "Recipe Detail is cardless by design, not by omission: header, macros, ingredients, and steps sit directly on the dark backdrop in the off-card palette, with a meal-type-colored left accent in place of the card edge. The gluten-risk badge and the glutenFreeNote callout are the sole exceptions.",
+      "Off-card text is a first-class concern: several real content elements, including the nav bar's own brand label and, in full now, Recipe Detail's entire body, sit directly on the dark backdrop and are individually checked against the rendered page, not assumed safe."
     ],
     "rules": [
-      { "name": "The Always-Flagged Rule", "body": "The gluten-risk-ingredient signal is reserved exclusively for that one meaning, on every page, regardless of color or backdrop. Never reuse it for anything else, never ship a screen that lists a flaggable ingredient without it. Codified in specs/constitution.md Principle 7.", "section": "colors" },
+      { "name": "The Always-Flagged Rule", "body": "The gluten-risk-ingredient signal is reserved exclusively for that one meaning, on every page, regardless of color, backdrop, or whether the surrounding content sits in a card. Recipe Detail's gluten-risk badge and glutenFreeNote callout keep their filled backgrounds even though the rest of that page went cardless — this is the one deliberate exception to 'no filled background,' never the other way around. Codified in specs/constitution.md Principle 7.", "section": "colors" },
       { "name": "The One Hex, One Place Rule", "body": "In-card colors stay in src/styles/colors.ts, shell/backdrop colors in src/styles/shellColors.ts, each imported everywhere needed, never re-declared locally.", "section": "colors" },
-      { "name": "The Left-Border Reversal", "body": "Left/right decorative card borders are a standing craft-floor ban in general, but meal-type color deliberately renders as a left-edge stripe on Catalog and Today cards, and the nav's selected-item indicator is a 3px inset box-shadow in the same spirit — both earned exceptions, re-pinned to the shell palette. The nest-cards-inside-cards ban is unaffected.", "section": "shapes" },
-      { "name": "The Check-The-Component's-Own-Defaults Rule", "body": "A library component (NavItem) carries its own default background from the active Fluent theme regardless of what backdrop it's dropped onto — composing it inside a hand-pinned dark surface requires explicitly overriding that default, not just adding new color on top. Caught only by reading the rendered page's computed styles.", "section": "components" }
+      { "name": "The Left-Border Reversal", "body": "Left/right decorative card borders are a standing craft-floor ban in general, but meal-type color deliberately renders as a left-edge stripe or border-left — Catalog and Today's card rail, Recipe Detail's cardless-section accent — adopted from the user-pinned dark dashboard reference. The nest-cards-inside-cards ban is unaffected: stripes replace a color's position, they never become their own nested card, and Recipe Detail's accent replaces a card edge it no longer has, not a new card.", "section": "shapes" },
+      { "name": "The Check-The-Component's-Own-Defaults Rule", "body": "A library component carries its own default styling from the active Fluent theme regardless of what backdrop it's dropped onto — composing one inside a hand-pinned dark surface requires explicitly overriding that default, not just adding new color on top. First caught on the (now-retired) NavDrawer's light-neutral background, by reading the rendered page's computed styles, not by reasoning about a className override in isolation.", "section": "components" }
     ],
     "dos": [
-      "Do keep FluentProvider on the light theme — dark/purple styling is chrome-only, hand-pinned hex, never a theme-level switch.",
+      "Do keep FluentProvider on the light theme — dark/purple styling is chrome-only (or, on Recipe Detail, page-body-only) hand-pinned hex, never a theme-level switch.",
       "Do check every page's actual rendered output — including a library component's own computed styles — before trusting a written plan's survey.",
-      "Do reach for Fluent's own primitives (NavDrawer, NavItem, Hamburger) over hand-rolled nav markup when the library ships one — only the color layer needs re-pinning to the shell palette.",
-      "Do keep the gluten-risk color and the three meal-type hues sourced from their one shared module each, regardless of position or backdrop.",
-      "Do box genuinely dense content in its own white card rather than recoloring many individual text nodes."
+      "Do keep the gluten-risk color and the three meal-type hues sourced from their one shared module each, regardless of position, backdrop, or card-vs-cardless treatment.",
+      "Do box genuinely dense content in its own white card rather than recoloring many individual text nodes, when a card is the chosen treatment for that surface.",
+      "Do keep the gluten-risk badge and glutenFreeNote boxed and filled even on a page that has otherwise gone cardless — the Always-Flagged Rule outranks any surface's own direction."
     ],
     "donts": [
       "Don't assume a page — or a drop-in component — has no contrast problem because nothing in the diff touched color; verify the real render.",
       "Don't map the gluten-risk signal or any data-series hue to a UI framework's own semantic color token.",
-      "Don't carry forward a decorative distinction into a new structure just because it existed before — the old nav's route 'tint' was dropped precisely because the left-pane layout gave it no meaning to preserve.",
-      "Don't give every list card treatment by default — Label checklist's flat list is a deliberate exception.",
-      "Don't treat this file as a transition snapshot — the left-pane-nav, dark-shell system is the one and only shipped state across all six pages plus the app shell."
+      "Don't carry forward a decorative distinction into a new structure just because it existed before — the old nav's violet 'tint' was dropped once already and has not earned its way back across two further nav rebuilds.",
+      "Don't give every list card treatment by default — Label checklist's flat list is a deliberate exception, and Recipe Detail's cardless body is now a second one.",
+      "Don't reach for decorative backdrop-filter/glass treatments on a card — Recipe Detail briefly carried a translucent, blurred 'glass' surface on its header/ingredients/step boxes; it matched no other page in the system and was removed in the same pass that made the page fully cardless.",
+      "Don't treat this file as a transition snapshot — the current nav bar and Recipe Detail's cardless treatment are each the one and only shipped state for their surface."
     ]
   }
 }
